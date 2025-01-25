@@ -1,0 +1,139 @@
+/* Reset and Variables */
+:root {
+    --primary-color: #e31e24;    /* Red color */
+    --secondary-color: #333;     /* Dark gray for text */
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;  /* Arabic font */
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: var(--white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+/* Logo Styles */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+/* Underline Hover Effect */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Active Link State */
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+/* Navigation Buttons (Search and Language) */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.search-btn:hover {
+    color: var(--primary-color);
+}
+
+.lang-btn {
+    background: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 30px;
+    }
+
+    .nav-links {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* You might want to add a mobile menu here */
+    }
+
+    .navbar {
+        padding: 15px 20px;
+    }
+}
