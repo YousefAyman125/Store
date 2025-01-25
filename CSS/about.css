@@ -15,7 +15,7 @@
     text-align: center;
 }
 
-.box h2 {
+.box h3 {
     font-size: 24px;
     color: #c01a0c;
     margin-bottom: 15px;
@@ -45,4 +45,56 @@
     display: flex;
     flex-wrap: wrap;
     border-radius: 8px;
+}
+
+/* تنسيق عام للصندوق مع الصورة */
+.box-with-image {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق النص */
+.text-content {
+    flex: 1;
+}
+
+.text-content h3 {
+    font-size: 24px;
+    color: #c01a10;
+    margin-bottom: 15px;
+}
+
+.text-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* تنسيق الصورة */
+.image-content {
+    flex: 1;
+    text-align: center;
+}
+
+.image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* تنسيق خاص للهواتف */
+@media (max-width: 768px) {
+    .box-with-image {
+        flex-direction: column;
+    }
+
+    .image-content {
+        order: -1; /* الصورة تظهر أولاً على الهواتف */
+    }
 }
