@@ -156,7 +156,7 @@ body {
 }
 
 .container > div {
-    width: 48%; /* Ensure both sections take equal width */
+    width: 49%; /* Ensure both sections take equal width */
     padding: 20px;
     box-sizing: border-box; /* Include padding in width/height calculations */
     background-color: white;
