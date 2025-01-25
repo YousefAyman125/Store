@@ -149,7 +149,7 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 25px;
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -166,7 +166,7 @@ body {
 
 iframe {
     width: 100%;
-    height: 300px;
+    height: 550px;
     border: none;
 }
 
@@ -175,7 +175,10 @@ iframe {
     flex-direction: column;
     justify-content: space-between;
 }
-
+.map-section{
+    width: 100%;
+    height: 100%;
+}
 .form-section h2 {
     font-size: 24px;
     margin-bottom: 20px;
@@ -201,6 +204,7 @@ textarea {
     height: 100px;
     text-align: right; /* Align text to the right */
     direction: rtl; /* Ensure RTL direction */
+    resize: vertical;
 }
 
 button {
@@ -219,7 +223,7 @@ button:hover {
 
 .contact-info {
     margin-top: 10px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
 }
 
