@@ -1,0 +1,48 @@
+/* تنسيق الصف الرئيسي */
+.wp-block-wd-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* تنسيق الأعمدة */
+.wp-block-wd-column {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* تنسيق الفقرات */
+.wp-block-wd-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* تنسيق العناوين */
+.wp-block-wd-title {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+/* تنسيق خاص للعناوين ذات العرض المخصص */
+.wd-custom-width {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* تنسيق إضافي للفقرات ذات العرض المخصص */
+.wp-block-wd-paragraph.wd-custom-width {
+    max-width: 90%;
+    margin: 0 auto;
+}
+#wd-9a74c592{
+    color: rgb(193, 26, 16);
+    margin-bottom: 15px;
+}
