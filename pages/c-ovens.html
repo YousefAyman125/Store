@@ -3,8 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>الافران الحراريه - Target</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/home/slider.css">
+
 </head>
 <body>
+<!-- Navigation Bar -->
+<Header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../assets/images/logo.png" alt="Logo">
+        </div>
+        <div class="nav-links">
+            <a href="index.html">الرئيسية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="lang-btn">الكتالوج</button>
+        </div>
+    </nav>
+</Header>
 
+<!-- Products -->
+<div class="category-nav">
+    <a href="#" class="active">الأفران الحرارية</a>
+    <a href="#">الثلاجات</a>
+    <a href="#">غسالة الأطباق</a>
+    <a href="#">فرن بيتزا</a>
+    <a href="#">ماكينة القهوة</a>
+    <a href="#">ماكينة الثلج</a>
+    <a href="#">معدات البار</a>
+    <a href="#">معدات التجهيز</a>
+    <a href="#">معدات الغسيل</a>
+</div>
+
+<div class="breadcrumb">
+    <a href="/">الرئيسية</a> / <span>الأفران الحرارية</span>
+</div>
+
+<div class="sort-text">
+    ترتيب حسب الأدنى سعراً لك
+</div>
+
+<div class="products-container">
+    <div id="loadingIndicator" class="loading">جاري تحميل المنتجات...</div>
+    <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+        </div>
+
+        <div class="bottom-section">
+            <!-- Navigation Links -->
+            <div class="footer-links">
+                <a href="index.html">الرئيسية</a>
+                <a href="about.html">من نحن</a>
+                <a href="contact.html">تواصل معنا</a>
+            </div>
+
+            <!-- Logo -->
+            <div class="footer-logo">
+                <img src="../assets/images/logo.png" alt="Logo">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script defer src="../js/products.js"></script>
 </body>
 </html>
