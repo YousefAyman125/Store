@@ -257,3 +257,52 @@ body {
 .scroll-to-top:hover {
     background-color: #a2a2a2;
 }
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropbtn i {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.dropdown-content {
+    display: none; /* مخفي بشكل افتراضي */
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 4px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dropdown-content a {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* === إظهار القائمة المنسدلة عند إضافة فئة 'show' === */
+.dropdown-content.show {
+    display: flex;
+    flex-direction: column;
+}

@@ -19,6 +19,25 @@
             <a href="index.html">الرئيسية</a>
             <a href="about.html">من نحن</a>
             <a class="active" href="contact.html">تواصل معنا</a>
+            <ul style="list-style: none;">
+                <li class="dropdown">
+
+                    <a href="#" class="dropbtn" onclick="toggleDropdown(event)">معرض المنتجات <i class="fas fa-caret-down"></i></a>
+
+                    <div class="dropdown-content">
+                        <a href="#">الأفران الحرارية</a>
+                        <a href="#">الثلاجات</a>
+                        <a href="#">غسالة الأطباق</a>
+                        <a href="#">فرن بيتزا</a>
+                        <a href="#">ماكينة الثلج</a>
+                        <a href="#">ماكينة القهوة</a>
+                        <a href="#">معدات البار</a>
+                        <a href="#">معدات التجهيز</a>
+                        <a href="#">معدات المخابز</a>
+                        <a href="#">معدات المغسلة</a>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="nav-buttons">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -30,11 +49,21 @@
     <div class="form-section">
         <h2>إرسل رسالتك</h2>
         <form action="">
-            <input placeholder="الاسم الكامل" required type="text">
-            <input placeholder="رقم التليفون" required type="tel">
-            <input placeholder="البريد الإلكتروني" required type="email">
-            <input placeholder="الموضوع" type="text">
-            <textarea placeholder="رسالتك (اختياري)"></textarea>
+            <label>
+                <input placeholder="الاسم الكامل" required type="text">
+            </label>
+            <label>
+                <input placeholder="رقم التليفون" required type="tel">
+            </label>
+            <label>
+                <input placeholder="البريد الإلكتروني" required type="email">
+            </label>
+            <label>
+                <input placeholder="الموضوع" type="text">
+            </label>
+            <label>
+                <textarea placeholder="رسالتك (اختياري)"></textarea>
+            </label>
             <button type="submit">إرسال</button>
         </form>
         <div class="contact-info">
@@ -45,10 +74,12 @@
         </div>
     </div>
     <div class="map-section">
-        <iframe allowfullscreen=""
-                loading="lazy"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.123456789!2d31.1234567!3d30.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x123456789abcdef!2sEgytl!5e0!3m2!1sen!2seg!4v1234567890"
-                style="border:0;"></iframe>
+        <iframe
+                allowfullscreen=""
+                height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4506.138817572411!2d30.918495575549837!3d29.943275274974656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDU2JzM1LjgiTiAzMMKwNTUnMTUuOSJF!5e1!3m2!1sen!2seg!4v1737903346258!5m2!1sen!2seg"
+                style="border:0;"
+                width="600"></iframe>
     </div>
 </section>
 <footer class="footer">
@@ -87,5 +118,33 @@
         </div>
     </div>
 </footer>
+<script>
+
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('show');
+
+
+        const otherDropdowns = document.querySelectorAll('.dropdown-content');
+        otherDropdowns.forEach(content => {
+            if (content !== dropdownContent) {
+                content.classList.remove('show');
+            }
+        });
+    }
+
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>
