@@ -28,7 +28,7 @@
 }
 
 .product-card:nth-child(11) {
-    grid-column: 3 / 4;
+    grid-column: 3 / 3;
 }
 
 .product-card:hover {
