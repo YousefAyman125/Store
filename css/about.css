@@ -1,100 +1,79 @@
-/* تنسيق عام للصفحة */
+/* === تنسيق عام للصفحة === */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* خلفية خفيفة للصفحة */
+    color: #333;
+}
+
 .flex-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 25px;
-    padding: 25px;
+    justify-content: center; /* توسيط العناصر */
+    gap: 30px; /* زيادة التباعد بين العناصر */
+    padding: 40px;
     background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل ناعم */
 }
 
-/* تنسيق كل box */
-.box {
-    flex: 1 1 calc(25% - 20px); /* 4 boxes per row */
-    border-radius: 8px;
+/* === تنسيق العناصر داخل الفليكس === */
+.box, .box-with-image {
+    flex: 1 1 calc(25% - 30px); /* 4 عناصر في الصف */
+    border-radius: 12px;
     padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #f3f3f3); /* خلفية متدرجة خفيفة */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير حركي */
 }
 
-.box h3 {
-    font-size: 24px;
+.box:hover, .box-with-image:hover {
+    transform: translateY(-8px); /* حركة بسيطة عند التمرير */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* ظل أقوى عند التمرير */
+}
+
+/* === النصوص داخل الـ Box === */
+.box h3, .text-content h3 {
+    font-size: 22px;
     color: #c01a0c;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-.box p {
+.box p, .text-content p {
     font-size: 16px;
-    line-height: 1.6;
-    color: #333;
+    line-height: 1.8;
+    color: #555;
 }
 
-/* تنسيق خاص للهواتف */
-@media (max-width: 768px) {
-    .box {
-        flex: 1 1 calc(50% - 20px); /* 2 boxes per row */
-    }
-}
-
-@media (max-width: 480px) {
-    .box {
-        flex: 1 1 100%; /* 1 box per row */
-    }
-}
-
-.img {
-    gap: 25px;
-    padding: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    border-radius: 8px;
-}
-
-/* تنسيق عام للصندوق مع الصورة */
-.box-with-image {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* تنسيق النص */
-.text-content {
-    flex: 1;
-}
-
-.text-content h3 {
-    font-size: 24px;
-    color: #c01a10;
-    margin-bottom: 15px;
-}
-
-.text-content p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* تنسيق الصورة */
-.image-content {
-    flex: 1;
-    text-align: center;
-}
-
+/* === تنسيق خاص للصور === */
 .image-content img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.3s ease; /* تأثير تكبير الصورة */
 }
 
-/* تنسيق خاص للهواتف */
+.image-content img:hover {
+    transform: scale(1.05);
+}
+
+/* === استجابة الهواتف === */
 @media (max-width: 768px) {
+    .box, .box-with-image {
+        flex: 1 1 calc(45% - 20px); /* 2 عناصر في الصف */
+    }
     .box-with-image {
         flex-direction: column;
+        text-align: center;
     }
-
     .image-content {
-        order: -1; /* الصورة تظهر أولاً على الهواتف */
+        order: -1; /* الصورة تظهر أولاً */
+    }
+}
+
+@media (max-width: 480px) {
+    .box, .box-with-image {
+        flex: 1 1 100%; /* عنصر واحد في الصف */
     }
 }
