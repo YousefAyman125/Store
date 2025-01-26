@@ -19,6 +19,25 @@
             <a href="index.html">الرئيسية</a>
             <a href="about.html" class="active">من نحن</a>
             <a href="contact.html">تواصل معنا</a>
+            <ul style="list-style: none;">
+                <li class="dropdown">
+
+                    <a href="#" class="dropbtn" onclick="toggleDropdown(event)">معرض المنتجات <i class="fas fa-caret-down"></i></a>
+
+                    <div class="dropdown-content">
+                        <a href="#">الأفران الحرارية</a>
+                        <a href="#">الثلاجات</a>
+                        <a href="#">غسالة الأطباق</a>
+                        <a href="#">فرن بيتزا</a>
+                        <a href="#">ماكينة الثلج</a>
+                        <a href="#">ماكينة القهوة</a>
+                        <a href="#">معدات البار</a>
+                        <a href="#">معدات التجهيز</a>
+                        <a href="#">معدات المخابز</a>
+                        <a href="#">معدات المغسلة</a>
+                    </div>
+                </li>
+            </ul>
         </div>
         <div class="nav-buttons">
             <button class="search-btn"><i class="fas fa-search"></i></button>
@@ -28,7 +47,6 @@
 </header>
 
 <!-- Main Content -->
-<div></div>
 <div class="flex-container">
     <div class="box">
         <h3>TARGET</h3>
@@ -49,12 +67,11 @@
         <div class="image-content">
             <img src="path-to-your-image.jpg" alt="صورة وصفية">
         </div>
-    <div class="text-content">
-        <h3>من نحن</h3>
-        <p>الشركة المصرية للتجهيزات الفندقية (EGYTL) هي مقدم رائد لتجهيزات المطابخ والمخابز، وتقدم منتجات عالية الجودة وخدمة عملاء استثنائية. من خلال مجموعتنا الواسعة من معدات المطابخ والمخابز، نلبي احتياجات العملاء في مختلف القطاعات، بما في ذلك الفنادق والمطاعم والمخابز التجارية.</p>
+        <div class="text-content">
+            <h3>من نحن</h3>
+            <p>الشركة المصرية للتجهيزات الفندقية (EGYTL) هي مقدم رائد لتجهيزات المطابخ والمخابز، وتقدم منتجات عالية الجودة وخدمة عملاء استثنائية. من خلال مجموعتنا الواسعة من معدات المطابخ والمخابز، نلبي احتياجات العملاء في مختلف القطاعات، بما في ذلك الفنادق والمطاعم والمخابز التجارية.</p>
+        </div>
     </div>
-
-</div>
 </div>
 
 <div class="container">
@@ -92,5 +109,35 @@
         </div>
     </div>
 </footer>
+
+<!-- JavaScript -->
+<script>
+
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('show');
+
+
+        const otherDropdowns = document.querySelectorAll('.dropdown-content');
+        otherDropdowns.forEach(content => {
+            if (content !== dropdownContent) {
+                content.classList.remove('show');
+            }
+        });
+    }
+
+
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            const dropdowns = document.querySelectorAll('.dropdown-content');
+            dropdowns.forEach(dropdown => {
+                if (dropdown.classList.contains('show')) {
+                    dropdown.classList.remove('show');
+                }
+            });
+        }
+    }
+</script>
 </body>
 </html>

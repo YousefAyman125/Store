@@ -2,38 +2,135 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9; /* خلفية خفيفة للصفحة */
+    background-color: #f9f9f9;
     color: #333;
 }
 
+/* === تنسيق شريط التنقل === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    max-width: 150px;
+}
+
+.nav-links, .nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.nav-links a.active {
+    color: #c01a0c;
+}
+
+.nav-buttons button {
+    margin-left: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-btn {
+    background-color: #e0e0e0;
+}
+
+.lang-btn {
+    background-color: #c01a0c;
+    color: #fff;
+}
+
+/* === تنسيق القائمة المنسدلة === */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: #f9f9f9;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.dropbtn i {
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.dropdown-content {
+    display: none; /* مخفي بشكل افتراضي */
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px 0;
+    border-radius: 4px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.dropdown-content a {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* === إظهار القائمة المنسدلة عند إضافة فئة 'show' === */
+.dropdown-content.show {
+    display: flex;
+    flex-direction: column;
+}
+
+/* === تنسيق محتوى الصفحة الرئيسية === */
 .flex-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* توسيط العناصر */
-    gap: 30px; /* زيادة التباعد بين العناصر */
+    justify-content: center;
+    gap: 30px;
     padding: 40px;
     background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ظل ناعم */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* === تنسيق العناصر داخل الفليكس === */
 .box, .box-with-image {
-    flex: 1 1 calc(25% - 30px); /* 4 عناصر في الصف */
+    flex: 1 1 calc(25% - 30px);
     border-radius: 12px;
     padding: 20px;
-    background: linear-gradient(to bottom, #ffffff, #f3f3f3); /* خلفية متدرجة خفيفة */
+    background: linear-gradient(to bottom, #ffffff, #f3f3f3);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثير حركي */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .box:hover, .box-with-image:hover {
-    transform: translateY(-8px); /* حركة بسيطة عند التمرير */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* ظل أقوى عند التمرير */
+    transform: translateY(-8px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* === النصوص داخل الـ Box === */
 .box h3, .text-content h3 {
     font-size: 22px;
     color: #c01a0c;
@@ -46,12 +143,11 @@ body {
     color: #555;
 }
 
-/* === تنسيق خاص للصور === */
 .image-content img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    transition: transform 0.3s ease; /* تأثير تكبير الصورة */
+    transition: transform 0.3s ease;
 }
 
 .image-content img:hover {
@@ -61,19 +157,72 @@ body {
 /* === استجابة الهواتف === */
 @media (max-width: 768px) {
     .box, .box-with-image {
-        flex: 1 1 calc(45% - 20px); /* 2 عناصر في الصف */
+        flex: 1 1 calc(45% - 20px);
     }
     .box-with-image {
         flex-direction: column;
         text-align: center;
     }
     .image-content {
-        order: -1; /* الصورة تظهر أولاً */
+        order: -1;
     }
 }
 
 @media (max-width: 480px) {
-    .box, .box-with-image {
-        flex: 1 1 100%; /* عنصر واحد في الصف */
+    .flex-container {
+        padding: 20px;
     }
+    .box, .box-with-image {
+        flex: 1 1 100%;
+    }
+}
+
+/* === تنسيق الفوتر === */
+.footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    margin: 0 5px;
+    color: #333;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #c01a0c;
+}
+
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.footer-logo img {
+    max-width: 100px;
 }
