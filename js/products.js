@@ -13,35 +13,33 @@ async function loadProductsFromSheet() {
         const data = await response.text();
         const products = parseCSV(data);
 
-        // Clear the grid
         productsGrid.innerHTML = '';
 
-        // Filter products for this category and display them
         products.forEach(product => {
             if (product['"category"'].slice(1, -1) === 'الأفران الحرارية') {
-                // Get the image ID from the Google Drive URL
                 let imageUrl = product['"image"'].slice(1, -1);
-                if (imageUrl.includes('drive.google.com')) {
-                    // Extract file ID from Google Drive URL
-                    const fileId = extractGoogleDriveFileId(imageUrl);
-                    // Convert to direct image URL
-                    imageUrl = `https://drive.google.com/thumbnail?id=${fileId}`;
+
+                // If using Cloudinary URL, you can add transformations
+                if (imageUrl.includes('cloudinary.com')) {
+                    // Add automatic format and quality optimization
+                    imageUrl = optimizeCloudinaryUrl(imageUrl);
                 }
 
                 const productCard = `
-                    <a href="">
-                        <div class="product-card">
-                            <img src="${imageUrl}" alt="${product['"name"'].slice(1, -1)}" class="product-image">
-                            <h3 class="product-name">${product['"name"'].slice(1, -1)}</h3>
-                            <div class="product-category">${product['"category"'].slice(1, -1)}</div>
-                        </div>
-                    </a>
-                `;
+                            <div class="product-card">
+                                <img src="${imageUrl}" 
+                                     alt="${product['"name"'].slice(1, -1)}" 
+                                     class="product-image"
+                                     loading="lazy"
+                                     onerror="this.onerror=null; this.src='https://res.cloudinary.com/your-cloud-name/image/upload/v1/placeholder.jpg';">
+                                <h3 class="product-name">${product['"name"'].slice(1, -1)}</h3>
+                                <div class="product-category">${product['"category"'].slice(1, -1)}</div>
+                            </div>
+                        `;
                 productsGrid.innerHTML += productCard;
             }
         });
 
-        // Hide loading indicator
         loadingIndicator.style.display = 'none';
 
     } catch (error) {
@@ -50,16 +48,39 @@ async function loadProductsFromSheet() {
     }
 }
 
-function extractGoogleDriveFileId(url) {
-    let fileId = '';
+// Function to optimize Cloudinary URLs
+function optimizeCloudinaryUrl(url) {
+    // Add Cloudinary transformations
+    // c_scale,w_800 = resize to 800px width
+    // f_auto = automatic format selection
+    // q_auto = automatic quality selection
+    return url.replace('/upload/', '/upload/c_scale,w_800,f_auto,q_auto/');
+}
 
-    if (url.includes('/file/d/')) {
-        fileId = url.split('/file/d/')[1].split('/')[0];
-    } else if (url.includes('id=')) {
-        fileId = url.split('id=')[1].split('&')[0];
+// Function to upload images to Cloudinary
+function initializeCloudinaryUpload() {
+    const myWidget = cloudinary.createUploadWidget({
+        cloudName: 'your-cloud-name', // Replace with your cloud name
+        uploadPreset: 'your-upload-preset', // Replace with your upload preset
+        folder: 'products',
+        multiple: true,
+        maxFiles: 10,
+        clientAllowedFormats: ['jpg', 'png', 'jpeg', 'webp'],
+        maxFileSize: 5000000, // 5MB
+    }, (error, result) => {
+        if (!error && result && result.event === "success") {
+            const imageUrl = result.info.secure_url;
+            console.log('Upload success:', imageUrl);
+            // You can add the URL to your Google Sheet here
+        }
+    });
+
+    // Optional: Add upload button
+    if (document.getElementById('uploadButton')) {
+        document.getElementById('uploadButton').addEventListener('click', () => {
+            myWidget.open();
+        });
     }
-
-    return fileId;
 }
 
 function parseCSV(csv) {
@@ -80,5 +101,8 @@ function parseCSV(csv) {
     return result;
 }
 
-// Load products when page loads
-window.onload = loadProductsFromSheet;
+// Initialize when page loads
+window.onload = () => {
+    loadProductsFromSheet();
+    initializeCloudinaryUpload(); // Initialize Cloudinary widget
+};
