@@ -22,7 +22,8 @@
             <ul style="list-style: none;">
                 <li class="dropdown">
 
-                    <a href="#" class="dropbtn" onclick="toggleDropdown(event)">معرض المنتجات <i class="fas fa-caret-down"></i></a>
+                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات <i
+                            class="fas fa-caret-down"></i></a>
 
                     <div class="dropdown-content">
                         <a href="#">الأفران الحرارية</a>
@@ -135,7 +136,7 @@
     }
 
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
