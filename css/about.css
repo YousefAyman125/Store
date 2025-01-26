@@ -7,6 +7,7 @@
     padding: 25px;
     background-color: #fff;
 }
+
 /* تنسيق كل box */
 .box {
     flex: 1 1 calc(25% - 20px); /* 4 boxes per row */
@@ -39,7 +40,8 @@
         flex: 1 1 100%; /* 1 box per row */
     }
 }
-.img{
+
+.img {
     gap: 25px;
     padding: 25px;
     display: flex;

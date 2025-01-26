@@ -27,10 +27,12 @@ iframe {
     flex-direction: column;
     justify-content: space-between;
 }
-.map-section{
+
+.map-section {
     width: 100%;
     height: 100%;
 }
+
 .form-section h2 {
     font-size: 24px;
     margin-bottom: 20px;

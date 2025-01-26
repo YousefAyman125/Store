@@ -1,5 +1,5 @@
 // Slider actions
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.slide');
     const bullets = document.querySelectorAll('.bullet');
     const prevBtn = document.querySelector('.prev-btn');
@@ -97,11 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // -----------
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const scrollToTopBtn = document.getElementById('scrollToTop');
 
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         // Show button after scrolling down 300px
         if (window.scrollY > 300) {
             scrollToTopBtn.classList.add('visible');
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Smooth scroll to top when button is clicked
-    scrollToTopBtn.addEventListener('click', function() {
+    scrollToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
