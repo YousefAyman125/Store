@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Target - تجهيزات فندقية</title>
-    <link href="../css/main.css" rel="stylesheet">
     <link href="../css/Contact/contact.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
     <link href="../css/header.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <Header>
@@ -17,8 +18,8 @@
         </div>
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
-            <a class="active" href="about.html ">من نحن</a>
-            <a href="contact.html">تواصل معنا</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html" class="active">تواصل معنا</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
 
@@ -26,16 +27,16 @@
                             class="fas fa-caret-down"></i></a>
 
                     <div class="dropdown-content">
-                        <a href="#">الأفران الحرارية</a>
-                        <a href="#">الثلاجات</a>
-                        <a href="#">غسالة الأطباق</a>
-                        <a href="#">فرن بيتزا</a>
-                        <a href="#">ماكينة الثلج</a>
-                        <a href="#">ماكينة القهوة</a>
-                        <a href="#">معدات البار</a>
-                        <a href="#">معدات التجهيز</a>
-                        <a href="#">معدات المخابز</a>
-                        <a href="#">معدات المغسلة</a>
+                        <a data-category="c-ovens" data-index="0" href="products.html" class="product-link">الأفران الحرارية</a>
+                        <a data-category="p-ovens" data-index="1" href="products.html" class="product-link">افرن بيتزا</a>
+                        <a data-category="fridges" data-index="2" href="products.html" class="product-link">الثلاجات</a>
+                        <a data-category="refrigerator" data-index="3" href="products.html" class="product-link">ثلاجات تحت الطاولة</a>
+                        <a data-category="dishwashers" data-index="4" href="products.html" class="product-link">غسالات الأطباق</a>
+                        <a data-category="ice-machine" data-index="5" href="products.html" class="product-link">ماكينة الثلج</a>
+                        <a data-category="bar-equipments" data-index="6" href="products.html" class="product-link">معدات البار</a>
+                        <a data-category="bakery-equipments" data-index="7" href="products.html" class="product-link">معدات المخابز</a>
+                        <a data-category="processing-equipment" data-index="8" href="products.html" class="product-link">معدات التجهيز</a>
+                        <a data-category="stoves" data-index="9" href="products.html" class="product-link">بوتاجازات</a>
                     </div>
                 </li>
             </ul>

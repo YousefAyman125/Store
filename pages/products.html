@@ -4,36 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الأفران الحرارية - إيجي تل</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/home/slider.css" rel="stylesheet">
+    <link href="../css/home/products.css" rel="stylesheet">
+    <link href="../css/home/about.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <!-- Navigation Bar -->
-<nav class="navbar">
-    <div class="logo">
-        <img src="../assets/images/logo.png" alt="Logo">
-    </div>
-    <div class="nav-links">
-        <a href="../index.html">الرئيسية</a>
-        <a href="../pages/about.html">من نحن</a>
-        <a href="../pages/contact.html">تواصل معنا</a>
-        <div class="dropdown">
-            <a href="#" class="dropbtn">معرض المنتجات <i class="fas fa-caret-down"></i></a>
-            <div class="dropdown-content">
-                <a href="products.html">الأفران الحرارية</a>
-                <a href="#">الثلاجات</a>
-                <a href="#">غسالة الأطباق</a>
-                <a href="#">فرن بيتزا</a>
-            </div>
+<Header>
+    <nav class="navbar">
+        <div class="logo">
+            <img alt="Logo" src="../assets/images/logo.png">
         </div>
-    </div>
-    <div class="nav-buttons">
-        <button class="search-btn"><i class="fas fa-search"></i></button>
-        <button class="lang-btn">الكتالوج</button>
-    </div>
-</nav>
+        <div class="nav-links">
+            <a href="../index.html">الرئيسية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+            <ul style="list-style: none;">
+                <li class="dropdown">
+
+                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات<i class="fas fa-caret-down"></i></a>
+
+                    <div class="dropdown-content">
+                        <a data-category="c-ovens" data-index="0" href="products.html" class="product-link">الأفران الحرارية</a>
+                        <a data-category="p-ovens" data-index="1" href="products.html" class="product-link">افرن بيتزا</a>
+                        <a data-category="fridges" data-index="2" href="products.html" class="product-link">الثلاجات</a>
+                        <a data-category="refrigerator" data-index="3" href="products.html" class="product-link">ثلاجات تحت الطاولة</a>
+                        <a data-category="dishwashers" data-index="4" href="products.html" class="product-link">غسالات الأطباق</a>
+                        <a data-category="ice-machine" data-index="5" href="products.html" class="product-link">ماكينة الثلج</a>
+                        <a data-category="bar-equipments" data-index="6" href="products.html" class="product-link">معدات البار</a>
+                        <a data-category="bakery-equipments" data-index="7" href="products.html" class="product-link">معدات المخابز</a>
+                        <a data-category="processing-equipment" data-index="8" href="products.html" class="product-link">معدات التجهيز</a>
+                        <a data-category="stoves" data-index="9" href="products.html" class="product-link">بوتاجازات</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-buttons">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="lang-btn">الكتالوج</button>
+        </div>
+    </nav>
+</Header>
 
 <!-- Main Content -->
 <main class="products-main">
