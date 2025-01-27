@@ -1,4 +1,17 @@
 let selectedCategory = localStorage.selectedCategory;
+const categories = {
+    'c-ovens': 'الأفران الحرارية',
+    'p-ovens': 'افرن بيتزا',
+    'fridges': 'الثلاجات',
+    'refrigerator': 'ثلاجات تحت الطاولة',
+    'dishwashers': 'غسالات الأطباق',
+    'ice-machine': 'ماكينة الثلج',
+    'bar-equipments': 'معدات البار',
+    'bakery-equipments': 'معدات المخابز',
+    'processing-equipment': 'معدات التجهيز',
+    'stoves': 'بوتاجازات',
+    'display-refrigerators': 'ثلاجات عرض'
+}
 
 async function loadProductsFromSheet() {
     const loadingIndicator = document.getElementById('loadingIndicator');
@@ -16,9 +29,10 @@ async function loadProductsFromSheet() {
         const products = parseCSV(data);
 
         productsGrid.innerHTML = '';
+        console.log(products)
 
         products.forEach(product => {
-            if (product['"category"'].slice(1, -1) === 'الأفران الحرارية') {
+            if (product['"category"'].slice(1, -1) === categories[selectedCategory]) {
                 let imageUrl = product['"image"'].slice(1, -1);
 
                 // If using Cloudinary URL, you can add transformations
@@ -106,5 +120,5 @@ function parseCSV(csv) {
 // Initialize when page loads
 window.onload = () => {
     loadProductsFromSheet();
-    initializeCloudinaryUpload(); // Initialize Cloudinary widget
+    // initializeCloudinaryUpload(); // Initialize Cloudinary widget
 };
