@@ -29,7 +29,6 @@ async function loadProductsFromSheet() {
         const products = parseCSV(data);
 
         productsGrid.innerHTML = '';
-        console.log(products)
 
         products.forEach(product => {
             if (product['"category"'].slice(1, -1) === categories[selectedCategory]) {
@@ -120,5 +119,5 @@ function parseCSV(csv) {
 // Initialize when page loads
 window.onload = () => {
     loadProductsFromSheet();
-    // initializeCloudinaryUpload(); // Initialize Cloudinary widget
+    initializeCloudinaryUpload(); // Initialize Cloudinary widget
 };
