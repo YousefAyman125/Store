@@ -1,30 +1,4 @@
-let selectedCategory = '';
-
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded');
-    const productLinks = document.querySelectorAll('.product-link');
-    console.log('Found product links:', productLinks.length);
-
-    productLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const category = this.getAttribute('data-category');
-            const index = this.getAttribute('data-index');
-
-            selectedCategory = category;
-
-            console.log(`Clicked link with index: ${index}`);
-            console.log(`Selected category: ${selectedCategory}`);
-
-            localStorage.setItem('selectedCategory', category);
-
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 100);
-        });
-    });
-});
+let selectedCategory = localStorage.selectedCategory;
 
 async function loadProductsFromSheet() {
     const loadingIndicator = document.getElementById('loadingIndicator');
