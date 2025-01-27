@@ -16,6 +16,13 @@ const categories = {
 async function loadProductsFromSheet() {
     const loadingIndicator = document.getElementById('loadingIndicator');
     const productsGrid = document.getElementById('productList');
+    const productTitle = document.getElementById('productTitle');
+
+    const title = `
+                <h1 class="section-title">
+                    ${categories[selectedCategory]}
+                </h1>`;
+    productTitle.innerHTML += title;
 
     try {
         const sheetId = '1--FYipcgpHcQY9UMf-NY-Vw_PAghBTUhWzv_twnfhko';
