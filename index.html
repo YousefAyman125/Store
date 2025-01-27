@@ -90,7 +90,7 @@
 
     <div class="products-grid">
         <!-- Product 1 -->
-        <a href="pages/c-ovens.html" data-index="0" data-category="c-ovens">
+        <a data-category="c-ovens" data-index="0" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="افران حراريه" src="images/c-ovens.jpg">
@@ -100,7 +100,7 @@
         </a>
 
         <!-- Product 2 -->
-        <a href="pages/c-ovens.html" data-index="1" data-category="p-ovens">
+        <a data-category="p-ovens" data-index="1" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="افرن بيتزا" src="images/pizza-oven.jpg">
@@ -110,7 +110,7 @@
         </a>
 
         <!-- Product 3 -->
-        <a href="pages/c-ovens.html" data-index="2" data-category="fridges">
+        <a data-category="fridges" data-index="2" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="الثلاجات" src="images/fridges.jpg">
@@ -120,7 +120,7 @@
         </a>
 
         <!-- Product 4 -->
-        <a href="pages/c-ovens.html" data-index="3" data-category="refrigerator">
+        <a data-category="refrigerator" data-index="3" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="ثلاجات تحت الطاولة" src="images/refrigerator.jpg">
@@ -129,7 +129,7 @@
             </div>
         </a>
         <!-- Product 5 -->
-        <a href="pages/c-ovens.html" data-index="4" data-category="dishwashers">
+        <a data-category="dishwashers" data-index="4" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="غسالات الأطباق" src="images/thermal-ovens.jpg">
@@ -140,7 +140,7 @@
 
         <!-- Second Row -->
         <!-- Product 6 -->
-        <a href="pages/c-ovens.html" data-index="5" data-category="ice-machine">
+        <a data-category="ice-machine" data-index="5" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="ماكينة الثلج" src="images/washing-equipment.jpg">
@@ -150,7 +150,7 @@
         </a>
 
         <!-- Product 7 -->
-        <a href="pages/c-ovens.html" data-index="6" data-category="bar-equipments">
+        <a data-category="bar-equipments" data-index="6" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="معدات البار" src="images/bakery-equipment.jpg">
@@ -160,7 +160,7 @@
         </a>
 
         <!-- Product 8 -->
-        <a href="pages/c-ovens.html" data-index="7" data-category="bakery-equipments">
+        <a data-category="bakery-equipments" data-index="7" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="معدات المخابز" src="images/bakery-equipments.jpg">
@@ -170,16 +170,17 @@
         </a>
 
         <!-- Product 9 -->
-        <a href="pages/c-ovens.html" data-index="8" data-category="processing-equipment"></a>
-        <div class="product-card">
-            <div class="product-image">
-                <img alt="معدات التجهيز" src="images/processing-equipment.jpg">
+        <a data-category="processing-equipment" data-index="8" href="pages/c-ovens.html">
+            <div class="product-card">
+                <div class="product-image">
+                    <img alt="معدات التجهيز" src="images/processing-equipment.jpg">
+                </div>
+                <h3 class="product-title">معدات التجهيز</h3>
             </div>
-            <h3 class="product-title">معدات التجهيز</h3>
-        </div>
+        </a>
 
         <!-- Product 10 -->
-        <a href="pages/c-ovens.html" data-index="9" data-category="stoves">
+        <a data-category="stoves" data-index="9" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="بوتاجازات" src="images/stoves.jpg">
@@ -190,7 +191,7 @@
 
         <!-- Third Row -->
         <!-- Product 11 -->
-        <a href="pages/c-ovens.html" data-index="10" data-category="display-refrigerators">
+        <a data-category="display-refrigerators" data-index="10" href="pages/c-ovens.html">
             <div class="product-card">
                 <div class="product-image">
                     <img alt="ثلاجات عرض" src="images/display-refrigerators.jpg">
@@ -312,7 +313,7 @@
     }
 
 
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
