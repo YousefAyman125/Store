@@ -76,12 +76,11 @@
 </footer>
 
 <script>
-
+    // Function to handle dropdown toggle
     function toggleDropdown(event) {
         event.preventDefault();
         const dropdownContent = event.target.nextElementSibling;
         dropdownContent.classList.toggle('show');
-
 
         const otherDropdowns = document.querySelectorAll('.dropdown-content');
         otherDropdowns.forEach(content => {
@@ -91,7 +90,8 @@
         });
     }
 
-    window.onclick = function (event) {
+    // Handle clicks outside dropdown
+    window.onclick = function(event) {
         if (!event.target.matches('.dropbtn')) {
             const dropdowns = document.querySelectorAll('.dropdown-content');
             dropdowns.forEach(dropdown => {
@@ -101,6 +101,72 @@
             });
         }
     }
+
+    // Add event listeners for category selection
+    document.addEventListener('DOMContentLoaded', function() {
+        const productLinks = document.querySelectorAll('.dropdown-content .product-link');
+
+        productLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Get category and index from data attributes
+                const category = this.getAttribute('data-category');
+                const index = this.getAttribute('data-index');
+
+                // Store in localStorage
+                localStorage.setItem('selectedCategory', category);
+
+                console.log(`Selected category: ${category}`);
+                console.log(`Index: ${index}`);
+
+                // Close dropdown
+                const dropdowns = document.querySelectorAll('.dropdown-content');
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+
+                // Navigate to products page
+                window.location.href = this.href;
+            });
+        });
+    });
+
+    // Optional: Function to get current category
+    function getCurrentCategory() {
+        return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
+    }
+
+    // Optional: Function to update dropdown button text
+    function updateDropdownText() {
+        const currentCategory = getCurrentCategory();
+        const categories = {
+            'c-ovens': 'الأفران الحرارية',
+            'p-ovens': 'افرن بيتزا',
+            'fridges': 'الثلاجات',
+            'refrigerator': 'ثلاجات تحت الطاولة',
+            'dishwashers': 'غسالات الأطباق',
+            'ice-machine': 'ماكينة الثلج',
+            'bar-equipments': 'معدات البار',
+            'bakery-equipments': 'معدات المخابز',
+            'processing-equipment': 'معدات التجهيز',
+            'stoves': 'بوتاجازات',
+            'display-refrigerators': 'ثلاجات عرض'
+        };
+
+        const dropbtn = document.querySelector('.dropbtn');
+        if (dropbtn && categories[currentCategory]) {
+            dropbtn.textContent = `معرض المنتجات - ${categories[currentCategory]}`;
+        }
+    }
+
+    // Initialize dropdown state
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update dropdown text if on products page
+        if (window.location.href.includes('products.html')) {
+            updateDropdownText();
+        }
+    });
 </script>
 <script defer src="../js/products.js"></script>
 </body>
