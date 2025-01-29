@@ -1,8 +1,28 @@
 let selectedCategory = localStorage.selectedCategory;
+const categories = {
+    'c-ovens': 'الأفران الحرارية',
+    'p-ovens': 'افرن بيتزا',
+    'fridges': 'الثلاجات',
+    'refrigerator': 'ثلاجات تحت الطاولة',
+    'dishwashers': 'غسالات الأطباق',
+    'ice-machine': 'ماكينة الثلج',
+    'bar-equipments': 'معدات البار',
+    'bakery-equipments': 'معدات المخابز',
+    'processing-equipment': 'معدات التجهيز',
+    'stoves': 'بوتاجازات',
+    'display-refrigerators': 'ثلاجات عرض'
+}
 
 async function loadProductsFromSheet() {
     const loadingIndicator = document.getElementById('loadingIndicator');
-    const productsGrid = document.getElementById('productsGrid');
+    const productsGrid = document.getElementById('productList');
+    const productTitle = document.getElementById('productTitle');
+
+    const title = `
+                <h1 class="section-title">
+                    ${categories[selectedCategory]}
+                </h1>`;
+    productTitle.innerHTML += title;
 
     try {
         const sheetId = '1--FYipcgpHcQY9UMf-NY-Vw_PAghBTUhWzv_twnfhko';
@@ -18,7 +38,7 @@ async function loadProductsFromSheet() {
         productsGrid.innerHTML = '';
 
         products.forEach(product => {
-            if (product['"category"'].slice(1, -1) === 'الأفران الحرارية') {
+            if (product['"category"'].slice(1, -1) === categories[selectedCategory]) {
                 let imageUrl = product['"image"'].slice(1, -1);
 
                 // If using Cloudinary URL, you can add transformations
