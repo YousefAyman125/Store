@@ -13,9 +13,13 @@ app.use(cors());
 app.use(express.json());
 
 // اتصال بـ MongoDB بدون useCreateIndex
-mongoose.connect('mongodb://localhost:27017/target')
-    .then(() => console.log('✅ Connected to MongoDB'))
-    .catch(err => console.error('❌ MongoDB connection error:', err));
+mongoose.connect('mongodb+srv://seifezz27:Ss12301230%23@product.me02u.mongodb.net/ProductDB?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => console.log('✅ Connected to MongoDB Atlas'))
+    .catch(err => console.error('❌ Could not connect to MongoDB Atlas', err));
+
 
 // تهيئة Cloudinary
 cloudinary.config({
