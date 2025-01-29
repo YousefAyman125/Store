@@ -160,29 +160,6 @@
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    .products-section {
-        background: #1a1a1a;
-    }
-
-    .section-title {
-        color: #fff;
-    }
-
-    .product-card {
-        background: #2a2a2a;
-    }
-
-    .product-image {
-        background: #333;
-    }
-
-    .product-title {
-        color: #fff;
-    }
-}
-
 /* High DPI Screens */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .product-image img {
