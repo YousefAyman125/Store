@@ -13,9 +13,7 @@
     <!-- نموذج إضافة منتج -->
     <form id="productForm">
         <input type="text" id="productName" placeholder="اسم المنتج" required>
-        <input type="text" id="productImage" placeholder="رابط الصورة" required>
-        <textarea id="productDescription" placeholder="وصف المنتج" required></textarea>
-        <input type="number" id="productPrice" placeholder="السعر (اختياري)">
+        <input type="file" id="productImage" accept="image/*" required>
         <select id="productCategory" required>
             <option value="">اختر الفئة</option>
             <option value="الأفران الحرارية">الأفران الحرارية</option>
@@ -29,6 +27,7 @@
             <option value="معدات المخابز">معدات المخابز</option>
             <option value="معدات المغسلة">معدات المغسلة</option>
         </select>
+        <textarea id="productDescription" placeholder="وصف المنتج" required></textarea>
         <button type="submit">إضافة منتج</button>
     </form>
 
