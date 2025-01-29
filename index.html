@@ -14,7 +14,7 @@
 </head>
 <body>
 <!-- Navigation Bar -->
-<Header>
+<header>
     <nav class="navbar">
         <div class="logo">
             <img alt="Logo" src="assets/images/logo.png">
@@ -25,10 +25,7 @@
             <a href="pages/contact.html">تواصل معنا</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
-
-                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات <i
-                            class="fas fa-caret-down"></i></a>
-
+                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)" aria-expanded="false">معرض المنتجات <i class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
                         <a data-category="c-ovens" data-index="0" href="pages/products.html" class="product-link">الأفران الحرارية</a>
                         <a data-category="p-ovens" data-index="1" href="pages/products.html" class="product-link">افرن بيتزا</a>
@@ -45,12 +42,13 @@
             </ul>
         </div>
         <div class="nav-buttons">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="search-btn" aria-label="بحث"><i class="fas fa-search"></i></button>
             <button class="lang-btn">الكتالوج</button>
         </div>
     </nav>
-</Header>
+</header>
 
+<!-- Slider Section -->
 <div class="slider-container">
     <div class="slider">
         <!-- Slide 1 -->
@@ -63,7 +61,7 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="slide active">
+        <div class="slide">
             <div class="slide-content">
                 <h2>تجهيزات فندقية بأعلى جودة</h2>
                 <h2>من إيجي تل تضمن رضا النزلاء</h2>
@@ -72,8 +70,8 @@
         </div>
 
         <!-- Navigation Buttons -->
-        <button class="slider-btn prev-btn">❯</button>
-        <button class="slider-btn next-btn">❮</button>
+        <button class="slider-btn prev-btn" aria-label="السابق">❯</button>
+        <button class="slider-btn next-btn" aria-label="التالي">❮</button>
 
         <!-- Bullets -->
         <div class="slider-bullets">
@@ -202,13 +200,12 @@
 </section>
 <!---->
 
-<!--    About    -->
+<!-- About Section -->
 <section class="about-section">
     <div class="about-header">
         <h2 class="company-name">الشركة المصرية للتجهيزات الفندقية</h2>
         <h1 class="about-title">من نحن</h1>
     </div>
-
     <div class="about-content">
         <div class="about-text">
             <p class="about-description">
@@ -224,7 +221,6 @@
             <img alt="EGYTL Kitchen Equipment" src="path-to-your-image.jpg">
         </div>
     </div>
-
     <div class="values-container">
         <!-- Mission -->
         <div class="value-card">
@@ -235,7 +231,6 @@
             <p>نسعى لتوفير معدات متطورة وحلول متكاملة تلبي احتياجات عملائنا، مع التركيز على الجودة، الدعم الفني، وخدمة
                 ما بعد البيع لضمان رضا العملاء وتحقيق شراكات طويلة الأمد.</p>
         </div>
-
         <!-- Vision -->
         <div class="value-card">
             <div class="value-icon">
@@ -245,7 +240,6 @@
             <p>أن نكون الشريك الأول في مصر والشرق الأوسط لتقديم تجهيزات المطابخ والمطاعم عالية الجودة مع تحقيق التميز
                 والابتكار المستدام.</p>
         </div>
-
         <!-- Company -->
         <div class="value-card">
             <div class="value-icon">
@@ -259,36 +253,24 @@
 </section>
 <!---->
 
-<button class="scroll-to-top" id="scrollToTop">↑</button>
+<button class="scroll-to-top" id="scrollToTop" aria-label="التمرير إلى الأعلى">↑</button>
 
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <!-- Social Media Icons -->
         <div class="social-icons">
-            <a class="social-icon" href="#">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-            <a class="social-icon" href="#">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a class="social-icon" href="#">
-                <i class="fa-brands fa-youtube"></i>
-            </a>
-            <a class="social-icon" href="#">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a class="social-icon" href="#">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
+            <a class="social-icon" href="#" aria-label="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="social-icon" href="#" aria-label="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+            <a class="social-icon" href="#" aria-label="يوتيوب"><i class="fa-brands fa-youtube"></i></a>
+            <a class="social-icon" href="#" aria-label="إنستجرام"><i class="fa-brands fa-instagram"></i></a>
+            <a class="social-icon" href="#" aria-label="فيسبوك"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
-
-        <div class="bottom-section">
-            <!-- Navigation Links -->
-            <div class="footer-links">
-                <a class="active">الرئيسية</a>
-                <a href="pages/about.html">من نحن</a>
-                <a href="pages/contact.html">تواصل معنا</a>
-            </div>
+        <!-- Navigation Links -->
+        <div class="footer-links">
+            <a class="active">الرئيسية</a>
+            <a href="pages/about.html">من نحن</a>
+            <a href="pages/contact.html">تواصل معنا</a>
         </div>
     </div>
 </footer>
