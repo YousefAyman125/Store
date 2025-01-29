@@ -6,7 +6,7 @@ document.getElementById('productForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const product = {
-        id: Date.now(), // استخدام الطوابع الزمنية كمعرف فريد
+        id: Date.now(),
         name: document.getElementById('productName').value,
         image: document.getElementById('productImage').value,
         description: document.getElementById('productDescription').value,

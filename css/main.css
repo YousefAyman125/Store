@@ -131,8 +131,8 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     overflow: hidden;
-    transition: var(--transition);
     animation: fadeIn 0.5s ease forwards;
+    transition: all 0.3s ease-in-out;
 }
 
 .product-card:hover {
@@ -232,11 +232,13 @@ body {
 .footer-links a {
     color: var(--secondary-color);
     text-decoration: none;
+    transition: opacity 0.2s;
     transition: var(--transition);
 }
 
 .footer-links a:hover {
     color: var(--primary-color);
+    opacity: 0.8;
 }
 
 /* Scroll to Top Button */
