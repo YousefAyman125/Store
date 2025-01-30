@@ -26,17 +26,26 @@
             <a href="pages/contact.html">تواصل معنا</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
-                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)" aria-expanded="false">معرض المنتجات <i class="fas fa-caret-down"></i></a>
+                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)" aria-expanded="false">معرض المنتجات <i
+                            class="fas fa-caret-down"></i></a>
                     <div class="dropdown-content">
-                        <a data-category="c-ovens" data-index="0" href="pages/products.html" class="product-link">الأفران الحرارية</a>
-                        <a data-category="p-ovens" data-index="1" href="pages/products.html" class="product-link">افرن بيتزا</a>
+                        <a data-category="c-ovens" data-index="0" href="pages/products.html" class="product-link">الأفران
+                            الحرارية</a>
+                        <a data-category="p-ovens" data-index="1" href="pages/products.html" class="product-link">افرن
+                            بيتزا</a>
                         <a data-category="fridges" data-index="2" href="pages/products.html" class="product-link">الثلاجات</a>
-                        <a data-category="refrigerator" data-index="3" href="pages/products.html" class="product-link">ثلاجات تحت الطاولة</a>
-                        <a data-category="dishwashers" data-index="4" href="pages/products.html" class="product-link">غسالات الأطباق</a>
-                        <a data-category="ice-machine" data-index="5" href="pages/products.html" class="product-link">ماكينة الثلج</a>
-                        <a data-category="bar-equipments" data-index="6" href="pages/products.html" class="product-link">معدات البار</a>
-                        <a data-category="bakery-equipments" data-index="7" href="pages/products.html" class="product-link">معدات المخابز</a>
-                        <a data-category="processing-equipment" data-index="8" href="pages/products.html" class="product-link">معدات التجهيز</a>
+                        <a data-category="refrigerator" data-index="3" href="pages/products.html" class="product-link">ثلاجات
+                            تحت الطاولة</a>
+                        <a data-category="dishwashers" data-index="4" href="pages/products.html" class="product-link">غسالات
+                            الأطباق</a>
+                        <a data-category="ice-machine" data-index="5" href="pages/products.html" class="product-link">ماكينة
+                            الثلج</a>
+                        <a data-category="bar-equipments" data-index="6" href="pages/products.html"
+                           class="product-link">معدات البار</a>
+                        <a data-category="bakery-equipments" data-index="7" href="pages/products.html"
+                           class="product-link">معدات المخابز</a>
+                        <a data-category="processing-equipment" data-index="8" href="pages/products.html"
+                           class="product-link">معدات التجهيز</a>
                         <a data-category="stoves" data-index="9" href="pages/products.html" class="product-link">بوتاجازات</a>
                     </div>
                 </li>
@@ -261,10 +270,15 @@
     <div class="footer-container">
         <!-- Social Media Icons -->
         <div class="social-icons">
-            <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod?_t=ZS-8tUzmNUx6wx&_r=1" aria-label="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-            <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-            <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a class="social-icon" href="https://www.facebook.com/target.alharam?rdid=iIG9DscuHMqDeiR6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19myNZZiRW%2F#" aria-label="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+            <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod?_t=ZS-8tUzmNUx6wx&_r=1"
+               aria-label="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank"><i
+                    class="fa-brands fa-whatsapp"></i></a>
+            <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a class="social-icon"
+               href="https://www.facebook.com/target.alharam?rdid=iIG9DscuHMqDeiR6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19myNZZiRW%2F#"
+               aria-label="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
         <!-- Navigation Links -->
         <div class="footer-links">
@@ -278,13 +292,13 @@
 <script defer src="js/home/slider.js"></script>
 <script defer src="js/slide_top.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM loaded');
         const productLinks = document.querySelectorAll('.product-link');
         console.log('Found product links:', productLinks.length);
 
         productLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
 
                 const category = this.getAttribute('data-category');
