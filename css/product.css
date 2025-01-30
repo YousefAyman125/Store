@@ -50,7 +50,7 @@ body {
 }
 
 .breadcrumb > :nth-child(3) {
-    color: #25D366;
+    color: #d32525;
     font-weight: 600;
     pointer-events: none;
 }
