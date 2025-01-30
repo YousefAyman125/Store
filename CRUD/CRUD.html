@@ -2,40 +2,81 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة المنتجات</title>
     <link href="CRUD.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
-    <h1>إدارة المنتجات</h1>
-
-    <!-- نموذج إضافة منتج -->
-    <form id="productForm">
-        <input id="productName" placeholder="اسم المنتج" required type="text">
-        <input accept="image/*" id="productImage" required type="file">
-        <select id="productCategory" required>
-            <option value="">اختر الفئة</option>
-            <option value="الأفران الحرارية">الأفران الحرارية</option>
-            <option value="الثلاجات">الثلاجات</option>
-            <option value="غسالة الأطباق">غسالة الأطباق</option>
-            <option value="فرن بيتزا">فرن بيتزا</option>
-            <option value="ماكينة الثلج">ماكينة الثلج</option>
-            <option value="ماكينة القهوة">ماكينة القهوة</option>
-            <option value="معدات البار">معدات البار</option>
-            <option value="معدات التجهيز">معدات التجهيز</option>
-            <option value="معدات المخابز">معدات المخابز</option>
-            <option value="معدات المغسلة">معدات المغسلة</option>
-        </select>
-        <textarea id="productDescription" placeholder="وصف المنتج" required></textarea>
-        <button type="submit">إضافة منتج</button>
-    </form>
-
-    <!-- قائمة المنتجات -->
-    <div id="productList">
-        <!-- المنتجات ستظهر هنا -->
+<main class="products-main">
+    <!-- نموذج إضافة/تعديل المنتج -->
+    <div class="form-container">
+        <form id="productForm">
+            <h2>إضافة منتج جديد</h2>
+            <input id="productName" placeholder="اسم المنتج" required type="text">
+            <input accept="image/*" id="productImage" required type="file">
+            <select id="productCategory" required>
+                <option value="">اختر الفئة</option>
+                <option value="الأفران الحرارية">الأفران الحرارية</option>
+                <option value="الثلاجات">الثلاجات</option>
+                <option value="غسالة الأطباق">غسالة الأطباق</option>
+                <option value="فرن بيتزا">فرن بيتزا</option>
+                <option value="ماكينة الثلج">ماكينة الثلج</option>
+                <option value="ماكينة القهوة">ماكينة القهوة</option>
+                <option value="معدات البار">معدات البار</option>
+                <option value="معدات التجهيز">معدات التجهيز</option>
+                <option value="معدات المخابز">معدات المخابز</option>
+                <option value="معدات المغسلة">معدات المغسلة</option>
+            </select>
+            <textarea id="productDescription" placeholder="وصف المنتج" required></textarea>
+            <button type="submit">إضافة منتج</button>
+        </form>
     </div>
-</div>
+
+    <!-- قسم الفلترة والعرض -->
+    <div class="filters-section">
+        <div class="filters-container">
+            <div class="category-filter">
+                <select id="categoryFilter" onchange="handleCategoryFilter(this.value)">
+                    <option value="all">جميع الفئات</option>
+                    <option value="الأفران الحرارية">الأفران الحرارية</option>
+                    <option value="الثلاجات">الثلاجات</option>
+                    <option value="غسالة الأطباق">غسالة الأطباق</option>
+                    <option value="فرن بيتزا">فرن بيتزا</option>
+                    <option value="ماكينة الثلج">ماكينة الثلج</option>
+                    <option value="ماكينة القهوة">ماكينة القهوة</option>
+                    <option value="معدات البار">معدات البار</option>
+                    <option value="معدات التجهيز">معدات التجهيز</option>
+                    <option value="معدات المخابز">معدات المخابز</option>
+                    <option value="معدات المغسلة">معدات المغسلة</option>
+                </select>
+            </div>
+            <div class="sort-filter">
+                <select id="sortSelect" onchange="handleSort(this.value)">
+                    <option value="nameAsc">الاسم: أ-ي</option>
+                    <option value="nameDesc">الاسم: ي-أ</option>
+                    <option value="newest">الأحدث</option>
+                    <option value="oldest">الأقدم</option>
+                </select>
+            </div>
+            <div class="view-options">
+                <button onclick="toggleView('grid')" class="view-btn active" id="gridBtn">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button onclick="toggleView('list')" class="view-btn" id="listBtn">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- عرض المنتجات -->
+    <div id="productList" class="products-grid">
+        <!-- سيتم إضافة المنتجات هنا ديناميكياً -->
+    </div>
+</main>
 
 <script src="CRUD.js"></script>
 </body>
