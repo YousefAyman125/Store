@@ -59,9 +59,38 @@
     </nav>
 </Header>
 
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+        <button onclick="closeSearch()"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="searchResults" class="search-results"></div>
+</div>
+
 <!-- Main Content -->
 <main class="products-main">
     <div id="productTitle"></div>
+    <div class="filters-section">
+        <div class="filters-container">
+            <div class="sort-filter">
+                <label for="sortSelect">ترتيب حسب:</label>
+                <select id="sortSelect" onchange="handleSort(this.value)">
+                    <option value="nameAsc">الاسم: أ-ي</option>
+                    <option value="nameDesc">الاسم: ي-أ</option>
+                    <option value="newest">الأحدث</option>
+                    <option value="oldest">الأقدم</option>
+                </select>
+            </div>
+            <div class="view-options">
+                <button onclick="toggleView('grid')" class="view-btn active" id="gridBtn">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button onclick="toggleView('list')" class="view-btn" id="listBtn">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <div class="products-grid" id="productList">
         <!-- Products will be loaded here -->
     </div>
@@ -91,145 +120,7 @@
     </div>
 </footer>
 
-<script>
-
-    const categories = {
-        'c-ovens': 'الأفران الحرارية',
-        'p-ovens': 'افرن بيتزا',
-        'fridges': 'الثلاجات',
-        'refrigerator': 'ثلاجات تحت الطاولة',
-        'dishwashers': 'غسالات الأطباق',
-        'ice-machine': 'ماكينة الثلج',
-        'bar-equipments': 'معدات البار',
-        'bakery-equipments': 'معدات المخابز',
-        'processing-equipment': 'معدات التجهيز',
-        'stoves': 'بوتاجازات',
-        'display-refrigerators': 'ثلاجات عرض'
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-        loadProducts();
-    });
-
-    async function loadProducts() {
-        try {
-            const response = await fetch('http://localhost:5000/api/products');
-            const products = await response.json();
-
-            const productList = document.getElementById('productList');
-            const productTitle = document.getElementById('productTitle');
-            const title = `
-                <h1 class="section-title">
-                    ${categories[localStorage.getItem('selectedCategory')]}
-                </h1>`;
-            productTitle.innerHTML += title;
-            productList.innerHTML = '';
-
-            products.forEach(product => {
-                if(product.category === categories[localStorage.getItem('selectedCategory')]) {
-                    const productItem = document.createElement('div');
-                    productItem.className = 'product-item';
-                    productItem.innerHTML = `
-                        <a href="product.html" style="text-decoration: none">
-                            <div class="product-card">
-                                <img src="${product.image}"
-                                     alt="${product.name}"
-                                     class="product-image"
-                                     loading="lazy"
-                                     onerror="this.onerror=null; this.src='https://res.cloudinary.com/your-cloud-name/image/upload/v1/placeholder.jpg';">
-                                <h3 class="product-name">${product.name}</h3>
-                                <div class="product-category">${product.category}</div>
-                            </div>
-                        </a>
-                    `;
-                    productList.appendChild(productItem);
-                }
-            });
-
-        } catch (error) {
-            console.error('فشل في تحميل المنتجات:', error);
-        }
-    }
-
-    // Function to handle dropdown toggle
-    function toggleDropdown(event) {
-        event.preventDefault();
-        const dropdownContent = event.target.nextElementSibling;
-        dropdownContent.classList.toggle('show');
-
-        const otherDropdowns = document.querySelectorAll('.dropdown-content');
-        otherDropdowns.forEach(content => {
-            if (content !== dropdownContent) {
-                content.classList.remove('show');
-            }
-        });
-    }
-
-    // Handle clicks outside dropdown
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-            dropdowns.forEach(dropdown => {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            });
-        }
-    }
-
-    // Add event listeners for category selection
-    document.addEventListener('DOMContentLoaded', function () {
-        const productLinks = document.querySelectorAll('.dropdown-content .product-link');
-
-        productLinks.forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Get category and index from data attributes
-                const category = this.getAttribute('data-category');
-                const index = this.getAttribute('data-index');
-
-                // Store in localStorage
-                localStorage.setItem('selectedCategory', category);
-
-                console.log(`Selected category: ${category}`);
-                console.log(`Index: ${index}`);
-
-                // Close dropdown
-                const dropdowns = document.querySelectorAll('.dropdown-content');
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('show');
-                });
-
-                // Navigate to products page
-                window.location.href = this.href;
-            });
-        });
-    });
-
-    // Optional: Function to get current category
-    function getCurrentCategory() {
-        return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
-    }
-
-    // Optional: Function to update dropdown button text
-    function updateDropdownText() {
-        const currentCategory = getCurrentCategory();
-
-        const dropbtn = document.querySelector('.dropbtn');
-        if (dropbtn && categories[currentCategory]) {
-            dropbtn.textContent = `معرض المنتجات - ${categories[currentCategory]}`;
-        }
-    }
-
-    // Initialize dropdown state
-    document.addEventListener('DOMContentLoaded', function () {
-        // Update dropdown text if on products page
-        if (window.location.href.includes('products.html')) {
-            updateDropdownText();
-        }
-    });
-</script>
+<script defer src="../js/products.js"></script>
 <script defer src="../back/server.js"></script>
 </body>
 </html>
