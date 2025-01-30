@@ -1,18 +1,15 @@
-import * as path from "path";
-import {join} from "path";
-require('dotenv').config({ path: join(__dirname, '..', '.env') });
 
 document.addEventListener("DOMContentLoaded", function () {
     document
         .getElementById("contact-form")
         .addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the default form submission
-            console.log(process.env.EMAIL_JS_SERVICE_ID);
+
             // Send the form data using EmailJS
             emailjs
                 .sendForm(
-                    process.env.EMAIL_JS_SERVICE_ID, // Replace with your EmailJS Service ID
-                    process.env.EMAIL_JS_TEMPLATE_ID, // Replace with your EmailJS Template ID
+                    "Store test", // Replace with your EmailJS Service ID
+                    "template_b49k33x", // Replace with your EmailJS Template ID
                     this // The form element
                 )
                 .then(
