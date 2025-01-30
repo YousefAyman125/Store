@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الأفران الحرارية - إيجي تل</title>
     <link href="../css/main.css" rel="stylesheet">
-    <link href="../css/home/slider.css" rel="stylesheet">
-    <link href="../css/home/products.css" rel="stylesheet">
-    <link href="../css/home/about.css" rel="stylesheet">
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/product.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <Header>
     <nav class="navbar">
         <div class="logo">
@@ -58,6 +56,7 @@
         </div>
     </nav>
 </Header>
+
 <main>
     <section class="breadcrumb-section">
         <div class="breadcrumb">
@@ -68,30 +67,26 @@
     </section>
 
     <section class="product-card">
+        <div class="product-image">
+            <img src="/assets/c_logo/logo.png" alt="Cheftop Hood">
+        </div>
+
         <div class="card-content">
             <div class="product-details">
-                <img src="/assets/c_logo/logo.png" alt="UNOX Logo" class="logo">
                 <h1>UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11</h1>
-                <button class="whatsapp-button">
-                    <img src="whatsapp-icon.png" alt="WhatsApp">
-                    <span>Online 201113344115</span>
-                    <p>فريق المبيعات واتس اب</p>
-                </button>
-                <hr>
+                <a href="https://wa.me/message/MXZP62ZK6RCVF1" class="whatsapp-button" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>201113344115</span>
+                    <p>فريق المبيعات</p>
+                </a>
                 <p>التصنيف: الأفران الحرارية</p>
-            </div>
-            <div class="product-image">
-                <img src="/assets/c_logo/logo.png" alt="Cheftop Hood">
             </div>
         </div>
     </section>
 
     <section class="tabs">
         <ul>
-            <li><a href="#">الوصف</a></li>
-            <li><a href="#">تعرف علينا</a></li>
-            <li><a href="#">ضمان الجودة</a></li>
-            <li><a href="#">الأمان والسلامة</a></li>
+            <li>الوصف</li>
         </ul>
         <div class="tab-content">
             <p>Unox is founded in 1990 with the production of the Arianna XF030 ovens...</p>
@@ -100,29 +95,84 @@
 
     <section class="related-products">
         <h2>منتجات ذات صلة</h2>
-        <div class="product-list">
-            <div class="product-item">
-                <img src="product1.png" alt="Product 1">
-                <p>UNOX CHEFTOP MIND.Maps 6</p>
-                <p>الأفران الحرارية</p>
+        <div class="product-slider-container">
+            <div class="product-slider">
+                <!-- Product groups will be inserted here by JavaScript -->
             </div>
-            <div class="product-item">
-                <img src="product2.png" alt="Product 2">
-                <p>UNOX BAKERLUX SHOP.Pro 4</p>
-                <p>الأفران الحرارية</p>
-            </div>
-            <div class="product-item">
-                <img src="product3.png" alt="Product 3">
-                <p>Unox Bakerlux | Manual</p>
-                <p>الأفران الحرارية</p>
-            </div>
-            <div class="product-item">
-                <img src="product4.png" alt="Product 4">
-                <p>Unox Bakertop combi steamer</p>
-                <p>الأفران الحرارية</p>
+
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next-btn"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
     </section>
+
+    <script>
+        // Slider initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.querySelector('.product-slider');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            // Product items array (add your products here)
+            const products = [
+                {img: '/assets/c_logo/logo.png', name: 'UNOX CHEFTOP MIND.Maps 6', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'UNOX BAKERLUX SHOP.Pro 4', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'Unox Bakerlux | Manual', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
+                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
+
+
+                // Add more products as needed
+            ];
+
+            // Generate product groups
+            function generateProductGroups() {
+                slider.innerHTML = '';
+                const groupCount = Math.ceil(products.length / 4);
+
+                for (let i = 0; i < groupCount; i++) {
+                    const group = document.createElement('div');
+                    group.className = 'product-group';
+
+                    products.slice(i * 4, (i + 1) * 4).forEach(product => {
+                        group.innerHTML += `
+                            <div class="product-item">
+                                <img src="${product.img}" alt="${product.name}">
+                                <p>${product.name}</p>
+                                <p>${product.category}</p>
+                            </div>
+                        `;
+                    });
+
+                    slider.appendChild(group);
+                }
+            }
+
+            // Navigation functions
+            function slide(direction) {
+                const slideWidth = slider.clientWidth;
+                slider.scrollBy({
+                    left: direction * slideWidth,
+                    behavior: 'smooth'
+                });
+            }
+
+            // Event listeners
+            prevBtn.addEventListener('click', () => slide(1));
+            nextBtn.addEventListener('click', () => slide(-1));
+
+            // Initialize slider
+            generateProductGroups();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                generateProductGroups();
+            });
+        });
+    </script>
 </main>
 
 <footer class="footer">
@@ -147,5 +197,6 @@
         </div>
     </div>
 </footer>
+
 </body>
 </html>
