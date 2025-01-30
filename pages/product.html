@@ -1,10 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأفران الحرارية - إيجي تل</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/home/slider.css" rel="stylesheet">
+    <link href="../css/home/products.css" rel="stylesheet">
+    <link href="../css/home/about.css" rel="stylesheet">
+    <link href="/css/header.css" rel="stylesheet">
+    <link href="/css/product.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<Header>
+    <nav class="navbar">
+        <div class="logo">
+            <img alt="Logo" src="../assets/c_logo/logo.png">
+        </div>
+        <div class="nav-links">
+            <a href="../index.html">الرئيسية</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+            <ul style="list-style: none;">
+                <li class="dropdown">
 
+                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات<i
+                            class="fas fa-caret-down"></i></a>
+
+                    <div class="dropdown-content">
+                        <a data-category="c-ovens" data-index="0" href="products.html" class="product-link">الأفران
+                            الحرارية</a>
+                        <a data-category="p-ovens" data-index="1" href="products.html" class="product-link">افرن
+                            بيتزا</a>
+                        <a data-category="fridges" data-index="2" href="products.html" class="product-link">الثلاجات</a>
+                        <a data-category="refrigerator" data-index="3" href="products.html" class="product-link">ثلاجات
+                            تحت الطاولة</a>
+                        <a data-category="dishwashers" data-index="4" href="products.html" class="product-link">غسالات
+                            الأطباق</a>
+                        <a data-category="ice-machine" data-index="5" href="products.html" class="product-link">ماكينة
+                            الثلج</a>
+                        <a data-category="bar-equipments" data-index="6" href="products.html" class="product-link">معدات
+                            البار</a>
+                        <a data-category="bakery-equipments" data-index="7" href="products.html" class="product-link">معدات
+                            المخابز</a>
+                        <a data-category="processing-equipment" data-index="8" href="products.html"
+                           class="product-link">معدات التجهيز</a>
+                        <a data-category="stoves" data-index="9" href="products.html" class="product-link">بوتاجازات</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-buttons">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="lang-btn">الكتالوج</button>
+        </div>
+    </nav>
+</Header>
+<main>
+    <section class="breadcrumb-section">
+        <div class="breadcrumb">
+            <a href="../index.html" style="text-decoration:none">الرئيسية</a> /
+            <a href="products.html" style="text-decoration:none">الأفران الحرارية</a> /
+            UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11
+        </div>
+    </section>
+
+    <section class="product-card">
+        <div class="card-content">
+            <div class="product-details">
+                <img src="/assets/c_logo/logo.png" alt="UNOX Logo" class="logo">
+                <h1>UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11</h1>
+                <button class="whatsapp-button">
+                    <img src="whatsapp-icon.png" alt="WhatsApp">
+                    <span>Online 201113344115</span>
+                    <p>فريق المبيعات واتس اب</p>
+                </button>
+                <hr>
+                <p>التصنيف: الأفران الحرارية</p>
+            </div>
+            <div class="product-image">
+                <img src="/assets/c_logo/logo.png" alt="Cheftop Hood">
+            </div>
+        </div>
+    </section>
+
+    <section class="tabs">
+        <ul>
+            <li><a href="#">الوصف</a></li>
+            <li><a href="#">تعرف علينا</a></li>
+            <li><a href="#">ضمان الجودة</a></li>
+            <li><a href="#">الأمان والسلامة</a></li>
+        </ul>
+        <div class="tab-content">
+            <p>Unox is founded in 1990 with the production of the Arianna XF030 ovens...</p>
+        </div>
+    </section>
+
+    <section class="related-products">
+        <h2>منتجات ذات صلة</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="product1.png" alt="Product 1">
+                <p>UNOX CHEFTOP MIND.Maps 6</p>
+                <p>الأفران الحرارية</p>
+            </div>
+            <div class="product-item">
+                <img src="product2.png" alt="Product 2">
+                <p>UNOX BAKERLUX SHOP.Pro 4</p>
+                <p>الأفران الحرارية</p>
+            </div>
+            <div class="product-item">
+                <img src="product3.png" alt="Product 3">
+                <p>Unox Bakerlux | Manual</p>
+                <p>الأفران الحرارية</p>
+            </div>
+            <div class="product-item">
+                <img src="product4.png" alt="Product 4">
+                <p>Unox Bakertop combi steamer</p>
+                <p>الأفران الحرارية</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod?_t=ZS-8tUzmNUx6wx&_r=1"
+               aria-label="تيك توك" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+            <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank"><i
+                    class="fa-brands fa-whatsapp"></i></a>
+            <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a class="social-icon"
+               href="https://www.facebook.com/target.alharam?rdid=iIG9DscuHMqDeiR6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19myNZZiRW%2F#"
+               aria-label="فيسبوك" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+        <!-- Navigation Links -->
+        <div class="footer-links">
+            <a href="../index.html">الرئيسية</a>
+            <a href="../pages/about.html">من نحن</a>
+            <a href="../pages/contact.html">تواصل معنا</a>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
