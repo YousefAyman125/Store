@@ -9,6 +9,13 @@
     <link href="../css/header.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS with your User ID
+        (function () {
+            emailjs.init("1_IRq9U4ttZ0brX0H"); // Replace with your EmailJS User ID
+        })();
+    </script>
 </head>
 <body>
 <Header>
@@ -19,7 +26,7 @@
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
             <a href="about.html">من نحن</a>
-            <a href="contact.html" class="active">تواصل معنا</a>
+            <a class="active" href="contact.html">تواصل معنا</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
 
@@ -27,16 +34,24 @@
                             class="fas fa-caret-down"></i></a>
 
                     <div class="dropdown-content">
-                        <a data-category="c-ovens" data-index="0" href="products.html" class="product-link">الأفران الحرارية</a>
-                        <a data-category="p-ovens" data-index="1" href="products.html" class="product-link">افرن بيتزا</a>
-                        <a data-category="fridges" data-index="2" href="products.html" class="product-link">الثلاجات</a>
-                        <a data-category="refrigerator" data-index="3" href="products.html" class="product-link">ثلاجات تحت الطاولة</a>
-                        <a data-category="dishwashers" data-index="4" href="products.html" class="product-link">غسالات الأطباق</a>
-                        <a data-category="ice-machine" data-index="5" href="products.html" class="product-link">ماكينة الثلج</a>
-                        <a data-category="bar-equipments" data-index="6" href="products.html" class="product-link">معدات البار</a>
-                        <a data-category="bakery-equipments" data-index="7" href="products.html" class="product-link">معدات المخابز</a>
-                        <a data-category="processing-equipment" data-index="8" href="products.html" class="product-link">معدات التجهيز</a>
-                        <a data-category="stoves" data-index="9" href="products.html" class="product-link">بوتاجازات</a>
+                        <a class="product-link" data-category="c-ovens" data-index="0" href="products.html">الأفران
+                            الحرارية</a>
+                        <a class="product-link" data-category="p-ovens" data-index="1" href="products.html">افرن
+                            بيتزا</a>
+                        <a class="product-link" data-category="fridges" data-index="2" href="products.html">الثلاجات</a>
+                        <a class="product-link" data-category="refrigerator" data-index="3" href="products.html">ثلاجات
+                            تحت الطاولة</a>
+                        <a class="product-link" data-category="dishwashers" data-index="4" href="products.html">غسالات
+                            الأطباق</a>
+                        <a class="product-link" data-category="ice-machine" data-index="5" href="products.html">ماكينة
+                            الثلج</a>
+                        <a class="product-link" data-category="bar-equipments" data-index="6" href="products.html">معدات
+                            البار</a>
+                        <a class="product-link" data-category="bakery-equipments" data-index="7" href="products.html">معدات
+                            المخابز</a>
+                        <a class="product-link" data-category="processing-equipment" data-index="8"
+                           href="products.html">معدات التجهيز</a>
+                        <a class="product-link" data-category="stoves" data-index="9" href="products.html">بوتاجازات</a>
                     </div>
                 </li>
             </ul>
@@ -52,27 +67,27 @@
 <section class="container">
     <div class="form-section">
         <h2>إرسل رسالتك</h2>
-        <form action="">
+        <form id="contact-form">
             <label>
-                <input placeholder="الاسم الكامل" required type="text">
+                <input name="fullname" placeholder="الاسم الكامل" required type="text">
             </label>
             <label>
-                <input placeholder="رقم التليفون" required type="tel">
+                <input name="phone" placeholder="رقم التليفون" required type="tel">
             </label>
             <label>
-                <input placeholder="البريد الإلكتروني" required type="email">
+                <input name="email" placeholder="البريد الإلكتروني" required type="email">
             </label>
             <label>
-                <input placeholder="الموضوع" type="text">
+                <input name="subject" placeholder="الموضوع" type="text">
             </label>
             <label>
-                <textarea placeholder="رسالتك (اختياري)"></textarea>
+                <textarea name="message" placeholder="رسالتك (اختياري)"></textarea>
             </label>
             <button type="submit">إرسال</button>
         </form>
         <div class="contact-info">
-            <p>الرقم الأرضي: <strong>233448548</strong></p>
-            <p>الموبايل: <strong>0113344415</strong></p>
+            <p>الواتساب: <strong>01025690100</strong></p>
+            <p>الموبايل: <strong>01023179746</strong></p>
             <p>البريد الإلكتروني: <strong>eldenfakhr31@gmail.com</strong></p>
             <p>العنوان: 21 ش الفلاح، المهندسين، القاهرة، مصر</p>
         </div>
@@ -147,5 +162,6 @@
         }
     }
 </script>
+<script src="/js/Contact/contact.js"></script>
 </body>
 </html>
