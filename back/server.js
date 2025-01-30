@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
+const {join} = require("path");
 const cloudinary = require('cloudinary').v2;
-require('dotenv').config();
+require('dotenv').config({ path: join(__dirname, '..', '.env') });
 
 // تهيئة الخادم
 const app = express();
