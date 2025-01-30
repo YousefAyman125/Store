@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
 // تهيئة الخادم
 const app = express();
@@ -13,19 +14,18 @@ app.use(cors());
 app.use(express.json());
 
 // اتصال بـ MongoDB بدون useCreateIndex
-mongoose.connect('mongodb+srv://seifezz27:Ss12301230%23@product.me02u.mongodb.net/ProductDB?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
     .then(() => console.log('✅ Connected to MongoDB Atlas'))
     .catch(err => console.error('❌ Could not connect to MongoDB Atlas', err));
 
-
 // تهيئة Cloudinary
 cloudinary.config({
-    cloud_name: 'dhpswotie',
-    api_key: '591846536151484',
-    api_secret: '-Su4PK3GF0o73ufWqQm27wnyNlA',
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
     secure: true
 });
 

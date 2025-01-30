@@ -3,12 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
         .getElementById("contact-form")
         .addEventListener("submit", function (event) {
             event.preventDefault(); // Prevent the default form submission
+            require('dotenv').config();
 
             // Send the form data using EmailJS
             emailjs
                 .sendForm(
-                    "Store test", // Replace with your EmailJS Service ID
-                    "template_b49k33x", // Replace with your EmailJS Template ID
+                    process.env.EMAIL_JS_SERVICE_ID, // Replace with your EmailJS Service ID
+                    process.env.EMAIL_JS_TEMPLATE_ID, // Replace with your EmailJS Template ID
                     this // The form element
                 )
                 .then(

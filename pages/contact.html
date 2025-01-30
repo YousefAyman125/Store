@@ -13,7 +13,8 @@
     <script>
         // Initialize EmailJS with your User ID
         (function () {
-            emailjs.init("1_IRq9U4ttZ0brX0H"); // Replace with your EmailJS User ID
+            require('dotenv').config();
+            emailjs.init(process.env.EMAIL_JS_ID); // Replace with your EmailJS User ID
         })();
     </script>
 </head>
