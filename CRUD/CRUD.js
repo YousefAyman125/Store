@@ -141,7 +141,25 @@ function displayProducts(products) {
 // Form Handling
 async function handleProductSubmit(e) {
     e.preventDefault();
-    const formData = new FormData(productForm);
+
+    // التحقق من البيانات المطلوبة
+    const name = document.getElementById('productName').value.trim();
+    const category = document.getElementById('productCategory').value;
+    const description = document.getElementById('productDescription').value.trim();
+    const imageFile = document.getElementById('productImage').files[0];
+
+    // التحقق من وجود جميع البيانات المطلوبة
+    if (!name || !category || !description || !imageFile) {
+        showNotification('جميع الحقول مطلوبة', 'error');
+        return;
+    }
+
+    // إنشاء FormData وإضافة البيانات
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('category', category);
+    formData.append('description', description);
+    formData.append('image', imageFile);
 
     try {
         const response = await fetch('http://localhost:5000/api/products', {
@@ -149,16 +167,24 @@ async function handleProductSubmit(e) {
             body: formData
         });
 
-        if (response.ok) {
-            showNotification('تم إضافة المنتج بنجاح', 'success');
-            productForm.reset();
-            await loadProducts();
+        // التحقق من نوع المحتوى في الاستجابة
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+            const data = await response.json();
+
+            if (response.ok) {
+                showNotification('تم إضافة المنتج بنجاح', 'success');
+                productForm.reset();
+                await loadProducts();
+            } else {
+                throw new Error(data.message || 'فشل في إضافة المنتج');
+            }
         } else {
-            throw new Error('فشل في إضافة المنتج');
+            throw new Error('استجابة غير صالحة من الخادم');
         }
     } catch (error) {
         console.error('Error:', error);
-        showNotification('فشل في إضافة المنتج', 'error');
+        showNotification(error.message || 'فشل في إضافة المنتج', 'error');
     }
 }
 
