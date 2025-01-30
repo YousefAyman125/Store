@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
-const {join} = require("path");
+const { join } = require("path");
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: join(__dirname, '..', '.env') });
 
@@ -47,6 +47,7 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model('Product', productSchema);
 
 // Routes
+// الحصول على كل المنتجات
 app.get('/api/products', async (req, res) => {
     try {
         const products = await Product.find().sort('-createdAt');
@@ -56,6 +57,7 @@ app.get('/api/products', async (req, res) => {
     }
 });
 
+// إضافة منتج جديد
 app.post('/api/products', upload.single('image'), async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ error: 'Image is required' });
@@ -81,6 +83,7 @@ app.post('/api/products', upload.single('image'), async (req, res) => {
     }
 });
 
+// حذف منتج
 app.delete('/api/products/:id', async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
@@ -93,6 +96,38 @@ app.delete('/api/products/:id', async (req, res) => {
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'Failed to delete product' });
+    }
+});
+
+// نموذج الفورم
+const contactSchema = new mongoose.Schema({
+    fullname: { type: String, required: true },
+    phone: { type: String, required: true },
+    email: { type: String, required: true },
+    subject: String,
+    message: String
+});
+
+const Contact = mongoose.model('Contact', contactSchema);
+
+// Route لتخزين بيانات الفورم
+app.post('/api/contact', async (req, res) => {
+    try {
+        const { fullname, phone, email, subject, message } = req.body;
+
+        const newContact = new Contact({
+            fullname,
+            phone,
+            email,
+            subject,
+            message
+        });
+
+        await newContact.save();
+        res.status(201).json({ message: 'Contact data saved successfully' });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Failed to save contact data' });
     }
 });
 
