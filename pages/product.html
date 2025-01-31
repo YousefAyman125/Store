@@ -61,25 +61,26 @@
     <section class="breadcrumb-section">
         <div class="breadcrumb">
             <a href="../index.html" style="text-decoration:none">الرئيسية</a>
-            <a href="products.html" style="text-decoration:none">الأفران الحرارية</a>
-            <p id="productName">Loading...</p>
+            <a id="productCategory1" href="products.html" style="text-decoration:none">الأفران الحرارية</a>
+            <p id="productName1">Loading...</p>
         </div>
     </section>
 
     <section class="product-card">
         <div class="product-image">
-            <img src="/assets/c_logo/logo.png" alt="Cheftop Hood">
+            <img id="productImage" src="/assets/c_logo/logo.png" alt="Cheftop Hood">
         </div>
 
         <div class="card-content">
             <div class="product-details">
-                <h1>UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11</h1>
+                <h1 id="productName2">UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11</h1>
                 <a href="https://wa.me/message/MXZP62ZK6RCVF1" class="whatsapp-button" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>201113344115</span>
                     <p>فريق المبيعات</p>
                 </a>
-                <p>التصنيف: الأفران الحرارية</p>
+                <p>التصنيف: </p>
+                <p id="productCategory2">الأفران الحرارية</p>
             </div>
         </div>
     </section>
@@ -89,7 +90,7 @@
             <li>الوصف</li>
         </ul>
         <div class="tab-content">
-            <p>Unox is founded in 1990 with the production of the Arianna XF030 ovens...</p>
+            <p id="productDescription">Unox is founded in 1990 with the production of the Arianna XF030 ovens...</p>
         </div>
     </section>
 
@@ -105,6 +106,7 @@
                 <button class="slider-btn next-btn"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
+
     </section>
 
     <script>
@@ -176,20 +178,27 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve product details from localStorage
             const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
 
+            function getCurrentCategory() {
+                return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
+            }
+
             if (productDetails) {
+                // Update the product name in the HTML
+                document.getElementById('productName1').textContent = productDetails.name;
+                document.getElementById('productName2').textContent = productDetails.name;
+                document.getElementById('productCategory1').textContent = productDetails.category;
+                document.getElementById('productCategory2').textContent = productDetails.category;
+                document.getElementById('productDescription').textContent = productDetails.description || 'لا يوجد وصف متاح';
                 document.getElementById('productImage').src = productDetails.image;
-                document.getElementById('productName').textContent = productDetails.name;
-                document.getElementById('productCategory').textContent = productDetails.category;
-                document.getElementById('productDescription').textContent =
-                    productDetails.description || 'لا يوجد وصف متاح';
 
                 // Update page title
                 document.title = `${productDetails.name} - تفاصيل المنتج`;
             } else {
-                // Handle case when no product details are available
+                // Redirect to products page if no product details are available
                 window.location.href = 'products.html';
             }
         });
