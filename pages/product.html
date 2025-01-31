@@ -113,7 +113,7 @@
         // Slider initialization
         document.addEventListener('DOMContentLoaded', async () => {
             // Retrieve product details from localStorage
-            const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
+            const productDetails = JSON.parse(localStorage.getItem('selectedProduct'));
 
             function getCurrentCategory() {
                 return localStorage.getItem('selectedCategory'); // Default to c-ovens if none selected
@@ -145,8 +145,9 @@
 
                 const response = await fetch('http://localhost:5000/api/products');
                 const products = await response.json();
+                const filteredProducts = products.filter(product => product.category === productDetails.category);
 
-                products.forEach(product => {
+                filteredProducts.forEach(product => {
 
                     slider.innerHTML = '';
                     const groupCount = Math.ceil(products.length / 4);
@@ -217,5 +218,6 @@
     </div>
 </footer>
 
+<script defer src="../js/search.js"></script>
 </body>
 </html>
