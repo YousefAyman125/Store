@@ -113,11 +113,7 @@
         // Slider initialization
         document.addEventListener('DOMContentLoaded', async () => {
             // Retrieve product details from localStorage
-            const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
-
-            function getCurrentCategory() {
-                return localStorage.getItem('selectedCategory'); // Default to c-ovens if none selected
-            }
+            const productDetails = JSON.parse(localStorage.getItem('selectedProduct'));
 
             if (productDetails) {
                 // Update the product name in the HTML
@@ -125,7 +121,7 @@
                 document.getElementById('productName2').textContent = productDetails.name;
                 document.getElementById('productCategory1').textContent = productDetails.category;
                 document.getElementById('productCategory2').textContent = productDetails.category;
-                document.getElementById('productDescription').textContent = productDetails.description || 'لا يوجد وصف متاح';
+                document.getElementById('productDescription').textContent = productDetails.description;
                 document.getElementById('productImage').src = productDetails.image;
 
                 // Update page title
@@ -146,28 +142,29 @@
                 const response = await fetch('http://localhost:5000/api/products');
                 const products = await response.json();
 
-                products.forEach(product => {
+                const filteredProducts = products.filter(product => product.category === productDetails.category);
 
-                    slider.innerHTML = '';
-                    const groupCount = Math.ceil(products.length / 4);
 
-                    for (let i = 0; i < groupCount; i++) {
-                        const group = document.createElement('div');
-                        group.className = 'product-group';
+                slider.innerHTML = '';
+                const groupCount = Math.ceil(filteredProducts.length / 4);
 
-                        products.slice(i * 4, (i + 1) * 4).forEach(product => {
-                            group.innerHTML += `
+                for (let i = 0; i < groupCount; i++) {
+                    const group = document.createElement('div');
+                    group.className = 'product-group';
+
+                    filteredProducts.slice(i * 4, (i + 1) * 4).forEach(product => {
+                        group.innerHTML += `
                             <div class="product-item">
                                 <img src="${product.image}" alt="${product.name}">
                                 <p>${product.name}</p>
                                 <p>${product.category}</p>
                             </div>
                         `;
-                        });
+                    });
 
-                        slider.appendChild(group);
-                    }
-                })
+                    slider.appendChild(group);
+                }
+
             }
 
             // Navigation functions
