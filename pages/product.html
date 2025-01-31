@@ -111,12 +111,12 @@
 
     <script>
         // Slider initialization
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
             // Retrieve product details from localStorage
             const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
 
             function getCurrentCategory() {
-                return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
+                return localStorage.getItem('selectedCategory'); // Default to c-ovens if none selected
             }
 
             if (productDetails) {
@@ -139,44 +139,35 @@
             const prevBtn = document.querySelector('.prev-btn');
             const nextBtn = document.querySelector('.next-btn');
 
-            // Product items array (add your products here)
-            const products = [
-                {img: '/assets/c_logo/logo.png', name: 'UNOX CHEFTOP MIND.Maps 6', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'UNOX BAKERLUX SHOP.Pro 4', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakerlux | Manual', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                {img: '/assets/c_logo/logo.png', name: 'Unox Bakertop combi steamer', category: 'الأفران الحرارية'},
-                // Add more products as needed
-            ];
 
             // Generate product groups
-            function generateProductGroups() {
-                slider.innerHTML = '';
-                const groupCount = Math.ceil(products.length / 4);
+            async function generateProductGroups() {
 
-                for (let i = 0; i < groupCount; i++) {
-                    const group = document.createElement('div');
-                    group.className = 'product-group';
+                const response = await fetch('http://localhost:5000/api/products');
+                const products = await response.json();
 
-                    products.slice(i * 4, (i + 1) * 4).forEach(product => {
-                        group.innerHTML += `
+                products.forEach(product => {
+
+                    slider.innerHTML = '';
+                    const groupCount = Math.ceil(products.length / 4);
+
+                    for (let i = 0; i < groupCount; i++) {
+                        const group = document.createElement('div');
+                        group.className = 'product-group';
+
+                        products.slice(i * 4, (i + 1) * 4).forEach(product => {
+                            group.innerHTML += `
                             <div class="product-item">
-                                <img src="${product.img}" alt="${product.name}">
+                                <img src="${product.image}" alt="${product.name}">
                                 <p>${product.name}</p>
                                 <p>${product.category}</p>
                             </div>
                         `;
-                    });
+                        });
 
-                    slider.appendChild(group);
-                }
+                        slider.appendChild(group);
+                    }
+                })
             }
 
             // Navigation functions
