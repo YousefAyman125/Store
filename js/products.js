@@ -1,240 +1,81 @@
-const categories = {
-    'c-ovens': 'الأفران الحرارية',
-    'p-ovens': 'افرن بيتزا',
-    'fridges': 'الثلاجات',
-    'refrigerator': 'ثلاجات تحت الطاولة',
-    'dishwashers': 'غسالات الأطباق',
-    'ice-machine': 'ماكينة الثلج',
-    'bar-equipments': 'معدات البار',
-    'bakery-equipments': 'معدات المخابز',
-    'processing-equipment': 'معدات التجهيز',
-    'stoves': 'بوتاجازات',
-    'display-refrigerators': 'ثلاجات عرض'
+// Configuration
+const CONFIG = {
+    API_URL: 'http://localhost:5000/api/products',
+    PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
+    CATEGORIES: {
+        'c-ovens': 'الأفران الحرارية',
+        'p-ovens': 'افرن بيتزا',
+        'fridges': 'الثلاجات',
+        'refrigerator': 'ثلاجات تحت الطاولة',
+        'dishwashers': 'غسالات الأطباق',
+        'ice-machine': 'ماكينة الثلج',
+        'bar-equipments': 'معدات البار',
+        'bakery-equipments': 'معدات المخابز',
+        'processing-equipment': 'معدات التجهيز',
+        'stoves': 'بوتاجازات',
+        'display-refrigerators': 'ثلاجات عرض'
+    }
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadProducts();
-});
+// State Management
+const state = {
+    products: [],
+    currentView: 'grid',
+    currentSort: 'nameAsc',
+    selectedCategory: localStorage.getItem('selectedCategory') || 'c-ovens'
+};
 
-// Function to handle dropdown toggle
-function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdownContent = event.target.nextElementSibling;
-    dropdownContent.classList.toggle('show');
-
-    const otherDropdowns = document.querySelectorAll('.dropdown-content');
-    otherDropdowns.forEach(content => {
-        if (content !== dropdownContent) {
-            content.classList.remove('show');
-        }
-    });
-}
-
-// Handle clicks outside dropdown
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        const dropdowns = document.querySelectorAll('.dropdown-content');
-        dropdowns.forEach(dropdown => {
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-            }
-        });
-    }
-}
-
-// Add event listeners for category selection
-document.addEventListener('DOMContentLoaded', function () {
-    const productLinks = document.querySelectorAll('.dropdown-content .product-link');
-
-    productLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            // Get category and index from data attributes
-            const category = this.getAttribute('data-category');
-            const index = this.getAttribute('data-index');
-
-            // Store in localStorage
-            localStorage.setItem('selectedCategory', category);
-
-            console.log(`Selected category: ${category}`);
-            console.log(`Index: ${index}`);
-
-            // Close dropdown
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('show');
-            });
-
-            // Navigate to products page
-            window.location.href = this.href;
-        });
-    });
-});
-
-// Optional: Function to get current category
-function getCurrentCategory() {
-    return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
-}
-
-// Optional: Function to update dropdown button text
-function updateDropdownText() {
-    const currentCategory = getCurrentCategory();
-
-    const dropbtn = document.querySelector('.dropbtn');
-    if (dropbtn && categories[currentCategory]) {
-        dropbtn.textContent = `معرض المنتجات - ${categories[currentCategory]}`;
-    }
-}
-
-// Initialize dropdown state
-document.addEventListener('DOMContentLoaded', function () {
-    // Update dropdown text if on products page
-    if (window.location.href.includes('products.html')) {
-        updateDropdownText();
-    }
-});
-
-// Search functionality
-function initializeSearch() {
-    const searchBtn = document.querySelector('.search-btn');
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-
-    // Open search overlay
-    searchBtn.addEventListener('click', () => {
-        searchOverlay.classList.add('active');
-        searchInput.focus();
-    });
-
-    // Close search overlay
-    function closeSearch() {
-        searchOverlay.classList.remove('active');
-        searchInput.value = '';
-        searchResults.innerHTML = '';
-    }
-
-    // Close on overlay click
-    searchOverlay.addEventListener('click', (e) => {
-        if (e.target === searchOverlay) {
-            closeSearch();
-        }
-    });
-
-    // Close on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeSearch();
-        }
-    });
-
-    // Handle search input
-    searchInput.addEventListener('input', debounce(async (e) => {
-        const searchTerm = e.target.value.trim();
-
-        if (searchTerm.length < 2) {
-            searchResults.innerHTML = '';
-            return;
-        }
-
-        // Show loading
-        searchResults.innerHTML = '<div class="search-loading"></div>';
-
-        try {
-            const response = await fetch('http://localhost:5000/api/products');
-            const products = await response.json();
-
-            const filtered = products.filter(product =>
-                product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                product.category.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-
-            if (filtered.length === 0) {
-                searchResults.innerHTML = `
-                    <div class="no-results">
-                        لا توجد نتائج للبحث عن "${searchTerm}"
-                    </div>
-                `;
-                return;
-            }
-
-            displaySearchResults(filtered);
-        } catch (error) {
-            searchResults.innerHTML = `
-                <div class="no-results">
-                    حدث خطأ أثناء البحث. يرجى المحاولة مرة أخرى.
-                </div>
-            `;
-            console.error('Search error:', error);
-        }
-    }, 300));
-}
-
-// Debounce function to limit API calls
+// Utility Functions
 function debounce(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
+    return function (...args) {
         clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        timeout = setTimeout(() => func.apply(this, args), wait);
     };
 }
 
-// Display search results
-function displaySearchResults(results) {
-    const searchResults = document.getElementById('searchResults');
-    searchResults.innerHTML = results.map(product => `
-        <div class="search-result-item" onclick="goToProduct('${product._id}')">
-            <img src="${product.image}" alt="${product.name}"
-                 onerror="this.src='../assets/placeholder.jpg'">
-            <div class="search-result-info">
-                <h4>${product.name}</h4>
-                <p>${product.category}</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Navigate to product
-function goToProduct(productId) {
-    // Implement your product navigation logic here
-    console.log('Navigating to product:', productId);
-}
-
-// Initialize search when document is ready
-document.addEventListener('DOMContentLoaded', initializeSearch);
-
-// Filtering functionality
-// Add these functions to your existing JavaScript
-
-let currentView = 'grid';
-let currentSort = 'nameAsc';
-let productsData = []; // Store the products data globally
-
-// Modified loadProducts function
+// Product Functions
 async function loadProducts() {
     try {
-        const response = await fetch('http://localhost:5000/api/products');
+        const response = await fetch(CONFIG.API_URL);
         const products = await response.json();
-        productsData = products; // Store the data globally
+        state.products = products;
 
-        // Filter products based on selected category
+        // Update title
+        updateTitle();
+
+        // Filter and display products
         const filteredProducts = products.filter(product =>
-            product.category === categories[localStorage.getItem('selectedCategory')]
+            product.category === CONFIG.CATEGORIES[state.selectedCategory]
         );
 
-        // Sort products based on current sort option
-        sortProducts(filteredProducts, currentSort);
-
-        // Display products in current view
+        sortProducts(filteredProducts, state.currentSort);
         displayProducts(filteredProducts);
     } catch (error) {
         console.error('Error loading products:', error);
+        showError('فشل في تحميل المنتجات. يرجى المحاولة مرة أخرى.');
     }
+}
+
+function updateTitle() {
+    const productTitle = document.getElementById('productTitle');
+    if (productTitle) {
+        productTitle.innerHTML = `
+            <h1 class="section-title">
+                ${CONFIG.CATEGORIES[state.selectedCategory]}
+            </h1>`;
+    }
+}
+
+function showError(message) {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = `
+        <div class="error-message">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>${message}</p>
+            <button onclick="loadProducts()">إعادة المحاولة</button>
+        </div>
+    `;
 }
 
 function sortProducts(products, sortType) {
@@ -255,93 +96,199 @@ function sortProducts(products, sortType) {
 }
 
 function handleSort(sortType) {
-    currentSort = sortType;
-    const filteredProducts = productsData.filter(product =>
-        product.category === categories[localStorage.getItem('selectedCategory')]
+    state.currentSort = sortType;
+    const filteredProducts = state.products.filter(product =>
+        product.category === CONFIG.CATEGORIES[state.selectedCategory]
     );
     sortProducts(filteredProducts, sortType);
     displayProducts(filteredProducts);
 }
 
 function toggleView(viewType) {
-    currentView = viewType;
+    state.currentView = viewType;
     const productList = document.getElementById('productList');
     const gridBtn = document.getElementById('gridBtn');
     const listBtn = document.getElementById('listBtn');
 
-    if (viewType === 'grid') {
-        productList.className = 'products-grid';
-        gridBtn.classList.add('active');
-        listBtn.classList.remove('active');
-    } else {
-        productList.className = 'products-list';
-        listBtn.classList.add('active');
-        gridBtn.classList.remove('active');
-    }
+    productList.className = `products-${viewType}`;
+    gridBtn.classList.toggle('active', viewType === 'grid');
+    listBtn.classList.toggle('active', viewType === 'list');
 
-    // Refresh the display
-    const filteredProducts = productsData.filter(product =>
-        product.category === categories[localStorage.getItem('selectedCategory')]
+    const filteredProducts = state.products.filter(product =>
+        product.category === CONFIG.CATEGORIES[state.selectedCategory]
     );
     displayProducts(filteredProducts);
-}
-
-function storeProductDetails(name, image, category, description) {
-    const productDetails = {
-        name: name,
-        image: image,
-        category: category,
-        description: description
-    };
-
-    localStorage.setItem('currentProduct', JSON.stringify(productDetails));
 }
 
 function displayProducts(products) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
 
+    if (!products.length) {
+        productList.innerHTML = '<div class="no-products">لا توجد منتجات في هذه الفئة</div>';
+        return;
+    }
+
     products.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'product-item';
-
-        if (currentView === 'grid') {
-            productElement.innerHTML = `
-                <a href="product.html" onclick="storeProductDetails('${product.name}', '${product.image}', '${product.category}', ${JSON.stringify(product.description || '').replace(/"/g, '&quot;')})" style="text-decoration: none">
-                    <div class="product-card">
-                        <img src="${product.image}"
-                             alt="${product.name}"
-                             class="product-image"
-                             loading="lazy"
-                             onerror="this.onerror=null; this.src='https://res.cloudinary.com/your-cloud-name/image/upload/v1/placeholder.jpg';">
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-category">${product.category}</div>
-                    </div>
-                </a>
-            `;
-        } else {
-            productElement.innerHTML = `
-                <a href="product.html?id=${product._id}" onclick="storeProductDetails('${product._id}', '${product.name}', '${product.image}', '${product.category}', ${JSON.stringify(product.description || '').replace(/"/g, '&quot;')})" style="text-decoration: none">
-                    <div class="product-card">
-                        <img src="${product.image}"
-                             alt="${product.name}"
-                             class="product-image"
-                             loading="lazy"
-                             onerror="this.onerror=null; this.src='https://res.cloudinary.com/your-cloud-name/image/upload/v1/placeholder.jpg';">
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-category">${product.category}</div>
-                    </div>
-                </a>
-            `;
-        }
-
+        productElement.innerHTML = createProductTemplate(product);
         productList.appendChild(productElement);
     });
 }
 
-// Initialize the view and sorting when page loads
+function createProductTemplate(product) {
+    return `
+        <a href="product.html" 
+           onclick="handleProductClick(event, ${JSON.stringify(product)})" 
+           style="text-decoration: none">
+            <div class="product-card">
+                <img src="${product.image}"
+                     alt="${product.name}"
+                     class="product-image"
+                     loading="lazy"
+                     onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+                <h3 class="product-name">${product.name}</h3>
+                <div class="product-category">${product.category}</div>
+            </div>
+        </a>
+    `;
+}
+
+function handleProductClick(event, product) {
+    event.preventDefault();
+    localStorage.setItem('selectedProduct', JSON.stringify(product));
+    window.location.href = 'product.html';
+}
+
+// Search Functions
+function initializeSearch() {
+    const searchBtn = document.querySelector('.search-btn');
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+
+    searchBtn?.addEventListener('click', openSearch);
+    searchOverlay?.addEventListener('click', (e) => {
+        if (e.target === searchOverlay) closeSearch();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeSearch();
+    });
+    searchInput?.addEventListener('input', debounce(handleSearch, 300));
+}
+
+function openSearch() {
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    searchOverlay.classList.add('active');
+    searchInput.focus();
+}
+
+function closeSearch() {
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    searchOverlay.classList.remove('active');
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+}
+
+async function handleSearch(event) {
+    const searchTerm = event.target.value.trim();
+    const searchResults = document.getElementById('searchResults');
+
+    if (searchTerm.length < 2) {
+        searchResults.innerHTML = '';
+        return;
+    }
+
+    searchResults.innerHTML = '<div class="search-loading"></div>';
+
+    try {
+        const filtered = state.products.filter(product =>
+            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+        displaySearchResults(filtered, searchTerm);
+    } catch (error) {
+        searchResults.innerHTML = '<div class="search-error">حدث خطأ في البحث</div>';
+    }
+}
+
+function displaySearchResults(results, searchTerm) {
+    const searchResults = document.getElementById('searchResults');
+
+    if (!results.length) {
+        searchResults.innerHTML = `
+            <div class="no-results">
+                لا توجد نتائج للبحث عن "${searchTerm}"
+            </div>
+        `;
+        return;
+    }
+
+    searchResults.innerHTML = results.map(product => `
+        <div class="search-result-item" 
+             onclick="handleProductClick(event, ${JSON.stringify(product)})">
+            <img src="${product.image}" 
+                 alt="${product.name}"
+                 onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+            <div class="search-result-info">
+                <h4>${product.name}</h4>
+                <p>${product.category}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Category Functions
+function handleCategorySelect(event, category) {
+    event.preventDefault();
+    state.selectedCategory = category;
+    localStorage.setItem('selectedCategory', category);
+    document.querySelector('.dropdown-content').classList.remove('show');
+    loadProducts();
+}
+
+function toggleDropdown(event) {
+    event.preventDefault();
+    const dropdownContent = event.target.nextElementSibling;
+    dropdownContent.classList.toggle('show');
+
+    const otherDropdowns = document.querySelectorAll('.dropdown-content');
+    otherDropdowns.forEach(content => {
+        if (content !== dropdownContent) {
+            content.classList.remove('show');
+        }
+    });
+}
+
+// Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
-    // Set initial view
-    toggleView('grid');
+    initializeSearch();
+
+    // Event Listeners
+    document.getElementById('sortSelect')?.addEventListener('change',
+        (e) => handleSort(e.target.value)
+    );
+
+    document.getElementById('gridBtn')?.addEventListener('click',
+        () => toggleView('grid')
+    );
+
+    document.getElementById('listBtn')?.addEventListener('click',
+        () => toggleView('list')
+    );
+
+    // Close dropdowns when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                dropdown.classList.remove('show');
+            });
+        }
+    };
 });
