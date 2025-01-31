@@ -112,6 +112,29 @@
     <script>
         // Slider initialization
         document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve product details from localStorage
+            const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
+
+            function getCurrentCategory() {
+                return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
+            }
+
+            if (productDetails) {
+                // Update the product name in the HTML
+                document.getElementById('productName1').textContent = productDetails.name;
+                document.getElementById('productName2').textContent = productDetails.name;
+                document.getElementById('productCategory1').textContent = productDetails.category;
+                document.getElementById('productCategory2').textContent = productDetails.category;
+                document.getElementById('productDescription').textContent = productDetails.description || 'لا يوجد وصف متاح';
+                document.getElementById('productImage').src = productDetails.image;
+
+                // Update page title
+                document.title = `${productDetails.name} - تفاصيل المنتج`;
+            } else {
+                // Redirect to products page if no product details are available
+                window.location.href = 'products.html';
+            }
+
             const slider = document.querySelector('.product-slider');
             const prevBtn = document.querySelector('.prev-btn');
             const nextBtn = document.querySelector('.next-btn');
@@ -176,31 +199,6 @@
             window.addEventListener('resize', () => {
                 generateProductGroups();
             });
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Retrieve product details from localStorage
-            const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
-
-            function getCurrentCategory() {
-                return localStorage.getItem('selectedCategory') || 'c-ovens'; // Default to c-ovens if none selected
-            }
-
-            if (productDetails) {
-                // Update the product name in the HTML
-                document.getElementById('productName1').textContent = productDetails.name;
-                document.getElementById('productName2').textContent = productDetails.name;
-                document.getElementById('productCategory1').textContent = productDetails.category;
-                document.getElementById('productCategory2').textContent = productDetails.category;
-                document.getElementById('productDescription').textContent = productDetails.description || 'لا يوجد وصف متاح';
-                document.getElementById('productImage').src = productDetails.image;
-
-                // Update page title
-                document.title = `${productDetails.name} - تفاصيل المنتج`;
-            } else {
-                // Redirect to products page if no product details are available
-                window.location.href = 'products.html';
-            }
         });
     </script>
 </main>
