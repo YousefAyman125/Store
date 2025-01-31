@@ -62,7 +62,7 @@
         <div class="breadcrumb">
             <a href="../index.html" style="text-decoration:none">الرئيسية</a>
             <a href="products.html" style="text-decoration:none">الأفران الحرارية</a>
-            <p>UNOX Cheftop Hood with Steam Condenser (Only for Electric Ovens) XEVHC-CF11</p>
+            <p id="productName">Loading...</p>
         </div>
     </section>
 
@@ -174,6 +174,24 @@
             window.addEventListener('resize', () => {
                 generateProductGroups();
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const productDetails = JSON.parse(localStorage.getItem('currentProduct'));
+
+            if (productDetails) {
+                document.getElementById('productImage').src = productDetails.image;
+                document.getElementById('productName').textContent = productDetails.name;
+                document.getElementById('productCategory').textContent = productDetails.category;
+                document.getElementById('productDescription').textContent =
+                    productDetails.description || 'لا يوجد وصف متاح';
+
+                // Update page title
+                document.title = `${productDetails.name} - تفاصيل المنتج`;
+            } else {
+                // Handle case when no product details are available
+                window.location.href = 'products.html';
+            }
         });
     </script>
 </main>

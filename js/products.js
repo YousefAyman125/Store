@@ -286,6 +286,17 @@ function toggleView(viewType) {
     displayProducts(filteredProducts);
 }
 
+function storeProductDetails(name, image, category, description) {
+    const productDetails = {
+        name: name,
+        image: image,
+        category: category,
+        description: description
+    };
+
+    localStorage.setItem('currentProduct', JSON.stringify(productDetails));
+}
+
 function displayProducts(products) {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
@@ -296,7 +307,7 @@ function displayProducts(products) {
 
         if (currentView === 'grid') {
             productElement.innerHTML = `
-                <a href="product.html" style="text-decoration: none">
+                <a href="product.html" onclick="storeProductDetails('${product.name}', '${product.image}', '${product.category}', ${JSON.stringify(product.description || '').replace(/"/g, '&quot;')})" style="text-decoration: none">
                     <div class="product-card">
                         <img src="${product.image}"
                              alt="${product.name}"
@@ -310,7 +321,7 @@ function displayProducts(products) {
             `;
         } else {
             productElement.innerHTML = `
-                <a href="product.html" style="text-decoration: none">
+                <a href="product.html?id=${product._id}" onclick="storeProductDetails('${product._id}', '${product.name}', '${product.image}', '${product.category}', ${JSON.stringify(product.description || '').replace(/"/g, '&quot;')})" style="text-decoration: none">
                     <div class="product-card">
                         <img src="${product.image}"
                              alt="${product.name}"
