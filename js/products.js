@@ -140,7 +140,8 @@ function displayProducts(products) {
 function createProductTemplate(product) {
     return `
         <a href="product.html" 
-           onclick="handleProductClick(event, ${JSON.stringify(product)})" 
+           data-product='${JSON.stringify(product).replace(/'/g, "&apos;")}'
+           onclick="handleProductClick(event, this)" 
            style="text-decoration: none">
             <div class="product-card">
                 <img src="${product.image}"
@@ -155,8 +156,9 @@ function createProductTemplate(product) {
     `;
 }
 
-function handleProductClick(event, product) {
+function handleProductClick(event, element) {
     event.preventDefault();
+    const product = JSON.parse(element.dataset.product);
     localStorage.setItem('selectedProduct', JSON.stringify(product));
     window.location.href = 'product.html';
 }
