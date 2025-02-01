@@ -64,43 +64,85 @@
     </nav>
 </Header>
 
+<!-- Contact Form & Map Section -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="form-container">
+                <h2>أرسل رسالتك</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="fullname" placeholder="الاسم الكامل" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="رقم التليفون" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email"
+                               name="email"
+                               placeholder="البريد الإلكتروني"
+                               dir="ltr"
+                        style="text-align: left;"
+                        required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="الموضوع">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="رسالتك" rows="5"></textarea>
+                    </div>
+                    <button type="submit">
+                        <span>إرسال الرسالة</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
 
-<section class="container">
-    <div class="form-section">
-        <h2>إرسل رسالتك</h2>
-        <form id="contact-form">
-            <label>
-                <input name="fullname" placeholder="الاسم الكامل" required type="text">
-            </label>
-            <label>
-                <input name="phone" placeholder="رقم التليفون" required type="tel">
-            </label>
-            <label>
-                <input name="email" placeholder="البريد الإلكتروني" required type="email">
-            </label>
-            <label>
-                <input name="subject" placeholder="الموضوع" type="text">
-            </label>
-            <label>
-                <textarea name="message" placeholder="رسالتك (اختياري)"></textarea>
-            </label>
-            <button type="submit">إرسال</button>
-        </form>
-        <div class="contact-info">
-            <p>الواتساب: <strong>01025690100</strong></p>
-            <p>الموبايل: <strong>01023179746</strong></p>
-            <p>البريد الإلكتروني: <strong>eldenfakhr31@gmail.com</strong></p>
+            <div class="map-container">
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4506.138817572411!2d30.918495575549837!3d29.943275274974656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDU2JzM1LjgiTiAzMMKwNTUnMTUuOSJF!5e1!3m2!1sen!2seg!4v1737903346258!5m2!1sen!2seg"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
         </div>
     </div>
-    <div class="map-section">
-        <iframe
-                allowfullscreen=""
-                height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4506.138817572411!2d30.918495575549837!3d29.943275274974656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjnCsDU2JzM1LjgiTiAzMMKwNTUnMTUuOSJF!5e1!3m2!1sen!2seg!4v1737903346258!5m2!1sen!2seg"
-                style="border:0;"
-                width="600"></iframe>
+</section>
+
+
+<section class="contact-info-section">
+    <div class="container">
+        <div class="info-cards">
+            <div class="info-card">
+                <div class="icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>اتصل بنا</h3>
+                <p>01025690100</p>
+                <p>01023179746</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>راسلنا</h3>
+                <p>eldenfakhr31@gmail.com</p>
+            </div>
+
+            <div class="info-card">
+                <div class="icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>موقعنا</h3>
+                <p>القاهرة، مصر</p>
+            </div>
+        </div>
     </div>
 </section>
+
+
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
@@ -108,7 +150,7 @@
             <!-- معلومات الاتصال على اليمين -->
             <div class="contact-info">
                 <div class="contact-details">
-                    <p><i class="fas fa-phone"></i><span>اتصل بنا: 123456789</span></p>
+                    <p><i class="fas fa-phone"></i><span>اتصل بنا: 01025690100</span></p>
                     <p><i class="fas fa-envelope"></i><span>info@target.com</span></p>
                     <p><i class="fas fa-map-marker-alt"></i><span>العنوان: القاهرة، مصر</span></p>
                 </div>
@@ -117,21 +159,25 @@
             <!-- الروابط في المنتصف -->
             <div class="footer-middle">
                 <div class="footer-links">
-                    <a href="index.html">الرئيسية</a>
-                    <a href="pages/about.html">من نحن</a>
-                    <a href="pages/contact.html">تواصل معنا</a>
+                    <a href="../index.html">الرئيسية</a>
+                    <a href="../pages/about.html">من نحن</a>
+                    <a href="../pages/contact.html">تواصل معنا</a>
                 </div>
                 <div class="social-icons">
-                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك" target="_blank">
+                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك"
+                       target="_blank">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
-                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank">
+                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب"
+                       target="_blank">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
-                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank">
+                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام"
+                       target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك" target="_blank">
+                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك"
+                       target="_blank">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                 </div>
