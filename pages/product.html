@@ -88,7 +88,7 @@
             <h2>منتجات ذات صلة</h2>
             <div class="related-slider-container">
                 <button class="slider-btn prev-btn" id="prevBtn">
-                    <i class="fas fa-chevron-right"></i>
+                    <i class="fas fa-chevron-left"></i>
                 </button>
 
                 <div class="related-slider" id="relatedProductsSlider">
@@ -96,7 +96,7 @@
                 </div>
 
                 <button class="slider-btn next-btn" id="nextBtn">
-                    <i class="fas fa-chevron-left"></i>
+                    <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
         </section>
@@ -284,11 +284,6 @@
                 showGroup(currentGroup);
             }
         });
-    }
-
-    function handleRelatedProductClick(product) {
-        localStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.reload();
     }
 </script>
 </body>
