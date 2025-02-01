@@ -15,10 +15,37 @@
     <div class="form-container">
         <form id="productForm">
             <h2>إضافة منتج جديد</h2>
-            <input id="productName" placeholder="اسم المنتج" required type="text">
+            <label for="productName"></label><input id="productName" placeholder="اسم المنتج" required type="text">
             <input accept="image/*" id="productImage" required type="file">
-            <select id="productCategory" required>
-                <option value="">جميع الفئات</option>
+            <label for="productCategory"></label><select id="productCategory" required>
+            <option value="">جميع الفئات</option>
+            <option value="افران البيتزا">افران البيتزا</option>
+            <option value="الأفران الحراريه">الأفران الحراريه</option>
+            <option value="البوتاجازات">البوتاجازات</option>
+            <option value="الثلاجات">الثلاجات</option>
+            <option value="القلايات">القلايات</option>
+            <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
+            <option value="ثلاجات عرض">ثلاجات عرض</option>
+            <option value="غسالات الأطباق">غسالات الاطباق</option>
+            <option value="ماكينات الثلج">ماكينات الثلج</option>
+            <option value="معدات البار">معدات البار</option>
+            <option value="معدات التجهيز">معدات التجهيز</option>
+            <option value="معدات المخابز">معدات المخابز</option>
+        </select>
+            <label for="productDescription"></label><textarea id="productDescription" placeholder="وصف المنتج"
+                                                              style="min-height: 50px;  max-height: 150px;"
+                                                              required></textarea>
+            <button type="submit">إضافة منتج</button>
+        </form>
+    </div>
+
+    <!-- قسم الفلترة والعرض -->
+    <div class="filters-section">
+        <div class="filters-container">
+            <div class="category-filter">
+                <label for="categoryFilter"></label><select id="categoryFilter"
+                                                            onchange="handleCategoryFilter(this.value)">
+                <option value="all">جميع الفئات</option>
                 <option value="افران البيتزا">افران البيتزا</option>
                 <option value="الأفران الحراريه">الأفران الحراريه</option>
                 <option value="البوتاجازات">البوتاجازات</option>
@@ -32,38 +59,14 @@
                 <option value="معدات التجهيز">معدات التجهيز</option>
                 <option value="معدات المخابز">معدات المخابز</option>
             </select>
-            <textarea id="productDescription" placeholder="وصف المنتج" required></textarea>
-            <button type="submit">إضافة منتج</button>
-        </form>
-    </div>
-
-    <!-- قسم الفلترة والعرض -->
-    <div class="filters-section">
-        <div class="filters-container">
-            <div class="category-filter">
-                <select id="categoryFilter" onchange="handleCategoryFilter(this.value)">
-                    <option value="all">جميع الفئات</option>
-                    <option value="افران البيتزا">افران البيتزا</option>
-                    <option value="الأفران الحراريه">الأفران الحراريه</option>
-                    <option value="البوتاجازات">البوتاجازات</option>
-                    <option value="الثلاجات">الثلاجات</option>
-                    <option value="القلايات">القلايات</option>
-                    <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
-                    <option value="ثلاجات عرض">ثلاجات عرض</option>
-                    <option value="غسالات الأطباق">غسالات الاطباق</option>
-                    <option value="ماكينات الثلج">ماكينات الثلج</option>
-                    <option value="معدات البار">معدات البار</option>
-                    <option value="معدات التجهيز">معدات التجهيز</option>
-                    <option value="معدات المخابز">معدات المخابز</option>
-                </select>
             </div>
             <div class="sort-filter">
-                <select id="sortSelect" onchange="handleSort(this.value)">
-                    <option value="nameAsc">الاسم: أ-ي</option>
-                    <option value="nameDesc">الاسم: ي-أ</option>
-                    <option value="newest">الأحدث</option>
-                    <option value="oldest">الأقدم</option>
-                </select>
+                <label for="sortSelect"></label><select id="sortSelect" onchange="handleSort(this.value)">
+                <option value="nameAsc">الاسم: أ-ي</option>
+                <option value="nameDesc">الاسم: ي-أ</option>
+                <option value="newest">الأحدث</option>
+                <option value="oldest">الأقدم</option>
+            </select>
             </div>
             <div class="view-options">
                 <button onclick="toggleView('grid')" class="view-btn active" id="gridBtn">
