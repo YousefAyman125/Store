@@ -28,16 +28,32 @@ function initializeEventListeners() {
     }
 }
 
+// Error Handler
+function handleError(error, defaultMessage) {
+    console.error('Error:', error);
+    let errorMessage = defaultMessage;
+
+    if (error.response) {
+        try {
+            errorMessage = error.response.data.message;
+        } catch (e) {
+            errorMessage = defaultMessage;
+        }
+    }
+
+    showNotification(errorMessage, 'error');
+}
+
 // Product Loading and Display
 async function loadProducts() {
     try {
         showLoading();
         const response = await fetch('http://localhost:5000/api/products');
+        if (!response.ok) throw new Error('Network response was not ok');
         productsData = await response.json();
         filterAndDisplayProducts();
     } catch (error) {
-        console.error('Error loading products:', error);
-        showNotification('فشل في تحميل المنتجات', 'error');
+        handleError(error, 'فشل في تحميل المنتجات');
         productList.innerHTML = '<div class="error-message">فشل في تحميل المنتجات</div>';
     } finally {
         hideLoading();
@@ -48,7 +64,8 @@ function showLoading() {
     productList.innerHTML = `
         <div class="loading">
             <div class="loading-spinner"></div>
-            <p>جاري التحميل...</p>
+            <p>جاري تحميل المنتجات...</p>
+            <small>يرجى الانتظار</small>
         </div>
     `;
 }
@@ -60,23 +77,35 @@ function hideLoading() {
     }
 }
 
+// Search and Filter Functions
+function advancedSearch(products, searchTerm) {
+    return products.filter(product => {
+        const searchFields = [
+            product.name,
+            product.description,
+            product.category
+        ].map(field => field.toLowerCase());
+
+        const terms = searchTerm.toLowerCase().split(' ');
+        return terms.every(term =>
+            searchFields.some(field => field.includes(term))
+        );
+    });
+}
+
 function filterAndDisplayProducts() {
     let filteredProducts = [...productsData];
+
+    // Apply search filter
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim()) {
+        filteredProducts = advancedSearch(filteredProducts, searchInput.value.trim());
+    }
 
     // Apply category filter
     if (currentCategory !== 'all') {
         filteredProducts = filteredProducts.filter(product =>
             product.category === currentCategory
-        );
-    }
-
-    // Apply search filter if exists
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput && searchInput.value.trim()) {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-        filteredProducts = filteredProducts.filter(product =>
-            product.name.toLowerCase().includes(searchTerm) ||
-            product.description.toLowerCase().includes(searchTerm)
         );
     }
 
@@ -88,7 +117,7 @@ function filterAndDisplayProducts() {
 }
 
 function sortProducts(products) {
-    switch(currentSort) {
+    switch (currentSort) {
         case 'nameAsc':
             products.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
             break;
@@ -142,19 +171,30 @@ function displayProducts(products) {
 async function handleProductSubmit(e) {
     e.preventDefault();
 
-    // التحقق من البيانات المطلوبة
     const name = document.getElementById('productName').value.trim();
     const category = document.getElementById('productCategory').value;
     const description = document.getElementById('productDescription').value.trim();
     const imageFile = document.getElementById('productImage').files[0];
 
-    // التحقق من وجود جميع البيانات المطلوبة
+    // Validation
     if (!name || !category || !description || !imageFile) {
         showNotification('جميع الحقول مطلوبة', 'error');
         return;
     }
 
-    // إنشاء FormData وإضافة البيانات
+    // Image validation
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (imageFile.size > maxSize) {
+        showNotification('حجم الصورة يجب أن يكون أقل من 10 ميجابايت', 'error');
+        return;
+    }
+
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!allowedTypes.includes(imageFile.type)) {
+        showNotification('يجب أن تكون الصورة من نوع JPG أو PNG', 'error');
+        return;
+    }
+
     const formData = new FormData();
     formData.append('name', name);
     formData.append('category', category);
@@ -167,30 +207,50 @@ async function handleProductSubmit(e) {
             body: formData
         });
 
-        // التحقق من نوع المحتوى في الاستجابة
-        const contentType = response.headers.get("content-type");
-        if (contentType && contentType.includes("application/json")) {
-            const data = await response.json();
+        const data = await response.json();
 
-            if (response.ok) {
-                showNotification('تم إضافة المنتج بنجاح', 'success');
-                productForm.reset();
-                await loadProducts();
-            } else {
-                throw new Error(data.message || 'فشل في إضافة المنتج');
-            }
+        if (response.ok) {
+            showNotification('تم إضافة المنتج بنجاح', 'success');
+            productForm.reset();
+            await loadProducts();
         } else {
-            throw new Error('استجابة غير صالحة من الخادم');
+            throw new Error(data.message || 'فشل في إضافة المنتج');
         }
     } catch (error) {
-        console.error('Error:', error);
-        showNotification(error.message || 'فشل في إضافة المنتج', 'error');
+        handleError(error, 'فشل في إضافة المنتج');
     }
 }
 
-// Delete Product
+// Product Operations
+async function updateProduct(id, formData) {
+    try {
+        const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+            method: 'PUT',
+            body: formData
+        });
+
+        if (response.ok) {
+            showNotification('تم تحديث المنتج بنجاح', 'success');
+            await loadProducts();
+        } else {
+            throw new Error('فشل في تحديث المنتج');
+        }
+    } catch (error) {
+        handleError(error, 'فشل في تحديث المنتج');
+    }
+}
+
 async function deleteProduct(id) {
-    if (!confirm('هل أنت متأكد من حذف هذا المنتج؟')) return;
+    const product = productsData.find(p => p._id === id);
+    if (!product) return;
+
+    const confirmMessage = `
+        هل أنت متأكد من حذف المنتج التالي؟
+        الاسم: ${product.name}
+        الفئة: ${product.category}
+    `;
+
+    if (!confirm(confirmMessage)) return;
 
     try {
         const response = await fetch(`http://localhost:5000/api/products/${id}`, {
@@ -204,12 +264,11 @@ async function deleteProduct(id) {
             throw new Error('فشل في حذف المنتج');
         }
     } catch (error) {
-        console.error('Error:', error);
-        showNotification('فشل في حذف المنتج', 'error');
+        handleError(error, 'فشل في حذف المنتج');
     }
 }
 
-// Filter and Sort Handlers
+// UI Handlers
 function handleCategoryFilter(category) {
     currentCategory = category;
     filterAndDisplayProducts();
