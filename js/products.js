@@ -3,17 +3,18 @@ const CONFIG = {
     API_URL: 'http://localhost:5000/api/products',
     PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
     CATEGORIES: {
-        'c-ovens': 'الأفران الحرارية',
         'p-ovens': 'افرن بيتزا',
+        'c-ovens': 'الأفران الحرارية',
+        'stoves': 'بوتاجازات',
         'fridges': 'الثلاجات',
+        'fryers': 'القلايات',
         'refrigerator': 'ثلاجات تحت الطاولة',
+        'display-refrigerators': 'ثلاجات عرض',
         'dishwashers': 'غسالات الأطباق',
         'ice-machine': 'ماكينة الثلج',
         'bar-equipments': 'معدات البار',
-        'bakery-equipments': 'معدات المخابز',
         'processing-equipment': 'معدات التجهيز',
-        'stoves': 'بوتاجازات',
-        'display-refrigerators': 'ثلاجات عرض'
+        'bakery-equipments': 'معدات المخابز'
     }
 };
 
