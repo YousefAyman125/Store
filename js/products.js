@@ -23,7 +23,7 @@ const state = {
     products: [],
     currentView: 'grid',
     currentSort: 'nameAsc',
-    selectedCategory: localStorage.getItem('selectedCategory') || 'c-ovens'
+    selectedCategory: localStorage.getItem('selectedCategory')
 };
 
 // Utility Functions
