@@ -3,7 +3,7 @@ const CONFIG = {
     API_URL: 'http://localhost:5000/api/products',
     PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
     CATEGORIES: {
-        'p-ovens': 'افرن بيتزا',
+        'p-ovens': 'افران البيتزا',
         'c-ovens': 'الأفران الحرارية',
         'stoves': 'بوتاجازات',
         'fridges': 'الثلاجات',
