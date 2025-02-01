@@ -102,7 +102,7 @@ const SearchManager = {
 
             .close-search {
                 position: absolute;
-                left: 15px;
+                left: 25px;
                 top: 50%;
                 transform: translateY(-50%);
                 background: none;
