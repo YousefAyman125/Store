@@ -218,8 +218,10 @@ function toggleDropdown(event) {
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+
+    document.title = `Target - ${CONFIG.CATEGORIES[state.selectedCategory]}`;
+
     loadProducts();
-    initializeSearch();
 
     // Event Listeners for sorting and view options
     document.getElementById('sortSelect')?.addEventListener('change',
