@@ -270,20 +270,3 @@ button[type="submit"]:hover {
         box-shadow: var(--shadow-sm);
     }
 }
-
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-light: #1a1a1a;
-        --text-dark: #fff;
-        --text-light: #ccc;
-        --white: #2a2a2a;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        background: #333;
-        border-color: #444;
-        color: #fff;
-    }
-}

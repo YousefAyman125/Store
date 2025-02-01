@@ -243,20 +243,6 @@
     }
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --text-dark: #fff;
-        --text-light: #ccc;
-        --white: #1a1a1a;
-    }
-
-    .value-card,
-    .feature-card {
-        background: #2a2a2a;
-    }
-}
-
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
     * {
