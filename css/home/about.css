@@ -1,32 +1,30 @@
 .about-section {
-    padding: 60px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    direction: rtl;
+    padding: 80px 0;
+    background: white;
 }
 
 .about-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .company-name {
-    color: #e31e24;
+    color: var(--primary-color);
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
 .about-title {
     font-size: 2.5rem;
-    color: #333;
+    color: var(--secondary-color);
     margin: 0;
 }
 
 .about-content {
     display: flex;
-    gap: 40px;
-    margin-bottom: 60px;
+    gap: 50px;
     align-items: center;
+    margin-bottom: 60px;
 }
 
 .about-text {
@@ -34,47 +32,54 @@
 }
 
 .about-description {
-    line-height: 1.8;
-    color: #555;
     font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    text-align: justify;
 }
 
 .about-image {
     flex: 1;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
 .about-image img {
     width: 100%;
     height: auto;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
 }
 
 .values-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .value-card {
-    background: #f8f8f8;
+    background: var(--light-bg);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .value-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
 }
 
 .value-icon {
-    width: 70px;
-    height: 70px;
-    background: #e31e24;
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -84,21 +89,20 @@
 
 .value-icon i {
     color: white;
-    font-size: 30px;
+    font-size: 35px;
 }
 
 .value-card h3 {
-    color: #333;
+    color: var(--secondary-color);
     margin-bottom: 15px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 .value-card p {
-    color: #666;
+    color: var(--text-color);
     line-height: 1.6;
 }
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .about-content {
         flex-direction: column;
@@ -106,24 +110,31 @@
 
     .about-image {
         order: -1;
-    }
-
-    .values-container {
-        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
 @media (max-width: 768px) {
-    .values-container {
-        grid-template-columns: 1fr;
-    }
-
     .about-title {
         font-size: 2rem;
     }
 
     .value-card {
-        max-width: 500px;
-        margin: 0 auto;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 1.5rem;
+    }
+
+    .about-description {
+        font-size: 1rem;
+    }
+
+    .values-container {
+        grid-template-columns: 1fr;
     }
 }

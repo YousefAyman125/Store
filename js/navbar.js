@@ -1,48 +1,32 @@
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM loaded');
-    const productLinks = document.querySelectorAll('.product-link');
-    console.log('Found product links:', productLinks.length);
+document.addEventListener('DOMContentLoaded', function() {
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
 
-    productLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // Dropdown functionality
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const trigger = dropdown.querySelector('.dropbtn');
+        const content = dropdown.querySelector('.dropdown-content');
+
+        trigger.addEventListener('click', (e) => {
             e.preventDefault();
+            content.classList.toggle('show');
+        });
 
-            const category = this.getAttribute('data-category');
-            const index = this.getAttribute('data-index');
-
-            selectedCategory = category;
-
-            localStorage.setItem('selectedCategory', category);
-
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 100);
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) {
+                content.classList.remove('show');
+            }
         });
     });
 });
-
-function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdownContent = event.target.nextElementSibling;
-    dropdownContent.classList.toggle('show');
-
-
-    const otherDropdowns = document.querySelectorAll('.dropdown-content');
-    otherDropdowns.forEach(content => {
-        if (content !== dropdownContent) {
-            content.classList.remove('show');
-        }
-    });
-}
-
-
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        const dropdowns = document.querySelectorAll('.dropdown-content');
-        dropdowns.forEach(dropdown => {
-            if (dropdown.classList.contains('show')) {
-                dropdown.classList.remove('show');
-            }
-        });
-    }
-}

@@ -1,9 +1,9 @@
-/* css */
 .slider-container {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
+    margin-top: -80px; /* لتعويض ارتفاع الناف بار */
 }
 
 .slider {
@@ -17,22 +17,12 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.8s ease-in-out;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-/* Set background images for slides */
-.slide:nth-child(1) {
-    background-image: url('path-to-your-first-image.jpg');
-}
-
-.slide:nth-child(2) {
-    background-image: url('path-to-your-second-image.jpg');
-}
-
-/* Add overlay to make text more readable */
 .slide::before {
     content: '';
     position: absolute;
@@ -40,7 +30,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
 }
 
 .slide.active {
@@ -54,40 +44,79 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    z-index: 1;
-    width: 80%;
+    width: 90%;
     max-width: 800px;
+    z-index: 1;
 }
 
 .slide-content h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
 }
 
-.slide-content p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+.slide.active .slide-content h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-content h2:nth-child(2) {
+    transition-delay: 0.2s;
 }
 
 .cta-button {
-    padding: 12px 30px;
-    font-size: 1.1rem;
-    background-color: #e31e24;
+    display: inline-block;
+    padding: 15px 40px;
+    margin-top: 30px;
+    background-color: var(--primary-color);
     color: white;
-    border: none;
+    text-decoration: none;
     border-radius: 5px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.slide.active .cta-button {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    z-index: 2;
 }
 
-.cta-button:hover {
-    background-color: #c41920;
+.slider-btn:hover {
+    background: var(--primary-color);
 }
 
-/* Bullets Styles */
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
 .slider-bullets {
     position: absolute;
-    bottom: 20px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -99,70 +128,41 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255,255,255,0.5);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .bullet.active {
-    background-color: white;
+    background: white;
+    transform: scale(1.2);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .slide-content h2 {
         font-size: 2rem;
     }
 
-    .slide-content p {
-        font-size: 1rem;
-    }
-
     .cta-button {
-        padding: 10px 25px;
+        padding: 12px 30px;
         font-size: 1rem;
     }
-}
 
-/* Navigation Buttons */
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 16px 12px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-    z-index: 2;
-}
-
-.slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev-btn {
-    left: 20px;
-}
-
-.next-btn {
-    right: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
     .slider-btn {
-        padding: 12px 8px;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
         font-size: 16px;
-    }
-
-    .prev-btn {
-        left: 10px;
-    }
-
-    .next-btn {
-        right: 10px;
     }
 }

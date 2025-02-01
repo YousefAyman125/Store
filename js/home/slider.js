@@ -1,120 +1,92 @@
-// Slider actions
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const slides = document.querySelectorAll('.slide');
     const bullets = document.querySelectorAll('.bullet');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     let currentSlide = 0;
-    const slideCount = slides.length;
     let slideInterval;
 
-    // Function to show specific slide
     function showSlide(index) {
-        // Handle circular navigation
-        if (index >= slideCount) {
-            index = 0;
-        } else if (index < 0) {
-            index = slideCount - 1;
-        }
-
-        // Remove active class from all slides and bullets
-        slides.forEach(slide => slide.classList.remove('active'));
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+            slide.style.zIndex = '0';
+        });
         bullets.forEach(bullet => bullet.classList.remove('active'));
 
-        // Add active class to current slide and bullet
-        slides[index].classList.add('active');
-        bullets[index].classList.add('active');
+        if (index >= slides.length) currentSlide = 0;
+        if (index < 0) currentSlide = slides.length - 1;
 
-        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        slides[currentSlide].style.zIndex = '1';
+        bullets[currentSlide].classList.add('active');
     }
 
-    // Function to show next slide
     function nextSlide() {
-        showSlide(currentSlide + 1);
+        currentSlide++;
+        showSlide(currentSlide);
     }
 
-    // Function to show previous slide
     function prevSlide() {
-        showSlide(currentSlide - 1);
+        currentSlide--;
+        showSlide(currentSlide);
     }
 
-    // Add click event listeners to navigation buttons
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetInterval();
-    });
+    function startSlideShow() {
+        slideInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopSlideShow() {
+        clearInterval(slideInterval);
+    }
 
     prevBtn.addEventListener('click', () => {
         prevSlide();
-        resetInterval();
+        stopSlideShow();
+        startSlideShow();
     });
 
-    // Add click event listeners to bullets
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopSlideShow();
+        startSlideShow();
+    });
+
     bullets.forEach((bullet, index) => {
         bullet.addEventListener('click', () => {
-            showSlide(index);
-            resetInterval();
+            currentSlide = index;
+            showSlide(currentSlide);
+            stopSlideShow();
+            startSlideShow();
         });
     });
 
-    // Function to reset interval
-    function resetInterval() {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    // Touch events for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.querySelector('.slider').addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+    });
+
+    document.querySelector('.slider').addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].clientX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const difference = touchStartX - touchEndX;
+
+        if (Math.abs(difference) > swipeThreshold) {
+            if (difference > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            stopSlideShow();
+            startSlideShow();
+        }
     }
 
-    // Add keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            nextSlide(); // For RTL layout
-            resetInterval();
-        } else if (e.key === 'ArrowRight') {
-            prevSlide(); // For RTL layout
-            resetInterval();
-        }
-    });
-
-    // Optional: Pause slider on hover
-    const sliderContainer = document.querySelector('.slider-container');
-
-    sliderContainer.addEventListener('mouseenter', () => {
-        clearInterval(slideInterval);
-    });
-
-    sliderContainer.addEventListener('mouseleave', () => {
-        resetInterval();
-    });
-
-    // Initialize slider
-    function initSlider() {
-        showSlide(0);
-        resetInterval();
-    }
-
-    // Start the slider
-    initSlider();
-});
-
-
-// -----------
-document.addEventListener('DOMContentLoaded', function () {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-
-    // Show/hide button based on scroll position
-    window.addEventListener('scroll', function () {
-        // Show button after scrolling down 300px
-        if (window.scrollY > 300) {
-            scrollToTopBtn.classList.add('visible');
-        } else {
-            scrollToTopBtn.classList.remove('visible');
-        }
-    });
-
-    // Smooth scroll to top when button is clicked
-    scrollToTopBtn.addEventListener('click', function () {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+    startSlideShow();
 });
