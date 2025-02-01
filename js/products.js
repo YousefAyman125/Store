@@ -23,7 +23,7 @@ const state = {
     products: [],
     currentView: 'grid',
     currentSort: 'nameAsc',
-    selectedCategory: localStorage.getItem('selectedCategory') || 'c-ovens'
+    selectedCategory: localStorage.getItem('selectedCategory')
 };
 
 // Utility Functions
@@ -254,3 +254,156 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
+
+const ITEMS_PER_PAGE = 12;
+let currentPage = 1;
+let paginationContainer = null;
+
+function displayProducts(products) {
+    const productList = document.getElementById('productList');
+
+    // إزالة حاوية الترقيم القديمة إذا وجدت
+    if (paginationContainer) {
+        paginationContainer.remove();
+    }
+
+    // إنشاء حاوية ترقيم جديدة
+    paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination';
+
+    // حساب عدد الصفحات
+    const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+
+    // تحديد المنتجات للصفحة الحالية
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentProducts = products.slice(startIndex, endIndex);
+
+    // عرض المنتجات
+    productList.innerHTML = '';
+    currentProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product-item';
+        productElement.innerHTML = `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}"
+                         alt="${product.name}"
+                         loading="lazy"
+                         onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+                    <div class="product-description">
+                        <p>${product.description}</p>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="details-btn">
+                        <span>عرض التفاصيل</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        productElement.addEventListener('click', () => {
+            localStorage.setItem('selectedProduct', JSON.stringify(product));
+            window.location.href = 'product.html';
+        });
+
+        productList.appendChild(productElement);
+    });
+
+    // إنشاء أزرار الترقيم
+    createPagination(totalPages, products);
+    productList.after(paginationContainer);
+}
+
+function createPagination(totalPages, products) {
+    paginationContainer.innerHTML = ''; // مسح المحتوى القديم
+
+    // زر السابق
+    const prevButton = document.createElement('button');
+    prevButton.className = `pagination-button ${currentPage === 1 ? 'disabled' : ''}`;
+    prevButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    prevButton.onclick = () => {
+        if (currentPage > 1) {
+            currentPage--;
+            updateProductDisplay(products);
+        }
+    };
+
+    // زر التالي
+    const nextButton = document.createElement('button');
+    nextButton.className = `pagination-button ${currentPage === totalPages ? 'disabled' : ''}`;
+    nextButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    nextButton.onclick = () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            updateProductDisplay(products);
+        }
+    };
+
+    paginationContainer.appendChild(prevButton);
+
+    // أزرار الأرقام
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+        pageButton.textContent = i;
+        pageButton.onclick = () => {
+            if (currentPage !== i) {
+                currentPage = i;
+                updateProductDisplay(products);
+            }
+        };
+        paginationContainer.appendChild(pageButton);
+    }
+
+    paginationContainer.appendChild(nextButton);
+}
+
+function updateProductDisplay(products) {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const currentProducts = products.slice(startIndex, endIndex);
+
+    // تحديث عرض المنتجات
+    const productList = document.getElementById('productList');
+    productList.innerHTML = '';
+
+    currentProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product-item';
+        productElement.innerHTML = `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}"
+                         alt="${product.name}"
+                         loading="lazy"
+                         onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+                    <div class="product-description">
+                        <p>${product.description}</p>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="details-btn">
+                        <span>عرض التفاصيل</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        productElement.addEventListener('click', () => {
+            localStorage.setItem('selectedProduct', JSON.stringify(product));
+            window.location.href = 'product.html';
+        });
+
+        productList.appendChild(productElement);
+    });
+
+    // تحديث حالة أزرار الترقيم
+    const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+    createPagination(totalPages, products);
+}

@@ -102,7 +102,7 @@ const SearchManager = {
 
             .close-search {
                 position: absolute;
-                left: 15px;
+                left: 25px;
                 top: 50%;
                 transform: translateY(-50%);
                 background: none;
@@ -140,9 +140,12 @@ const SearchManager = {
         this.searchResults.innerHTML = '<div class="loading">جاري البحث...</div>';
 
         try {
-            const filtered = state.products.filter(product =>
-                product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                product.category.toLowerCase().includes(searchTerm.toLowerCase())
+
+            const response = await fetch('http://localhost:5000/api/products');
+            const allProducts = await response.json();
+
+            const filtered = allProducts.filter(product =>
+                product.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
 
             this.displayResults(filtered, searchTerm);
