@@ -1,81 +1,88 @@
-// Search Functions
-function initializeSearch() {
-    const searchBtn = document.querySelector('.search-btn');
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchInput = document.getElementById('searchInput');
-
-    searchBtn?.addEventListener('click', openSearch);
-    searchOverlay?.addEventListener('click', (e) => {
-        if (e.target === searchOverlay) closeSearch();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeSearch();
-    });
-    searchInput?.addEventListener('input', debounce(handleSearch, 300));
-}
-
-function openSearch() {
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchInput = document.getElementById('searchInput');
-    searchOverlay.classList.add('active');
-    searchInput.focus();
-}
-
-function closeSearch() {
-    const searchOverlay = document.getElementById('searchOverlay');
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-
-    searchOverlay.classList.remove('active');
-    searchInput.value = '';
-    searchResults.innerHTML = '';
-}
-
-async function handleSearch(event) {
-    const searchTerm = event.target.value.trim();
-    const searchResults = document.getElementById('searchResults');
-
-    if (searchTerm.length < 2) {
-        searchResults.innerHTML = '';
-        return;
-    }
-
-    searchResults.innerHTML = '<div class="search-loading"></div>';
-
-    try {
-        const filtered = state.products.filter(product =>
-            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.category.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-
-        displaySearchResults(filtered, searchTerm);
-    } catch (error) {
-        searchResults.innerHTML = '<div class="search-error">حدث خطأ في البحث</div>';
-    }
-}
-
+// تحديث دالة عرض نتائج البحث
 function displaySearchResults(results, searchTerm) {
     const searchResults = document.getElementById('searchResults');
 
     if (!results.length) {
         searchResults.innerHTML = `
             <div class="no-results">
-                لا توجد نتائج للبحث عن "${searchTerm}"
+                <i class="fas fa-search"></i>
+                <p>لا توجد نتائج للبحث عن "${searchTerm}"</p>
             </div>
         `;
         return;
     }
 
     searchResults.innerHTML = results.map(product => `
-        <div class="search-result-item" 
-             onclick="handleProductClick(event, ${JSON.stringify(product)})">
-            <img src="${product.image}" 
-                 alt="${product.name}"
-                 onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+        <div class="search-result-item" onclick="handleSearchProductClick(${JSON.stringify(product)})">
+            <div class="search-result-image">
+                <img src="${product.image}" 
+                     alt="${product.name}"
+                     onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+            </div>
             <div class="search-result-info">
                 <h4>${product.name}</h4>
                 <p>${product.category}</p>
             </div>
+            <i class="fas fa-chevron-left"></i>
         </div>
     `).join('');
 }
+
+// إضافة CSS جديد للبحث
+const searchStyles = `
+.search-overlay {
+    background: rgba(0, 0, 0, 0.8);
+    padding-top: 100px;
+}
+
+.search-container {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    direction: rtl;
+}
+
+.search-result-item {
+    display: grid;
+    grid-template-columns: 80px 1fr 30px;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-result-item:hover {
+    background-color: #f8f8f8;
+}
+
+.search-result-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.search-result-info h4 {
+    margin: 0 0 5px;
+    color: #333;
+}
+
+.search-result-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+`;
