@@ -100,10 +100,10 @@
 }
 /* Product Card Styles */
 .product-item {
-    aspect-ratio: 2/3; /* نسبة أصغر للارتفاع إلى العرض */
+    aspect-ratio: 2/3;
     width: 100%;
-    max-width: 250px; /* تحديد الحد الأقصى للعرض */
-    margin: 0 auto; /* توسيط العنصر */
+    max-width: 250px;
+    margin: 0 auto;
 }
 
 

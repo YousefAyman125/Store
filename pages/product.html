@@ -22,14 +22,26 @@
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
             <a href="about.html">من نحن</a>
-            <div class="dropdown">
-                <a href="#" class="dropbtn" onclick="toggleDropdown(event)">
-                    معرض المنتجات <i class="fas fa-caret-down"></i>
-                </a>
-                <div class="dropdown-content">
-                    <!-- نفس قائمة المنتجات السابقة -->
-                </div>
-            </div>
+                <ul style="list-style: none;">
+                    <li class="dropdown">
+                        <a class="dropbtn" href="#" onclick="toggleDropdown(event)" aria-expanded="false">معرض المنتجات <i
+                                class="fas fa-caret-down"></i></a>
+                        <div class="dropdown-content">
+                            <a data-category="p-ovens" data-index="1" href="../pages/products.html" class="product-link">افران البيتزا</a>
+                            <a data-category="c-ovens" data-index="0" href="../pages/products.html" class="product-link">الأفران الحراريه</a>
+                            <a data-category="stoves" data-index="9" href="../pages/products.html" class="product-link">بوتاجازات</a>
+                            <a data-category="fridges" data-index="2" href="../pages/products.html" class="product-link">الثلاجات</a>
+                            <a data-category="fryers" data-index="2" href="../pages/products.html" class="product-link">القلايات</a>
+                            <a data-category="refrigerator" data-index="3" href="../pages/products.html" class="product-link">ثلاجات تحت الطاولة</a>
+                            <a data-category="display-refrigerators" data-index="3" href="../pages/products.html" class="product-link">ثلاجات عرض</a>
+                            <a data-category="dishwashers" data-index="4" href="../pages/products.html" class="product-link">غسالات الأطباق</a>
+                            <a data-category="ice-machine" data-index="5" href="../pages/products.html" class="product-link">ماكينة الثلج</a>
+                            <a data-category="bar-equipments" data-index="6" href="../pages/products.html" class="product-link">معدات البار</a>
+                            <a data-category="processing-equipment" data-index="8" href="../pages/products.html" class="product-link">معدات التجهيز</a>
+                            <a data-category="bakery-equipments" data-index="7" href="../pages/products.html" class="product-link">معدات المخابز</a>
+                        </div>
+                    </li>
+                </ul>
             <a href="contact.html">تواصل معنا</a>
         </div>
         <div class="nav-buttons">
@@ -40,65 +52,123 @@
 </header>
 
 <main>
-    <!-- Breadcrumb -->
-    <section class="breadcrumb-section">
-        <div class="container">
-            <div class="breadcrumb">
-                <a href="../index.html">الرئيسية</a>
-                <span>/</span>
-                <a id="categoryLink" href="products.html"></a>
-                <span>/</span>
-                <span id="productName" class="current"></span>
+    <div class="product-content">
+        <!-- Breadcrumb -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a>
+                    <span>/</span>
+                    <a id="categoryLink" href="products.html"></a>
+                    <span>/</span>
+                    <span id="productName" class="current"></span>
+                </div>
+            </div>
+        </section>
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+            <div class="main-image">
+                <img id="productImage" src="" alt="" onerror="this.src='../assets/placeholder.jpg'">
             </div>
         </div>
-    </section>
 
-    <!-- Product Content -->
-    <div class="container">
-        <div class="product-content">
-            <!-- Product Gallery -->
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img id="productImage" src="" alt="">
+        <!-- Product Info -->
+        <div class="product-info">
+            <!-- Product Title and Category -->
+            <div class="product-header">
+                <h1 id="productTitle" class="product-title"></h1>
+                <div class="product-category">
+                    <span class="category-label">الفئة:</span>
+                    <span id="productCategory" class="category-value"></span>
                 </div>
             </div>
 
-            <!-- Product Info -->
-            <div class="product-info">
-                <h1 id="productTitle" class="product-title"></h1>
-                <div class="product-meta">
-                    <span>الفئة: </span>
-                    <span id="productCategory" class="category-name"></span>
+            <!-- Contact and Share -->
+            <div class="product-actions">
+                <div class="whatsapp-contact">
+                    <a href="https://wa.me/201025690100" target="_blank" class="whatsapp-number">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>01025690100</span>
+                    </a>
                 </div>
-                <div class="product-description">
-                    <p id="productDescription"></p>
-                </div>
-                <div class="contact-button">
-                    <a href="https://wa.me/message/MXZP62ZK6RCVF1" target="_blank" class="whatsapp-btn">
+
+                <div class="share-buttons">
+                    <span>مشاركة:</span>
+                    <a href="https://www.facebook.com/target.alharam" class="share-btn facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/t_arget45" class="share-btn instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@sayed.m7mod" class="share-btn tiktok" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://wa.me/message/MXZP62ZK6RCVF1" class="share-btn whatsapp" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                 </div>
             </div>
         </div>
 
-        <!-- Related Products -->
-        <!-- Related Products -->
-        <section class="related-products">
-            <h2>منتجات ذات صلة</h2>
-            <div class="related-slider-container">
-                <button class="slider-btn prev-btn" id="prevBtn">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+        <div class="tabs-header">
+            <button class="tab-btn active" data-tab="description">الوصف</button>
+            <button class="tab-btn" data-tab="about">تعرف علينا</button>
+            <button class="tab-btn" data-tab="quality">ضمان الجودة</button>
+            <button class="tab-btn" data-tab="safety">الأمان والسلامة</button>
+        </div>
 
-                <div class="related-slider" id="relatedProductsSlider">
-                    <!-- المنتجات ستضاف هنا عن طريق JavaScript -->
-                </div>
+        <div class="tab-content active" id="description">
+            <div id="productDescription" class="content-center"></div>
+        </div>
 
-                <button class="slider-btn next-btn" id="nextBtn">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+        <div class="tab-content" id="about">
+            <div class="content-center">
+                <p>الشركة المصرية للتجهيزات الفندقية (TARGET) هي شركة رائدة متخصصة في تقديم حلول متكاملة لتجهيزات الفنادق
+                    والمطابخ، تجمع بين الجودة العالية والخدمة المتميزة. كوكلاء وموزعين حصريين للعديد من العلامات
+                    التجارية الأوروبية الرائدة، نقدم منتجات تتميز بالكفاءة والمتانة. ندعم عملاءنا بخدمات شاملة تشمل
+                    الاستشارات الفنية، والتركيب، وخدمة ما بعد البيع، مما يجعلنا الشريك الأمثل لنجاح أعمالكم.</p>
             </div>
-        </section>
+        </div>
+
+        <div class="tab-content" id="quality">
+            <div class="content-center">
+                <p>نلتزم بتوفير ضمان شامل على جميع منتجاتنا لضمان راحة عملائنا وثقتهم في جودة ما نقدمه. يشمل الضمان
+                    خدمات صيانة وإصلاح معتمدة باستخدام قطع غيار أصلية، بالإضافة إلى استشارات فنية لضمان عمل المعدات
+                    بكفاءة ودون انقطاع. نحن نحرص على توفير دعم سريع وفعّال يضمن استمرارية أعمالكم بدون تعطيل.</p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="safety">
+            <div class="content-center">
+                <p>نلتزم بأعلى معايير الأمان والسلامة في جميع منتجاتنا وخدماتنا. جميع المعدات مصممة ومصنعة وفقاً
+                    للمواصفات القياسية العالمية لضمان التشغيل الآمن والفعّال. كما نحرص على تقديم إرشادات واضحة وصيانة
+                    دورية لضمان استمرارية الأمان وتقليل المخاطر في أماكن العمل. نحن نضع سلامة عملائنا وموظفيهم في مقدمة
+                    أولوياتنا لضمان بيئة عمل آمنة ومستدامة.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Related Products -->
+    <!-- Related Products -->
+    <section class="related-products">
+        <h2>منتجات ذات صلة</h2>
+        <div class="related-slider-container">
+            <button class="slider-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="related-slider" id="relatedProductsSlider">
+                <!-- المنتجات ستضاف هنا عن طريق JavaScript -->
+            </div>
+
+            <button class="slider-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
     </div>
 </main>
 
@@ -123,16 +193,20 @@
                     <a href="../pages/contact.html">تواصل معنا</a>
                 </div>
                 <div class="social-icons">
-                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك" target="_blank">
+                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك"
+                       target="_blank">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
-                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank">
+                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب"
+                       target="_blank">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
-                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank">
+                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام"
+                       target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك" target="_blank">
+                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك"
+                       target="_blank">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                 </div>
@@ -149,141 +223,6 @@
         </div>
     </div>
 </footer>
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const currentProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-
-        if (currentProduct) {
-            // تحديث تفاصيل المنتج
-            document.getElementById('productName').textContent = currentProduct.name;
-            document.getElementById('productTitle').textContent = currentProduct.name;
-            document.getElementById('productCategory').textContent = currentProduct.category;
-            document.getElementById('categoryLink').textContent = currentProduct.category;
-            document.getElementById('categoryLink').href = `products.html?category=${currentProduct.category}`;
-            document.getElementById('productDescription').textContent = currentProduct.description || 'لا يوجد وصف متاح';
-            document.getElementById('productImage').src = currentProduct.image;
-            document.title = `${currentProduct.name} - TARGET`;
-
-            // تحميل المنتجات ذات الصلة
-            try {
-                const response = await fetch('http://localhost:5000/api/products');
-                const allProducts = await response.json();
-
-                const relatedProducts = allProducts.filter(product =>
-                    product.category === currentProduct.category &&
-                    product._id !== currentProduct._id
-                ).slice(0, 4); // عرض أول 4 منتجات فقط
-
-                const relatedProductsContainer = document.getElementById('relatedProducts');
-                relatedProductsContainer.innerHTML = relatedProducts.map(product => `
-                        <div class="related-product" onclick="handleRelatedProductClick(${JSON.stringify(product)})">
-                            <div class="related-product-image">
-                                <img src="${product.image}" alt="${product.name}">
-                            </div>
-                            <div class="related-product-info">
-                                <h3 class="related-product-title">${product.name}</h3>
-                                <div class="related-product-category">${product.category}</div>
-                            </div>
-                        </div>
-                    `).join('');
-
-            } catch (error) {
-                console.error('Error loading related products:', error);
-            }
-        } else {
-            window.location.href = 'products.html';
-        }
-    });
-
-    function handleRelatedProductClick(product) {
-        localStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.reload();
-    }
-
-    function toggleDropdown(event) {
-        event.preventDefault();
-        const dropdownContent = event.target.nextElementSibling;
-        dropdownContent.classList.toggle('show');
-    }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', async () => {
-        const currentProduct = JSON.parse(localStorage.getItem('selectedProduct'));
-
-        if (currentProduct) {
-            // تحديث تفاصيل المنتج الأساسية...
-
-            // تحميل وعرض المنتجات ذات الصلة
-            try {
-                const response = await fetch('http://localhost:5000/api/products');
-                const allProducts = await response.json();
-
-                const relatedProducts = allProducts.filter(product =>
-                    product.category === currentProduct.category &&
-                    product._id !== currentProduct._id
-                );
-
-                if (relatedProducts.length > 0) {
-                    initializeRelatedProductsSlider(relatedProducts);
-                }
-
-            } catch (error) {
-                console.error('Error loading related products:', error);
-            }
-        } else {
-            window.location.href = 'products.html';
-        }
-    });
-
-    function initializeRelatedProductsSlider(products) {
-        const slider = document.getElementById('relatedProductsSlider');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-
-        let currentGroup = 0;
-        const productsPerGroup = 4;
-        const totalGroups = Math.ceil(products.length / productsPerGroup);
-
-        function showGroup(groupIndex) {
-            const start = groupIndex * productsPerGroup;
-            const end = start + productsPerGroup;
-            const groupProducts = products.slice(start, end);
-
-            slider.innerHTML = groupProducts.map(product => `
-            <div class="related-product" onclick="handleRelatedProductClick(${JSON.stringify(product)})">
-                <div class="related-product-image">
-                    <img src="${product.image}" alt="${product.name}">
-                </div>
-                <div class="related-product-info">
-                    <h3 class="related-product-title">${product.name}</h3>
-                    <div class="related-product-category">${product.category}</div>
-                </div>
-            </div>
-        `).join('');
-
-            // تحديث حالة الأزرار
-            prevBtn.disabled = groupIndex === 0;
-            nextBtn.disabled = groupIndex === totalGroups - 1;
-        }
-
-        // عرض المجموعة الأولى
-        showGroup(0);
-
-        // إضافة مستمعي الأحداث للأزرار
-        prevBtn.addEventListener('click', () => {
-            if (currentGroup > 0) {
-                currentGroup--;
-                showGroup(currentGroup);
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (currentGroup < totalGroups - 1) {
-                currentGroup++;
-                showGroup(currentGroup);
-            }
-        });
-    }
-</script>
+<script src="../js/product.js"></script>
 </body>
 </html>
