@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
+    const productLinks = document.querySelectorAll('.product-link');
+
+    productLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const category = this.getAttribute('data-category');
+
+            localStorage.setItem('selectedCategory', category);
+
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 100);
+        });
+    });
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
