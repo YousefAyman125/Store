@@ -4,7 +4,7 @@ const CONFIG = {
     PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
     CATEGORIES: {
         'p-ovens': 'افران البيتزا',
-        'c-ovens': 'الأفران الحرارية',
+        'c-ovens': 'الأفران الحراريه',
         'stoves': 'بوتاجازات',
         'fridges': 'الثلاجات',
         'fryers': 'القلايات',
