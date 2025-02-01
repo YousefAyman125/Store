@@ -72,24 +72,29 @@
                 <h2>أرسل رسالتك</h2>
                 <form id="contact-form">
                     <div class="form-group">
-                        <input type="text" name="fullname" placeholder="الاسم الكامل" required>
+                        <label>
+                            <input type="text" name="fullname" placeholder="الاسم الكامل" required>
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="tel" name="phone" placeholder="رقم التليفون" required>
+                        <label>
+                            <input type="tel" name="phone" placeholder="رقم التليفون" required>
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="email"
-                               name="email"
-                               placeholder="البريد الإلكتروني"
-                               dir="ltr"
-                        style="text-align: left;"
-                        required>
+                        <label>
+                            <input type="email" name="email" placeholder="البريد الإلكتروني" style="text-align: right;" required>
+                        </label>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="subject" placeholder="الموضوع">
+                        <label>
+                            <input type="text" name="subject" placeholder="الموضوع" required>
+                        </label>
                     </div>
                     <div class="form-group">
-                        <textarea name="message" placeholder="رسالتك" rows="5"></textarea>
+                        <label>
+                            <textarea name="message" placeholder="رسالتك" rows="5"></textarea>
+                        </label>
                     </div>
                     <button type="submit">
                         <span>إرسال الرسالة</span>
