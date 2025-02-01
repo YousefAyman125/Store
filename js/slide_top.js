@@ -12,3 +12,23 @@ window.onscroll = function () {
 document.getElementById("scrollToTop").onclick = function () {
     window.scrollTo({top: 0, behavior: 'smooth'});
 };
+
+// Scroll to Top Button Functionality
+const scrollToTopButton = document.getElementById('whatsapp-btn');
+
+// Show button when scrolling down
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopButton.classList.add('show');
+    } else {
+        scrollToTopButton.classList.remove('show');
+    }
+});
+
+// Scroll to top when button is clicked
+scrollToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
