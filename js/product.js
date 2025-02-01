@@ -120,20 +120,35 @@ function initializeRelatedProductsSlider(products) {
 
 function updateSliderContent(slider, products) {
     slider.innerHTML = products.map(product => createProductCard(product)).join('');
+
+    // Add click event listeners to each related product
+    const relatedProducts = slider.querySelectorAll('.related-product');
+    relatedProducts.forEach(div => {
+        div.addEventListener('click', (event) => {
+            event.preventDefault();
+            const productData = div.dataset.product;
+            const productString = decodeURIComponent(productData);
+            handleRelatedProductClick(productString);
+        });
+    });
 }
 
 function createProductCard(product) {
+    const productData = encodeURIComponent(JSON.stringify(product));
     return `
-        <div class="related-product" onclick="handleRelatedProductClick('${JSON.stringify(product).replace(/'/g, "\\'")}')">
-            <div class="related-product-image">
-                <img src="${product.image}" alt="${product.name}" loading="lazy">
-            </div>
-            <div class="related-product-info">
-                <h3 class="related-product-title">${product.name}</h3>
-            </div>
+        <div class="related-product" data-product="${productData}">
+            <a href="#" style="text-decoration: none">
+                <div class="related-product-image">
+                    <img src="${product.image}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="related-product-info">
+                    <h3 class="related-product-title">${product.name}</h3>
+                </div>
+            </a>
         </div>
     `;
 }
+
 
 function updateNavigationButtons(prevBtn, nextBtn, currentIndex, totalSlides) {
     prevBtn.disabled = currentIndex === 0;
@@ -169,7 +184,7 @@ function handleRelatedProductClick(productString) {
     try {
         const product = JSON.parse(productString);
         localStorage.setItem('selectedProduct', JSON.stringify(product));
-        window.location.reload();
+        window.location.href = 'product.html';
     } catch (error) {
         handleError(error, 'Error handling related product click');
     }
