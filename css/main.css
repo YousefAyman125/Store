@@ -132,6 +132,13 @@ body {
 }
 
 .search-btn {
+    /* Add these new properties */
+    min-width: 60px;  /* Adjust this value to control width */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Keep existing properties */
     background: none;
     border: none;
     font-size: 18px;
