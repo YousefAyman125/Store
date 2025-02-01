@@ -5,13 +5,13 @@ const CONFIG = {
     CATEGORIES: {
         'p-ovens': 'افران البيتزا',
         'c-ovens': 'الأفران الحراريه',
-        'stoves': 'بوتاجازات',
+        'stoves': 'البوتاجازات',
         'fridges': 'الثلاجات',
         'fryers': 'القلايات',
         'refrigerator': 'ثلاجات تحت الطاولة',
         'display-refrigerators': 'ثلاجات عرض',
         'dishwashers': 'غسالات الأطباق',
-        'ice-machine': 'ماكينة الثلج',
+        'ice-machine': 'ماكينات الثلج',
         'bar-equipments': 'معدات البار',
         'processing-equipment': 'معدات التجهيز',
         'bakery-equipments': 'معدات المخابز'
