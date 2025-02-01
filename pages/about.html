@@ -8,6 +8,8 @@
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/about.css" rel="stylesheet">
     <link href="/css/header.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -59,50 +61,85 @@
 </Header>
 
 <!-- Main Content -->
-<div class="flex-container">
-    <div class="box">
-        <h3>TARGET</h3>
-        <p>الشركة المصرية للتجهيزات الفندقية (TARGET) تقدم حلولاً متكاملة لتجهيزات المطابخ والمخابز بأعلى جودة، مدعومة
-            بخدمة عملاء متميزة وخبرة هندسية رائدة.</p>
-    </div>
+<main class="about-main">
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <!-- Company Info -->
+            <div class="company-info">
+                <div class="info-text">
+                    <h2>الشركة المصرية للتجهيزات الفندقية</h2>
+                    <p>الشركة المصرية للتجهيزات الفندقية (TARGET) هي مقدم رائد لتجهيزات المطابخ والمخابز، وتقدم منتجات
+                        عالية الجودة وخدمة عملاء استثنائية.</p>
+                </div>
+                <div class="info-image">
+                    <img src="../assets/img_2.png" alt="TARGET Company">
+                </div>
+            </div>
 
-    <div class="box">
-        <h3>الرؤية</h3>
-        <p>أن نكون الشريك الأول في مصر والشرق الأوسط لتقديم تجهيزات المطابخ والمخابز عالية الجودة، مع تحقيق التميز
-            والابتكار المستدام.</p>
-    </div>
+            <!-- Values Grid -->
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>TARGET</h3>
+                    <p>الشركة المصرية للتجهيزات الفندقية (TARGET) تقدم حلولاً متكاملة لتجهيزات المطابخ والمخابز بأعلى
+                        جودة.</p>
+                </div>
 
-    <div class="box">
-        <h3>الرسالة</h3>
-        <p>نسعى لتوفير معدات متطورة وحلول متكاملة تلبي احتياجات عملائنا، مع التركيز على الجودة، الدعم الفني، وخدمة ما
-            بعد البيع لضمان رضا العملاء وتحقيق شراكات طويلة الأمد.</p>
-    </div>
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>الرؤية</h3>
+                    <p>أن نكون الشريك الأول في مصر والشرق الأوسط لتقديم تجهيزات المطابخ والمخابز عالية الجودة.</p>
+                </div>
 
-    <div class="box-with-image">
-        <div class="image-content">
-            <img alt="صورة وصفية" src="path-to-your-image.jpg">
+                <div class="value-card">
+                    <div class="icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <h3>الرسالة</h3>
+                    <p>نسعى لتوفير معدات متطورة وحلول متكاملة تلبي احتياجات عملائنا، مع التركيز على الجودة والدعم
+                        الفني.</p>
+                </div>
+            </div>
         </div>
-        <div class="text-content">
-            <h3>من نحن</h3>
-            <p>الشركة المصرية للتجهيزات الفندقية (TARGET) هي مقدم رائد لتجهيزات المطابخ والمخابز، وتقدم منتجات عالية
-                الجودة وخدمة عملاء استثنائية. من خلال مجموعتنا الواسعة من معدات المطابخ والمخابز، نلبي احتياجات العملاء
-                في مختلف القطاعات، بما في ذلك الفنادق والمطاعم والمخابز التجارية.</p>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">لماذا نحن؟</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>جودة عالية</h3>
+                    <p>نقدم منتجات ذات جودة عالمية تلبي المعايير الدولية</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>دعم فني</h3>
+                    <p>فريق متخصص من المهندسين لتقديم الدعم الفني المستمر</p>
+                </div>
+
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>خدمة 24/7</h3>
+                    <p>خدمة عملاء على مدار الساعة لتلبية احتياجاتكم</p>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="box">
-        <h3>لماذا نحن؟</h3>
-        <p>نعمل على تقديم مجموعة واسعة من المشاريع الناجحة والمتميزة، والتي تغطي قطاعات متنوعة. نحن ملتزمون بتحقيق نتائج
-            استثنائية من خلال تقديم خدمات عالية الجودة ودعم فني متميز. نقدم حلولاً مبتكرة تلبي احتياجات عملائنا في مختلف
-            القطاعات، بما في ذلك توريد المعدات وتوفير الحلول الهندسية المتكاملة.</p>
-        <p>نمتلك فريقًا من الخبراء المتخصصين في مجال معدات المطابخ والمخابز، ونقدم الاستشارات والدعم الذي لا يقدر بثمن.
-            تشمل مجموعة منتجاتنا مجموعة متنوعة من الفئات المصممة لتلبية الاحتياجات الخاصة لعملائنا، بما في ذلك معدات
-            الطهي والتخزين والمعدات الخاصة بالمناطق الساخنة والباردة.</p>
-    </div>
-</div>
-
+    </section>
+</main>
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
@@ -119,21 +156,25 @@
             <!-- الروابط في المنتصف -->
             <div class="footer-middle">
                 <div class="footer-links">
-                    <a href="index.html">الرئيسية</a>
-                    <a href="pages/about.html">من نحن</a>
-                    <a href="pages/contact.html">تواصل معنا</a>
+                    <a href="../index.html">الرئيسية</a>
+                    <a href="../pages/about.html">من نحن</a>
+                    <a href="../pages/contact.html">تواصل معنا</a>
                 </div>
                 <div class="social-icons">
-                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك" target="_blank">
+                    <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك"
+                       target="_blank">
                         <i class="fa-brands fa-tiktok"></i>
                     </a>
-                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب" target="_blank">
+                    <a class="social-icon" href="https://wa.me/message/MXZP62ZK6RCVF1" aria-label="واتساب"
+                       target="_blank">
                         <i class="fa-brands fa-whatsapp"></i>
                     </a>
-                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام" target="_blank">
+                    <a class="social-icon" href="https://www.instagram.com/t_arget45" aria-label="إنستجرام"
+                       target="_blank">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك" target="_blank">
+                    <a class="social-icon" href="https://www.facebook.com/target.alharam" aria-label="فيسبوك"
+                       target="_blank">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
                 </div>
@@ -141,7 +182,7 @@
 
             <!-- اللوجو على اليسار -->
             <div class="footer-logo">
-                <img src="assets/c_logo/logo.png" alt="TARGET Logo">
+                <img src="../assets/c_logo/logo.png" alt="TARGET Logo">
             </div>
         </div>
 
@@ -178,6 +219,27 @@
             });
         }
     }
+    // JavaScript - أضف هذا في نهاية الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Add class to trigger animations when elements are in viewport
+        const cards = document.querySelectorAll('.feature-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('aos-animate');
+                }
+            });
+        });
+
+        cards.forEach(card => observer.observe(card));
+    });
 </script>
 </body>
 </html>
