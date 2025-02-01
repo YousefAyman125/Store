@@ -1,30 +1,66 @@
+:root {
+    /* Colors */
+    --primary-color: #e31e24;
+    --text-dark: #333;
+    --text-light: #666;
+    --white: #fff;
+
+    /* Spacing */
+    --spacing-xs: 10px;
+    --spacing-sm: 20px;
+    --spacing-md: 30px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+
+    /* Shadows */
+    --shadow-sm: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 5px 20px rgba(0,0,0,0.1);
+
+    /* Border Radius */
+    --radius-sm: 5px;
+    --radius-md: 10px;
+    --radius-circle: 50%;
+}
+
+/* Breadcrumb */
 .breadcrumb {
     display: flex;
-    gap: 10px;
+    gap: var(--spacing-xs);
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    padding: var(--spacing-sm) var(--spacing-xs);
+    flex-wrap: wrap;
 }
 
 .breadcrumb a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    opacity: 0.8;
 }
 
 .breadcrumb span {
-    color: #e31e24;
+    color: var(--primary-color);
 }
 
 /* About Content */
 .about-content {
-    padding: 60px 0;
+    padding: clamp(40px, 8vw, var(--spacing-xl)) 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-inline: var(--spacing-sm);
 }
 
 /* Company Info */
 .company-info {
-    display: flex;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(var(--spacing-sm), 4vw, var(--spacing-lg));
+    margin-bottom: var(--spacing-xl);
     align-items: center;
-    margin-bottom: 60px;
 }
 
 .info-text {
@@ -32,41 +68,43 @@
 }
 
 .info-text h2 {
-    color: #333;
-    font-size: 2rem;
-    margin-bottom: 20px;
+    color: var(--text-dark);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: var(--spacing-sm);
 }
 
 .info-text p {
     line-height: 1.8;
-    color: #666;
+    color: var(--text-light);
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
 .info-image {
     flex: 1;
-   padding : 50px 0 0 0;
+    padding-top: clamp(30px, 5vw, 50px);
 }
 
 .info-image img {
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Values Grid */
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-bottom: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, var(--spacing-md));
+    margin-bottom: var(--spacing-xl);
 }
 
 .value-card {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
+    background: var(--white);
+    padding: clamp(20px, 3vw, var(--spacing-md));
+    border-radius: var(--radius-md);
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm);
     transition: transform 0.3s ease;
 }
 
@@ -75,106 +113,44 @@
 }
 
 .value-card .icon {
-    width: 70px;
-    height: 70px;
-    background: #e31e24;
-    border-radius: 50%;
+    width: clamp(50px, 8vw, 70px);
+    height: clamp(50px, 8vw, 70px);
+    background: var(--primary-color);
+    border-radius: var(--radius-circle);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
+    margin: 0 auto var(--spacing-sm);
 }
 
 .value-card .icon i {
-    color: white;
-    font-size: 30px;
+    color: var(--white);
+    font-size: clamp(24px, 4vw, 30px);
 }
 
 .value-card h3 {
-    color: #333;
-    margin-bottom: 15px;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-xs);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
 }
 
-/* Why Us Section */
-.why-us {
-    text-align: center;
-}
-
-.why-us h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 40px;
-}
-
+/* Features Grid */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.feature {
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.feature .icon {
-    color: #e31e24;
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .company-info {
-        flex-direction: column;
-    }
-
-    .values-grid,
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        height: 200px;
-    }
-
-    .values-grid,
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .info-text h2 {
-        font-size: 1.8rem;
-    }
-}
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    padding: 40px 0;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: clamp(20px, 3vw, var(--spacing-md));
+    padding: clamp(30px, 5vw, var(--spacing-lg)) 0;
 }
 
 .feature-card {
-    background: white;
-    padding: 40px 30px;
-    border-radius: 10px;
+    background: var(--white);
+    padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px);
+    border-radius: var(--radius-md);
     text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-lg);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
 }
 
 .feature-card::before {
@@ -184,7 +160,7 @@
     left: 0;
     width: 100%;
     height: 3px;
-    background: #e31e24;
+    background: var(--primary-color);
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -194,14 +170,14 @@
 }
 
 .feature-card .icon {
-    width: 80px;
-    height: 80px;
-    background: #e31e24;
-    border-radius: 50%;
+    width: clamp(60px, 8vw, 80px);
+    height: clamp(60px, 8vw, 80px);
+    background: var(--primary-color);
+    border-radius: var(--radius-circle);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 25px;
+    margin: 0 auto clamp(20px, 3vw, 25px);
     transition: all 0.3s ease;
 }
 
@@ -210,60 +186,81 @@
 }
 
 .feature-card .icon i {
-    color: white;
-    font-size: 35px;
+    color: var(--white);
+    font-size: clamp(25px, 4vw, 35px);
 }
 
 .feature-card h3 {
-    color: #333;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
+    color: var(--text-dark);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin-bottom: var(--spacing-xs);
     transition: color 0.3s ease;
 }
 
 .feature-card:hover h3 {
-    color: #e31e24;
+    color: var(--primary-color);
 }
 
 .feature-card p {
-    color: #666;
+    color: var(--text-light);
     line-height: 1.6;
     margin: 0;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
-/* Animation Keyframes */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+/* Why Us Section */
+.why-us {
+    text-align: center;
+    padding: clamp(30px, 5vw, var(--spacing-xl)) 0;
+}
+
+.why-us h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-dark);
+    margin-bottom: clamp(30px, 5vw, var(--spacing-lg));
+}
+
+/* Touch Device Optimization */
+@media (hover: none) {
+    .value-card:hover,
+    .feature-card:hover {
+        transform: none;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-/* Add AOS animations */
-[data-aos="fade-up"] {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-[data-aos="fade-up"].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Responsive Design */
-@media (max-width: 992px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .value-card:active,
+    .feature-card:active {
+        transform: scale(0.98);
     }
 }
 
-@media (max-width: 768px) {
-    .features-grid {
-        grid-template-columns: 1fr;
+/* Print Styles */
+@media print {
+    .value-card,
+    .feature-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-dark: #fff;
+        --text-light: #ccc;
+        --white: #1a1a1a;
+    }
+
+    .value-card,
+    .feature-card {
+        background: #2a2a2a;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
     }
 }
