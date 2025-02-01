@@ -92,6 +92,10 @@
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    resize: vertical;
+    max-Height: 150px;
+    min-Height: 50px;
+    text-align: right;
 }
 
 .form-group input:focus,
