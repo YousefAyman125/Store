@@ -37,20 +37,37 @@ function debounce(func, wait) {
 // Product Functions
 async function loadProducts() {
     try {
-        const response = await fetch(CONFIG.API_URL);
-        const products = await response.json();
-        state.products = products;
+        showLoading();
+        console.log('Loading products...');
 
-        // Update title
+        const response = await fetch(CONFIG.API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const products = await response.json();
+        console.log('Products loaded:', products);
+
+        state.products = products;
         updateTitle();
 
-        // Filter and display products
-        const filteredProducts = products.filter(product =>
-            product.category === CONFIG.CATEGORIES[state.selectedCategory]
-        );
+        const selectedCategory = CONFIG.CATEGORIES[state.selectedCategory];
+        console.log('Selected category:', selectedCategory);
+
+        const filteredProducts = products.filter(product => {
+            console.log('Checking product:', product.name, 'Category:', product.category);
+            return product.category === selectedCategory;
+        });
+
+        console.log('Filtered products:', filteredProducts);
+
+        if (filteredProducts.length === 0) {
+            console.log('No products found for category:', selectedCategory);
+        }
 
         sortProducts(filteredProducts, state.currentSort);
         displayProducts(filteredProducts);
+
     } catch (error) {
         console.error('Error loading products:', error);
         showError('فشل في تحميل المنتجات. يرجى المحاولة مرة أخرى.');
@@ -59,12 +76,11 @@ async function loadProducts() {
 
 function updateTitle() {
     const productTitle = document.getElementById('productTitle');
-    if (productTitle) {
-        productTitle.innerHTML = `
-            <h1 class="section-title">
-                ${CONFIG.CATEGORIES[state.selectedCategory]}
-            </h1>`;
-    }
+    const currentCategory = document.querySelector('.current-category');
+    const category = CONFIG.CATEGORIES[state.selectedCategory];
+
+    if (productTitle) productTitle.textContent = category;
+    if (currentCategory) currentCategory.textContent = category;
 }
 
 function showError(message) {
@@ -74,6 +90,16 @@ function showError(message) {
             <i class="fas fa-exclamation-circle"></i>
             <p>${message}</p>
             <button onclick="loadProducts()">إعادة المحاولة</button>
+        </div>
+    `;
+}
+
+function showLoading() {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = `
+        <div class="loading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>جاري تحميل المنتجات...</p>
         </div>
     `;
 }
@@ -125,42 +151,46 @@ function displayProducts(products) {
     productList.innerHTML = '';
 
     if (!products.length) {
-        productList.innerHTML = '<div class="no-products">لا توجد منتجات في هذه الفئة</div>';
+        productList.innerHTML = `
+            <div class="no-products">
+                <i class="fas fa-box-open"></i>
+                <p>لا توجد منتجات في هذه الفئة</p>
+            </div>
+        `;
         return;
     }
 
     products.forEach(product => {
         const productElement = document.createElement('div');
         productElement.className = 'product-item';
-        productElement.innerHTML = createProductTemplate(product);
+        productElement.innerHTML = `
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="${product.image}"
+                         alt="${product.name}"
+                         loading="lazy"
+                         onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
+                    <div class="product-overlay">
+                        <span>عرض التفاصيل</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="details-btn">
+                        <span>عرض التفاصيل</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        productElement.addEventListener('click', () => {
+            localStorage.setItem('selectedProduct', JSON.stringify(product));
+            window.location.href = 'product.html';
+        });
+
         productList.appendChild(productElement);
     });
-}
-
-function createProductTemplate(product) {
-    return `
-        <a href="product.html" 
-           data-product='${JSON.stringify(product).replace(/'/g, "&apos;")}'
-           onclick="handleProductClick(event, this)" 
-           style="text-decoration: none">
-            <div class="product-card">
-                <img src="${product.image}"
-                     alt="${product.name}"
-                     class="product-image"
-                     loading="lazy"
-                     onerror="this.src='${CONFIG.PLACEHOLDER_IMAGE}'">
-                <h3 class="product-name">${product.name}</h3>
-                <div class="product-category">${product.category}</div>
-            </div>
-        </a>
-    `;
-}
-
-function handleProductClick(event, element) {
-    event.preventDefault();
-    const product = JSON.parse(element.dataset.product);
-    localStorage.setItem('selectedProduct', JSON.stringify(product));
-    window.location.href = 'product.html';
 }
 
 // Category Functions
@@ -185,12 +215,12 @@ function toggleDropdown(event) {
     });
 }
 
-// Initialize everything when DOM is ready
+// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     loadProducts();
     initializeSearch();
 
-    // Event Listeners
+    // Event Listeners for sorting and view options
     document.getElementById('sortSelect')?.addEventListener('change',
         (e) => handleSort(e.target.value)
     );
@@ -202,6 +232,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('listBtn')?.addEventListener('click',
         () => toggleView('list')
     );
+
+    // Product link click handlers
+    document.querySelectorAll('.product-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const category = link.getAttribute('data-category');
+            handleCategorySelect(e, category);
+        });
+    });
 
     // Close dropdowns when clicking outside
     window.onclick = function(event) {

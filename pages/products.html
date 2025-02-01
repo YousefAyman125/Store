@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الأفران الحرارية - إيجي تل</title>
     <link href="../css/main.css" rel="stylesheet">
-    <link href="../css/home/slider.css" rel="stylesheet">
-    <link href="../css/home/products.css" rel="stylesheet">
+    <link href="../css/products.css" rel="stylesheet">
     <link href="/css/header.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -68,7 +67,14 @@
 
 <!-- Main Content -->
 <main class="products-main">
+
     <div id="productTitle"></div>
+    <div class="breadcrumb">
+        <a href="../index.html">الرئيسية</a>
+        <span class="separator">/</span>
+        <span class="current-category"></span>
+    </div>
+    <!-- تعديل قسم الفلترة -->
     <div class="filters-section">
         <div class="filters-container">
             <div class="sort-filter">
@@ -90,6 +96,8 @@
             </div>
         </div>
     </div>
+
+    <!-- قسم عرض المنتجات -->
     <div class="products-grid" id="productList">
         <!-- Products will be loaded here -->
     </div>
@@ -111,9 +119,9 @@
             <!-- الروابط في المنتصف -->
             <div class="footer-middle">
                 <div class="footer-links">
-                    <a href="index.html">الرئيسية</a>
-                    <a href="pages/about.html">من نحن</a>
-                    <a href="pages/contact.html">تواصل معنا</a>
+                    <a href="../index.html">الرئيسية</a>
+                    <a href="../pages/about.html">من نحن</a>
+                    <a href="../pages/contact.html">تواصل معنا</a>
                 </div>
                 <div class="social-icons">
                     <a class="social-icon" href="https://www.tiktok.com/@sayed.m7mod" aria-label="تيك توك" target="_blank">
@@ -133,7 +141,7 @@
 
             <!-- اللوجو على اليسار -->
             <div class="footer-logo">
-                <img src="assets/c_logo/logo.png" alt="TARGET Logo">
+                <img src="../assets/c_logo/logo.png" alt="TARGET Logo">
             </div>
         </div>
 
