@@ -53,7 +53,9 @@
             <a href="contact.html">تواصل معنا</a>
         </div>
         <div class="nav-buttons">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+            <button class="search-btn" type="button">
+                <i class="fas fa-search"></i>
+            </button>
             <button class="lang-btn">الكتالوج</button>
         </div>
     </nav>
@@ -62,7 +64,9 @@
 <div class="search-overlay" id="searchOverlay">
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
-        <button onclick="closeSearch()"><i class="fas fa-times"></i></button>
+        <button class="close-search">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
     <div id="searchResults" class="search-results"></div>
 </div>
