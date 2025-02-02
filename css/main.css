@@ -67,7 +67,6 @@ body {
     text-decoration: none;
     font-weight: 500;
     position: relative;
-    padding: 5px 0;
 }
 
 .nav-links a::after {
