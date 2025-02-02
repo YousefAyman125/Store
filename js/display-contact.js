@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const contactsContainer = document.getElementById('contactsContainer');
     const refreshBtn = document.getElementById('refreshBtn');
     let isLoading = false;

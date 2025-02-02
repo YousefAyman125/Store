@@ -6,8 +6,8 @@
     --border-color: #e0e0e0;
     --background-light: #f8f9fa;
     --white: #ffffff;
-    --shadow: 0 2px 15px rgba(0,0,0,0.1);
-    --shadow-hover: 0 5px 20px rgba(0,0,0,0.15);
+    --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
     --border-radius: 12px;
     --border-radius-sm: 6px;
@@ -312,8 +312,12 @@ body {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Notification */

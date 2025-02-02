@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('contact-form');
 
     // إنشاء عنصر لعرض الرسائل
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    form.addEventListener('submit', async function(event) {
+    form.addEventListener('submit', async function (event) {
         event.preventDefault();
 
         // التحقق من المدخلات
@@ -112,16 +112,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // إضافة مستمعي الأحداث للحقول للتحقق المباشر
-    form.email.addEventListener('input', function() {
+    form.email.addEventListener('input', function () {
         this.style.borderColor = validateEmail(this.value) ? '#4CAF50' : '#ff0000';
     });
 
-    form.phone.addEventListener('input', function() {
+    form.phone.addEventListener('input', function () {
         this.style.borderColor = validatePhone(this.value) ? '#4CAF50' : '#ff0000';
     });
 
     // منع إدخال الحروف في حقل الهاتف
-    form.phone.addEventListener('keypress', function(e) {
+    form.phone.addEventListener('keypress', function (e) {
         if (!/^\d$/.test(e.key)) e.preventDefault();
     });
 });

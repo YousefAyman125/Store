@@ -11,13 +11,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- Header -->
+<!-- Navigation Bar -->
 <header>
     <nav class="navbar">
         <div class="logo">
-            <a href="../index.html">
-                <img src="../assets/c_logo/logo.png" alt="TARGET Logo">
-            </a>
+            <img alt="Logo" src="../assets/c_logo/logo.png">
         </div>
 
         <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -28,35 +26,60 @@
 
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
-            <a href="about.html">من نحن</a>
-                <ul style="list-style: none;">
-                    <li class="dropdown">
-                        <a class="dropbtn" href="#" onclick="toggleDropdown(event)" aria-expanded="false">معرض المنتجات <i
-                                class="fas fa-caret-down"></i></a>
-                        <div class="dropdown-content">
-                            <a data-category="p-ovens" data-index="1" href="../pages/products.html" class="product-link">افران البيتزا</a>
-                            <a data-category="c-ovens" data-index="0" href="../pages/products.html" class="product-link">الأفران الحراريه</a>
-                            <a data-category="stoves" data-index="9" href="../pages/products.html" class="product-link">بوتاجازات</a>
-                            <a data-category="fridges" data-index="2" href="../pages/products.html" class="product-link">الثلاجات</a>
-                            <a data-category="fryers" data-index="2" href="../pages/products.html" class="product-link">القلايات</a>
-                            <a data-category="refrigerator" data-index="3" href="../pages/products.html" class="product-link">ثلاجات تحت الطاولة</a>
-                            <a data-category="display-refrigerators" data-index="3" href="../pages/products.html" class="product-link">ثلاجات عرض</a>
-                            <a data-category="dishwashers" data-index="4" href="../pages/products.html" class="product-link">غسالات الأطباق</a>
-                            <a data-category="ice-machine" data-index="5" href="../pages/products.html" class="product-link">ماكينة الثلج</a>
-                            <a data-category="bar-equipments" data-index="6" href="../pages/products.html" class="product-link">معدات البار</a>
-                            <a data-category="processing-equipment" data-index="8" href="../pages/products.html" class="product-link">معدات التجهيز</a>
-                            <a data-category="bakery-equipments" data-index="7" href="../pages/products.html" class="product-link">معدات المخابز</a>
-                        </div>
-                    </li>
-                </ul>
-            <a href="contact.html">تواصل معنا</a>
+            <a href="../pages/about.html">من نحن</a>
+            <ul style="list-style: none;">
+                <li class="dropdown">
+                    <a class="dropbtn" href="#" aria-expanded="false">معرض المنتجات <i
+                            class="fas fa-caret-down"></i></a>
+                    <div class="dropdown-content">
+                        <a data-category="p-ovens" data-index="1" href="../pages/products.html" class="product-link">افران
+                            البيتزا</a>
+                        <a data-category="c-ovens" data-index="0" href="../pages/products.html" class="product-link">الأفران
+                            الحراريه</a>
+                        <a data-category="stoves" data-index="9" href="../pages/products.html" class="product-link">بوتاجازات</a>
+                        <a data-category="fridges" data-index="2" href="../pages/products.html" class="product-link">الثلاجات</a>
+                        <a data-category="fryers" data-index="2" href="../pages/products.html" class="product-link">القلايات</a>
+                        <a data-category="refrigerator" data-index="3" href="../pages/products.html"
+                           class="product-link">ثلاجات
+                            تحت الطاولة</a>
+                        <a data-category="display-refrigerators" data-index="3" href="../pages/products.html"
+                           class="product-link">ثلاجات عرض</a>
+                        <a data-category="dishwashers" data-index="4" href="../pages/products.html"
+                           class="product-link">غسالات
+                            الأطباق</a>
+                        <a data-category="ice-machine" data-index="5" href="../pages/products.html"
+                           class="product-link">ماكينة
+                            الثلج</a>
+                        <a data-category="bar-equipments" data-index="6" href="../pages/products.html"
+                           class="product-link">معدات البار</a>
+                        <a data-category="processing-equipment" data-index="8" href="../pages/products.html"
+                           class="product-link">معدات التجهيز</a>
+                        <a data-category="bakery-equipments" data-index="7" href="../pages/products.html"
+                           class="product-link">معدات المخابز</a>
+                    </div>
+                </li>
+            </ul>
+            <a href="../pages/contact.html">تواصل معنا</a>
         </div>
+
         <div class="nav-buttons">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-            <button class="lang-btn">الكتالوج</button>
+            <button class="search-btn" type="button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
     </nav>
 </header>
+
+<!-- This should be right after your navbar, before the main content -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <label for="searchInput"></label><input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+        <button class="close-search">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div id="searchResults" class="search-results"></div>
+</div>
 
 <main>
     <div class="product-content">
@@ -117,65 +140,67 @@
             </div>
         </div>
 
-    <!-- Product Tabs -->
-    <div class="product-tabs">
-        <div class="tabs-header">
-            <button class="tab-btn active" data-tab="description">الوصف</button>
-            <button class="tab-btn" data-tab="about">تعرف علينا</button>
-            <button class="tab-btn" data-tab="quality">ضمان الجودة</button>
-            <button class="tab-btn" data-tab="safety">الأمان والسلامة</button>
-        </div>
+        <!-- Product Tabs -->
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="description">الوصف</button>
+                <button class="tab-btn" data-tab="about">تعرف علينا</button>
+                <button class="tab-btn" data-tab="quality">ضمان الجودة</button>
+                <button class="tab-btn" data-tab="safety">الأمان والسلامة</button>
+            </div>
 
-        <div class="tab-content active" id="description">
-            <div id="productDescription" class="content-center"></div>
-        </div>
+            <div class="tab-content active" id="description">
+                <div id="productDescription" class="content-center"></div>
+            </div>
 
-        <div class="tab-content" id="about">
-            <div class="content-center">
-                <p>الشركة المصرية للتجهيزات الفندقية (TARGET) هي شركة رائدة متخصصة في تقديم حلول متكاملة لتجهيزات الفنادق
-                    والمطابخ، تجمع بين الجودة العالية والخدمة المتميزة. كوكلاء وموزعين حصريين للعديد من العلامات
-                    التجارية الأوروبية الرائدة، نقدم منتجات تتميز بالكفاءة والمتانة. ندعم عملاءنا بخدمات شاملة تشمل
-                    الاستشارات الفنية، والتركيب، وخدمة ما بعد البيع، مما يجعلنا الشريك الأمثل لنجاح أعمالكم.</p>
+            <div class="tab-content" id="about">
+                <div class="content-center">
+                    <p>الشركة المصرية للتجهيزات الفندقية (TARGET) هي شركة رائدة متخصصة في تقديم حلول متكاملة لتجهيزات
+                        الفنادق
+                        والمطابخ، تجمع بين الجودة العالية والخدمة المتميزة. كوكلاء وموزعين حصريين للعديد من العلامات
+                        التجارية الأوروبية الرائدة، نقدم منتجات تتميز بالكفاءة والمتانة. ندعم عملاءنا بخدمات شاملة تشمل
+                        الاستشارات الفنية، والتركيب، وخدمة ما بعد البيع، مما يجعلنا الشريك الأمثل لنجاح أعمالكم.</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="quality">
+                <div class="content-center">
+                    <p>نلتزم بتوفير ضمان شامل على جميع منتجاتنا لضمان راحة عملائنا وثقتهم في جودة ما نقدمه. يشمل الضمان
+                        خدمات صيانة وإصلاح معتمدة باستخدام قطع غيار أصلية، بالإضافة إلى استشارات فنية لضمان عمل المعدات
+                        بكفاءة ودون انقطاع. نحن نحرص على توفير دعم سريع وفعّال يضمن استمرارية أعمالكم بدون تعطيل.</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="safety">
+                <div class="content-center">
+                    <p>نلتزم بأعلى معايير الأمان والسلامة في جميع منتجاتنا وخدماتنا. جميع المعدات مصممة ومصنعة وفقاً
+                        للمواصفات القياسية العالمية لضمان التشغيل الآمن والفعّال. كما نحرص على تقديم إرشادات واضحة
+                        وصيانة
+                        دورية لضمان استمرارية الأمان وتقليل المخاطر في أماكن العمل. نحن نضع سلامة عملائنا وموظفيهم في
+                        مقدمة
+                        أولوياتنا لضمان بيئة عمل آمنة ومستدامة.</p>
+                </div>
             </div>
         </div>
 
-        <div class="tab-content" id="quality">
-            <div class="content-center">
-                <p>نلتزم بتوفير ضمان شامل على جميع منتجاتنا لضمان راحة عملائنا وثقتهم في جودة ما نقدمه. يشمل الضمان
-                    خدمات صيانة وإصلاح معتمدة باستخدام قطع غيار أصلية، بالإضافة إلى استشارات فنية لضمان عمل المعدات
-                    بكفاءة ودون انقطاع. نحن نحرص على توفير دعم سريع وفعّال يضمن استمرارية أعمالكم بدون تعطيل.</p>
+
+        <!-- Related Products -->
+        <section class="related-products">
+            <h2>منتجات ذات صلة</h2>
+            <div class="related-slider-container">
+                <button class="slider-btn prev-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="related-slider" id="relatedProductsSlider">
+                    <!-- المنتجات ستضاف هنا عن طريق JavaScript -->
+                </div>
+
+                <button class="slider-btn next-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-        </div>
-
-        <div class="tab-content" id="safety">
-            <div class="content-center">
-                <p>نلتزم بأعلى معايير الأمان والسلامة في جميع منتجاتنا وخدماتنا. جميع المعدات مصممة ومصنعة وفقاً
-                    للمواصفات القياسية العالمية لضمان التشغيل الآمن والفعّال. كما نحرص على تقديم إرشادات واضحة وصيانة
-                    دورية لضمان استمرارية الأمان وتقليل المخاطر في أماكن العمل. نحن نضع سلامة عملائنا وموظفيهم في مقدمة
-                    أولوياتنا لضمان بيئة عمل آمنة ومستدامة.</p>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Related Products -->
-    <!-- Related Products -->
-    <section class="related-products">
-        <h2>منتجات ذات صلة</h2>
-        <div class="related-slider-container">
-            <button class="slider-btn prev-btn" id="prevBtn">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-
-            <div class="related-slider" id="relatedProductsSlider">
-                <!-- المنتجات ستضاف هنا عن طريق JavaScript -->
-            </div>
-
-            <button class="slider-btn next-btn" id="nextBtn">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </section>
+        </section>
     </div>
 </main>
 
@@ -230,7 +255,12 @@
         </div>
     </div>
 </footer>
-<script src="../js/product.js"></script>
-<script src="../js/navbar_button.js"></script>
+<script defer src="../js/product.js"></script>
+
+<script defer src="../js/slide_top.js"></script>
+<script defer src="../js/search.js"></script>
+<script defer src="../js/navbar.js"></script>
+<script defer src="../js/products.js"></script>
+<script defer src="../js/navbar_button.js"></script>
 </body>
 </html>

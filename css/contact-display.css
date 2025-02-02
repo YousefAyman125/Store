@@ -10,9 +10,9 @@
     --white: #fff;
 
     /* Shadows */
-    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-md: 0 2px 10px rgba(0,0,0,0.1);
-    --shadow-lg: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.1);
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -243,7 +243,7 @@ footer {
     padding: var(--space-md);
     background: var(--white);
     margin-top: auto;
-    box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Animations */

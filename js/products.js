@@ -106,7 +106,7 @@ function showLoading() {
 }
 
 function sortProducts(products, sortType) {
-    switch(sortType) {
+    switch (sortType) {
         case 'nameAsc':
             products.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
             break;
@@ -203,19 +203,6 @@ function handleCategorySelect(event, category) {
     loadProducts();
 }
 
-function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdownContent = event.target.nextElementSibling;
-    dropdownContent.classList.toggle('show');
-
-    const otherDropdowns = document.querySelectorAll('.dropdown-content');
-    otherDropdowns.forEach(content => {
-        if (content !== dropdownContent) {
-            content.classList.remove('show');
-        }
-    });
-}
-
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -246,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close dropdowns when clicking outside
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             document.querySelectorAll('.dropdown-content').forEach(dropdown => {
                 dropdown.classList.remove('show');

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const slides = document.querySelectorAll('.slide');
     const bullets = document.querySelectorAll('.bullet');
     const prevBtn = document.querySelector('.prev-btn');

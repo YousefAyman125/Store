@@ -5,9 +5,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>TARGET - تجهيزات فندقية</title>
     <link href="../css/Contact/contact.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="../css/main.css" rel="stylesheet">
     <link href="../css/header.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -19,7 +19,8 @@
     </script>
 </head>
 <body>
-<Header>
+<!-- Navigation Bar -->
+<header>
     <nav class="navbar">
         <div class="logo">
             <img alt="Logo" src="../assets/c_logo/logo.png">
@@ -33,43 +34,60 @@
 
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
-            <a href="about.html">من نحن</a>
+            <a href="../pages/about.html">من نحن</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
-
-                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات <i
+                    <a class="dropbtn" href="#" aria-expanded="false">معرض المنتجات <i
                             class="fas fa-caret-down"></i></a>
-
                     <div class="dropdown-content">
-                        <a class="product-link" data-category="c-ovens" data-index="0" href="products.html">الأفران
-                            الحرارية</a>
-                        <a class="product-link" data-category="p-ovens" data-index="1" href="products.html">افرن
-                            بيتزا</a>
-                        <a class="product-link" data-category="fridges" data-index="2" href="products.html">الثلاجات</a>
-                        <a class="product-link" data-category="refrigerator" data-index="3" href="products.html">ثلاجات
+                        <a data-category="p-ovens" data-index="1" href="../pages/products.html" class="product-link">افران
+                            البيتزا</a>
+                        <a data-category="c-ovens" data-index="0" href="../pages/products.html" class="product-link">الأفران
+                            الحراريه</a>
+                        <a data-category="stoves" data-index="9" href="../pages/products.html" class="product-link">بوتاجازات</a>
+                        <a data-category="fridges" data-index="2" href="../pages/products.html" class="product-link">الثلاجات</a>
+                        <a data-category="fryers" data-index="2" href="../pages/products.html" class="product-link">القلايات</a>
+                        <a data-category="refrigerator" data-index="3" href="../pages/products.html"
+                           class="product-link">ثلاجات
                             تحت الطاولة</a>
-                        <a class="product-link" data-category="dishwashers" data-index="4" href="products.html">غسالات
+                        <a data-category="display-refrigerators" data-index="3" href="../pages/products.html"
+                           class="product-link">ثلاجات عرض</a>
+                        <a data-category="dishwashers" data-index="4" href="../pages/products.html"
+                           class="product-link">غسالات
                             الأطباق</a>
-                        <a class="product-link" data-category="ice-machine" data-index="5" href="products.html">ماكينة
+                        <a data-category="ice-machine" data-index="5" href="../pages/products.html"
+                           class="product-link">ماكينة
                             الثلج</a>
-                        <a class="product-link" data-category="bar-equipments" data-index="6" href="products.html">معدات
-                            البار</a>
-                        <a class="product-link" data-category="bakery-equipments" data-index="7" href="products.html">معدات
-                            المخابز</a>
-                        <a class="product-link" data-category="processing-equipment" data-index="8"
-                           href="products.html">معدات التجهيز</a>
-                        <a class="product-link" data-category="stoves" data-index="9" href="products.html">بوتاجازات</a>
+                        <a data-category="bar-equipments" data-index="6" href="../pages/products.html"
+                           class="product-link">معدات البار</a>
+                        <a data-category="processing-equipment" data-index="8" href="../pages/products.html"
+                           class="product-link">معدات التجهيز</a>
+                        <a data-category="bakery-equipments" data-index="7" href="../pages/products.html"
+                           class="product-link">معدات المخابز</a>
                     </div>
                 </li>
             </ul>
-            <a class="active" href="contact.html">تواصل معنا</a>
+            <a href="../pages/contact.html" class="active">تواصل معنا</a>
         </div>
+
         <div class="nav-buttons">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-            <button class="lang-btn">الكتالوج</button>
+            <button class="search-btn" type="button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
     </nav>
-</Header>
+</header>
+
+<!-- This should be right after your navbar, before the main content -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <label for="searchInput"></label><input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
+        <button class="close-search">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div id="searchResults" class="search-results"></div>
+</div>
 
 <!-- Contact Form & Map Section -->
 <section class="contact-section">
@@ -90,7 +108,8 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            <input type="email" name="email" placeholder="البريد الإلكتروني" style="text-align: right;" required>
+                            <input type="email" name="email" placeholder="البريد الإلكتروني" style="text-align: right;"
+                                   required>
                         </label>
                     </div>
                     <div class="form-group">
@@ -209,37 +228,12 @@
         </div>
     </div>
 </footer>
-<script>
+<script src="../js/contact.js"></script>
 
-    function toggleDropdown(event) {
-        event.preventDefault();
-        const dropdownContent = event.target.nextElementSibling;
-        dropdownContent.classList.toggle('show');
-
-
-        const otherDropdowns = document.querySelectorAll('.dropdown-content');
-        otherDropdowns.forEach(content => {
-            if (content !== dropdownContent) {
-                content.classList.remove('show');
-            }
-        });
-    }
-
-
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdowns = document.querySelectorAll('.dropdown-content');
-            dropdowns.forEach(dropdown => {
-                if (dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            });
-        }
-    }
-</script>
-<script src="/js/contact.js"></script>
-<script defer src="../js/search.js"></script>
-<script defer src="../js/navbar_button.js"></script>
 <script defer src="../js/slide_top.js"></script>
+<script defer src="../js/search.js"></script>
+<script defer src="../js/navbar.js"></script>
+<script defer src="../js/products.js"></script>
+<script defer src="../js/navbar_button.js"></script>
 </body>
 </html>
