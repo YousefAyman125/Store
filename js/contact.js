@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
             submitButton.disabled = true;
 
-            const response = await fetch('http://localhost:5000/api/contact', {
+            const response = await fetch('https://store-mu-nine.vercel.app/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await response.json();
 
             // عرض رسالة النجاح
-            showMessage('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً', 'success');
+            showMessage('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً ', 'success');
             form.reset();
 
         } catch (error) {
