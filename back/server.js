@@ -1,29 +1,13 @@
+const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const multer = require('multer');
 const {join} = require("path");
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config({path: join(__dirname, '..', '.env')});
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 5000;
+
 const app = express();
-app.use(cors());
-app.use(bodyParser.json());
-
-
-app.get("/", (req, res) => {
-    res.json({message: "Server is running!"});
-});
-
-app.get("/api/test", (req, res) => {
-    res.json({message: "API is working!"});
-});
-
-
-app.use((req, res) => {
-    res.status(404).json({error: "Route not found"});
-});
+const PORT = process.env.PORT || 5000;
 
 // Middleware Configuration
 app.use(cors({
@@ -263,4 +247,3 @@ process.on('SIGTERM', () => {
         process.exit(0);
     });
 });
-module.exports = app;

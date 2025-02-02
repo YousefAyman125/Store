@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
             submitButton.disabled = true;
 
-            const response = await fetch('https://store-mu-nine.vercel.app/api/contact', {
+            const response = await fetch('http://localhost:5000/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
