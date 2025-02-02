@@ -6,17 +6,21 @@ require('dotenv').config({path: join(__dirname, '..', '.env')});
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const PORT = process.env.PORT || 5000;
+const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const app = express();
-const PORT = process.env.PORT || 5000;
-app.get("/api/test", (req, res) => {
-    res.json({message: "API is working!"});
-});
+
 
 app.get("/", (req, res) => {
     res.json({message: "Server is running!"});
 });
+
+app.get("/api/test", (req, res) => {
+    res.json({message: "API is working!"});
+});
+
+
 app.use((req, res) => {
     res.status(404).json({error: "Route not found"});
 });
