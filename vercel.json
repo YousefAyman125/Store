@@ -1,11 +1,6 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
-  "proxies": {
-    "/api": {
-      "destination": "http://store-mu-nine.vercel.app/api",  // Or https:// if your backend uses HTTPS
-      "changeOrigin": true // Required for CORS to work correctly
-    }
+  "rewrites": [{"source": "/(.*)",
+    "destination": "/index.html"
   }
+  ]
 }
