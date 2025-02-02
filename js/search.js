@@ -141,7 +141,7 @@ const SearchManager = {
 
         try {
 
-            const response = await fetch('http://localhost:5000/api/products');
+            const response = await fetch('http://store-mu-nine.vercel.app/api/products');
             const allProducts = await response.json();
 
             const filtered = allProducts.filter(product =>

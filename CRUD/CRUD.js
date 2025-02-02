@@ -48,7 +48,7 @@ function handleError(error, defaultMessage) {
 async function loadProducts() {
     try {
         showLoading();
-        const response = await fetch('http://localhost:5000/api/products');
+        const response = await fetch('http://store-mu-nine.vercel.app/api/products');
         if (!response.ok) throw new Error('Network response was not ok');
         productsData = await response.json();
         filterAndDisplayProducts();
@@ -202,7 +202,7 @@ async function handleProductSubmit(e) {
     formData.append('image', imageFile);
 
     try {
-        const response = await fetch('http://localhost:5000/api/products', {
+        const response = await fetch('http://store-mu-nine.vercel.app/api/products', {
             method: 'POST',
             body: formData
         });
@@ -224,7 +224,7 @@ async function handleProductSubmit(e) {
 // Product Operations
 async function updateProduct(id, formData) {
     try {
-        const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+        const response = await fetch(`http://store-mu-nine.vercel.app/api/products/${id}`, {
             method: 'PUT',
             body: formData
         });
@@ -253,7 +253,7 @@ async function deleteProduct(id) {
     if (!confirm(confirmMessage)) return;
 
     try {
-        const response = await fetch(`http://localhost:5000/api/products/${id}`, {
+        const response = await fetch(`http://store-mu-nine.vercel.app/api/products/${id}`, {
             method: 'DELETE'
         });
 
