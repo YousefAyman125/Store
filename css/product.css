@@ -16,9 +16,9 @@
     --tiktok-color: #000000;
 
     /* Shadows */
-    --shadow-sm: 0 2px 5px rgba(0,0,0,0.05);
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.1);
-    --shadow-lg: 0 5px 15px rgba(0,0,0,0.2);
+    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.2);
 
     /* Spacing */
     --spacing-xxs: clamp(4px, 0.5vw, 6px);
@@ -227,10 +227,21 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-.share-btn.facebook { background: var(--facebook-color); }
-.share-btn.instagram { background: var(--instagram-color); }
-.share-btn.tiktok { background: var(--tiktok-color); }
-.share-btn.whatsapp { background: var(--whatsapp-color); }
+.share-btn.facebook {
+    background: var(--facebook-color);
+}
+
+.share-btn.instagram {
+    background: var(--instagram-color);
+}
+
+.share-btn.tiktok {
+    background: var(--tiktok-color);
+}
+
+.share-btn.whatsapp {
+    background: var(--whatsapp-color);
+}
 
 /* Tabs Section */
 .product-tabs {
@@ -411,8 +422,13 @@ body {
     font-size: 16px;
 }
 
-.prev-btn { right: var(--spacing-md); }
-.next-btn { left: var(--spacing-md); }
+.prev-btn {
+    right: var(--spacing-md);
+}
+
+.next-btn {
+    left: var(--spacing-md);
+}
 
 /* Product Description Tab */
 .product-description {
@@ -468,8 +484,14 @@ body {
 
 /* Animations */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive Design */
@@ -679,5 +701,7 @@ body {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -4,7 +4,7 @@
     --text-color: #4a4a4a;
     --light-bg: #f9f9f9;
     --white: #ffffff;
-    --shadow: 0 2px 15px rgba(0,0,0,0.1);
+    --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
     --border-radius: 8px;
 }
@@ -133,7 +133,7 @@ body {
 
 .search-btn {
     /* Add these new properties */
-    min-width: 60px;  /* Adjust this value to control width */
+    min-width: 60px; /* Adjust this value to control width */
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -355,6 +355,7 @@ body {
         height: 28px;
     }
 }
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .navbar {
@@ -446,7 +447,7 @@ body {
     padding: 10px;
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
@@ -480,6 +481,7 @@ body {
     .clients-slider {
         max-width: 900px;
     }
+
     .client-logo {
         flex: 0 0 140px;
     }
@@ -489,10 +491,12 @@ body {
     .clients-slider {
         max-width: 600px;
     }
+
     .client-logo {
         flex: 0 0 120px;
         height: 80px;
     }
+
     .clients-track {
         gap: 30px;
     }
@@ -502,17 +506,21 @@ body {
     .clients-slider {
         max-width: 300px;
     }
+
     .client-logo {
         flex: 0 0 100px;
         height: 70px;
     }
+
     .clients-track {
         gap: 20px;
     }
+
     .clients-title {
         font-size: 1.5rem;
     }
 }
+
 /* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;

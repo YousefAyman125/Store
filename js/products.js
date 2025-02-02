@@ -106,7 +106,7 @@ function showLoading() {
 }
 
 function sortProducts(products, sortType) {
-    switch(sortType) {
+    switch (sortType) {
         case 'nameAsc':
             products.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
             break;
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close dropdowns when clicking outside
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             document.querySelectorAll('.dropdown-content').forEach(dropdown => {
                 dropdown.classList.remove('show');

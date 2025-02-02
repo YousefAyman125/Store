@@ -13,8 +13,8 @@
     --spacing-xl: 60px;
 
     /* Shadows */
-    --shadow-sm: 0 5px 15px rgba(0,0,0,0.1);
-    --shadow-lg: 0 5px 20px rgba(0,0,0,0.1);
+    --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.1);
 
     /* Border Radius */
     --radius-sm: 5px;
