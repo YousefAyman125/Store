@@ -14,5 +14,6 @@
     <orderEntry type="library" name="@emailjs/browser" level="application" />
     <orderEntry type="library" name="aos" level="application" />
     <orderEntry type="library" name="aos" level="application" />
+    <orderEntry type="library" name="swiper" level="application" />
   </component>
 </module>
