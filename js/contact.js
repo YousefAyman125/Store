@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await response.json();
 
             // عرض رسالة النجاح
-            showMessage('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً ', 'success');
+            showMessage('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً', 'success');
             form.reset();
 
         } catch (error) {

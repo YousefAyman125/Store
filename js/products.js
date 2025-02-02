@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    API_URL: 'http://store-mu-nine.vercel.app/api/products',
+    API_URL: 'http://localhost:5000/api/products',
     PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
     CATEGORIES: {
         'p-ovens': 'افران البيتزا',

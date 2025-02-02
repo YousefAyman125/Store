@@ -1,5 +1,5 @@
 // Constants
-const API_URL = 'http://store-mu-nine.vercel.app/api/products';
+const API_URL = 'http://localhost:5000/api/products';
 const PRODUCTS_PER_SLIDE = 4;
 
 // Main Initialization
