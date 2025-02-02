@@ -203,19 +203,6 @@ function handleCategorySelect(event, category) {
     loadProducts();
 }
 
-function toggleDropdown(event) {
-    event.preventDefault();
-    const dropdownContent = event.target.nextElementSibling;
-    dropdownContent.classList.toggle('show');
-
-    const otherDropdowns = document.querySelectorAll('.dropdown-content');
-    otherDropdowns.forEach(content => {
-        if (content !== dropdownContent) {
-            content.classList.remove('show');
-        }
-    });
-}
-
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
 

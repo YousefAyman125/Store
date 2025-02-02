@@ -12,7 +12,8 @@
 </head>
 <body>
 <!-- Navigation Bar -->
-<Header>
+<!-- Navigation Bar -->
+<header>
     <nav class="navbar">
         <div class="logo">
             <img alt="Logo" src="../assets/c_logo/logo.png">
@@ -26,48 +27,48 @@
 
         <div class="nav-links">
             <a href="../index.html">الرئيسية</a>
-            <a href="about.html">من نحن</a>
+            <a href="../pages/about.html" >من نحن</a>
             <ul style="list-style: none;">
                 <li class="dropdown">
-
-                    <a class="dropbtn" href="#" onclick="toggleDropdown(event)">معرض المنتجات<i
+                    <a class="dropbtn" href="#" aria-expanded="false">معرض المنتجات <i
                             class="fas fa-caret-down"></i></a>
-
                     <div class="dropdown-content">
-                        <a data-category="p-ovens" data-index="1" href="products.html" class="product-link">افران البيتزا</a>
-                        <a data-category="c-ovens" data-index="0" href="products.html" class="product-link">الأفران
-                            الحرارية</a>
-                        <a data-category="stoves" data-index="9" href="products.html" class="product-link">بوتاجازات</a>
-                        <a data-category="fridges" data-index="2" href="products.html" class="product-link">الثلاجات</a>
-                        <a data-category="fryers" data-index="2" href="products.html" class="product-link">القلايات</a>
-                        <a data-category="refrigerator" data-index="3" href="products.html" class="product-link">ثلاجات
+                        <a data-category="p-ovens" data-index="1" href="../pages/products.html" class="product-link">افران
+                            البيتزا</a>
+                        <a data-category="c-ovens" data-index="0" href="../pages/products.html" class="product-link">الأفران
+                            الحراريه</a>
+                        <a data-category="stoves" data-index="9" href="../pages/products.html" class="product-link">بوتاجازات</a>
+                        <a data-category="fridges" data-index="2" href="../pages/products.html" class="product-link">الثلاجات</a>
+                        <a data-category="fryers" data-index="2" href="../pages/products.html" class="product-link">القلايات</a>
+                        <a data-category="refrigerator" data-index="3" href="../pages/products.html" class="product-link">ثلاجات
                             تحت الطاولة</a>
-                        <a data-category="display-refrigerators" data-index="3" href="products.html" class="product-link">ثلاجات
-                            عرض</a>
-                        <a data-category="dishwashers" data-index="4" href="products.html" class="product-link">غسالات
+                        <a data-category="display-refrigerators" data-index="3" href="../pages/products.html"
+                           class="product-link">ثلاجات عرض</a>
+                        <a data-category="dishwashers" data-index="4" href="../pages/products.html" class="product-link">غسالات
                             الأطباق</a>
-                        <a data-category="ice-machine" data-index="5" href="products.html" class="product-link">ماكينة
+                        <a data-category="ice-machine" data-index="5" href="../pages/products.html" class="product-link">ماكينة
                             الثلج</a>
-                        <a data-category="bar-equipments" data-index="6" href="products.html"
+                        <a data-category="bar-equipments" data-index="6" href="../pages/products.html"
                            class="product-link">معدات البار</a>
-                        <a data-category="processing-equipment" data-index="8" href="products.html"
+                        <a data-category="processing-equipment" data-index="8" href="../pages/products.html"
                            class="product-link">معدات التجهيز</a>
-                        <a data-category="bakery-equipments" data-index="7" href="products.html"
+                        <a data-category="bakery-equipments" data-index="7" href="../pages/products.html"
                            class="product-link">معدات المخابز</a>
                     </div>
                 </li>
             </ul>
-            <a href="contact.html">تواصل معنا</a>
+            <a href="../pages/contact.html">تواصل معنا</a>
         </div>
+
         <div class="nav-buttons">
             <button class="search-btn" type="button">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="lang-btn">الكتالوج</button>
         </div>
     </nav>
-</Header>
+</header>
 
+<!-- This should be right after your navbar, before the main content -->
 <div class="search-overlay" id="searchOverlay">
     <div class="search-container">
         <label for="searchInput"></label><input type="text" id="searchInput" placeholder="ابحث عن المنتجات...">
@@ -168,11 +169,12 @@
         </div>
     </div>
 </footer>
+<script defer src="../back/server.js"></script>
+
 <script defer src="../js/slide_top.js"></script>
-<script defer src="../js/products.js"></script>
 <script defer src="../js/search.js"></script>
 <script defer src="../js/navbar.js"></script>
+<script defer src="../js/products.js"></script>
 <script defer src="../js/navbar_button.js"></script>
-<script defer src="../back/server.js"></script>
 </body>
 </html>
