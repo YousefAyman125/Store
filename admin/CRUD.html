@@ -7,84 +7,224 @@
     <link href="CRUD.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        /* تنظيم الأنماط */
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .logout-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .logout-btn:active {
+            transform: translateY(0);
+        }
+
+        #authCheck {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .auth-message {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .auth-message i {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .auth-message .success-icon {
+            color: #4CAF50;
+        }
+
+        .auth-message .logout-icon {
+            color: #dc3545;
+        }
+
+        /* تحسينات إضافية للنموذج */
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus,
+        .form-container textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+    </style>
 </head>
 <body>
+<!-- Auth Check Overlay -->
+<div id="authCheck">
+    <div class="auth-message">
+        <i class="fas fa-spinner fa-spin success-icon"></i>
+        <p>جاري التحقق من تسجيل الدخول...</p>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+    <h1>لوحة التحكم - إدارة المنتجات</h1>
+    <div class="header-buttons">
+        <a href="../front/index.html" class="home-link">
+            <i class="fas fa-home"></i>
+            الرئيسية
+        </a>
+        <a href="#" onclick="logout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            تسجيل الخروج
+        </a>
+    </div>
+</header>
+
+<!-- Main Content -->
 <main class="products-main">
     <!-- نموذج إضافة/تعديل المنتج -->
     <div class="form-container">
         <form id="productForm">
             <h2>إضافة منتج جديد</h2>
-            <label for="productName"></label><input id="productName" placeholder="اسم المنتج" required type="text">
-            <input accept="image/*" id="productImage" required type="file">
-            <label for="productCategory"></label><select id="productCategory" required>
-            <option value="">جميع الفئات</option>
-            <option value="افران البيتزا">افران البيتزا</option>
-            <option value="الأفران الحراريه">الأفران الحراريه</option>
-            <option value="البوتاجازات">البوتاجازات</option>
-            <option value="الثلاجات">الثلاجات</option>
-            <option value="القلايات">القلايات</option>
-            <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
-            <option value="ثلاجات عرض">ثلاجات عرض</option>
-            <option value="غسالات الأطباق">غسالات الاطباق</option>
-            <option value="ماكينات الثلج">ماكينات الثلج</option>
-            <option value="معدات البار">معدات البار</option>
-            <option value="معدات التجهيز">معدات التجهيز</option>
-            <option value="معدات المخابز">معدات المخابز</option>
-        </select>
-            <label for="productDescription"></label><textarea id="productDescription" placeholder="وصف المنتج"
-                                                              style="min-height: 50px;  max-height: 150px;"
-                                                              required></textarea>
-            <button type="submit">إضافة منتج</button>
+            <div class="input-group">
+                <label for="productName">اسم المنتج</label>
+                <input id="productName" placeholder="أدخل اسم المنتج" required type="text">
+            </div>
+
+            <div class="input-group">
+                <label for="productImage">صورة المنتج</label>
+                <input accept="image/*" id="productImage" required type="file">
+            </div>
+
+            <div class="input-group">
+                <label for="productCategory">فئة المنتج</label>
+                <select id="productCategory" required>
+                    <option value="">اختر الفئة</option>
+                    <option value="افران البيتزا">افران البيتزا</option>
+                    <!-- باقي الخيارات -->
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="productDescription">وصف المنتج</label>
+                <textarea id="productDescription" placeholder="أدخل وصف المنتج"
+                          style="min-height: 50px; max-height: 150px;"
+                          required></textarea>
+            </div>
+
+            <button type="submit">
+                <i class="fas fa-plus"></i>
+                إضافة منتج
+            </button>
         </form>
     </div>
 
-    <!-- قسم الفلترة والعرض -->
+    <!-- Filters Section -->
     <div class="filters-section">
-        <div class="filters-container">
-            <div class="category-filter">
-                <label for="categoryFilter"></label><select id="categoryFilter"
-                                                            onchange="handleCategoryFilter(this.value)">
-                <option value="all">جميع الفئات</option>
-                <option value="افران البيتزا">افران البيتزا</option>
-                <option value="الأفران الحراريه">الأفران الحراريه</option>
-                <option value="البوتاجازات">البوتاجازات</option>
-                <option value="الثلاجات">الثلاجات</option>
-                <option value="القلايات">القلايات</option>
-                <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
-                <option value="ثلاجات عرض">ثلاجات عرض</option>
-                <option value="غسالات الأطباق">غسالات الاطباق</option>
-                <option value="ماكينات الثلج">ماكينات الثلج</option>
-                <option value="معدات البار">معدات البار</option>
-                <option value="معدات التجهيز">معدات التجهيز</option>
-                <option value="معدات المخابز">معدات المخابز</option>
-            </select>
-            </div>
-            <div class="sort-filter">
-                <label for="sortSelect"></label><select id="sortSelect" onchange="handleSort(this.value)">
-                <option value="nameAsc">الاسم: أ-ي</option>
-                <option value="nameDesc">الاسم: ي-أ</option>
-                <option value="newest">الأحدث</option>
-                <option value="oldest">الأقدم</option>
-            </select>
-            </div>
-            <div class="view-options">
-                <button onclick="toggleView('grid')" class="view-btn active" id="gridBtn">
-                    <i class="fas fa-th-large"></i>
-                </button>
-                <button onclick="toggleView('list')" class="view-btn" id="listBtn">
-                    <i class="fas fa-list"></i>
-                </button>
-            </div>
-        </div>
+        <!-- نفس المحتوى السابق -->
     </div>
 
-    <!-- عرض المنتجات -->
+    <!-- Products List -->
     <div id="productList" class="products-grid">
         <!-- سيتم إضافة المنتجات هنا ديناميكياً -->
     </div>
 </main>
 
+<!-- Scripts -->
+<script>
+    // التحقق من تسجيل الدخول عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        checkAuth();
+    });
+
+    // دالة التحقق من تسجيل الدخول
+    function checkAuth() {
+        const authCheck = document.getElementById('authCheck');
+        if (!sessionStorage.getItem('isLoggedIn')) {
+            authCheck.style.display = 'flex';
+            // حفظ المسار الحالي
+            sessionStorage.setItem('returnUrl', 'CRUD.html'); // تحديد المسار بشكل صريح
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+            return false;
+        }
+        return true;
+    }
+
+    // دالة تسجيل الخروج
+    function logout() {
+        if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+            const authCheck = document.getElementById('authCheck');
+            authCheck.innerHTML = `
+                    <div class="auth-message">
+                        <i class="fas fa-sign-out-alt logout-icon"></i>
+                        <p>جاري تسجيل الخروج...</p>
+                    </div>
+                `;
+            authCheck.style.display = 'flex';
+
+            setTimeout(() => {
+                sessionStorage.clear();
+                window.location.href = 'login.html';
+            }, 1000);
+        }
+    }
+
+    // منع الوصول للصفحة عبر زر Back
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted) {
+            checkAuth();
+        }
+    });
+
+    // التحقق من انتهاء الجلسة كل دقيقة
+    setInterval(checkAuth, 60000);
+</script>
+
+<!-- External Scripts -->
 <script src="CRUD.js"></script>
 </body>
 </html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header {
+            width: 100%;
+            background: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .dashboard-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .dashboard-button {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(145deg, #dc3545, #c82333);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .dashboard-button:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .dashboard-button i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-button span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-button {
+                width: 200px;
+                height: 200px;
+            }
+
+            .dashboard-button i {
+                font-size: 3rem;
+            }
+
+            .dashboard-button span {
+                font-size: 1rem;
+            }
+        }
+
+        /* تأثير النبض للأيقونات */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .dashboard-button:hover i {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>لوحة التحكم</h1>
+</header>
+<main class="dashboard-container">
+    <a href="CRUD.html" class="dashboard-button">
+        <i class="fas fa-box"></i>
+        <span>إدارة المنتجات</span>
+    </a>
+
+    <a href="form_data.html" class="dashboard-button">
+        <i class="fas fa-address-card"></i>
+        <span>عرض بيانات الاتصال</span>
+    </a>
+</main>
+</body>
+</html>
