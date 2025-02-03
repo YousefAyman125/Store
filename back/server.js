@@ -2,17 +2,24 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
-const { join } = require("path");
+const {join} = require("path");
 const cloudinary = require('cloudinary').v2;
-require('dotenv').config({ path: join(__dirname, '..', '.env') });
+require('dotenv').config({path: join(__dirname, '..', '.env')});
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware Configuration
-app.use(cors());
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+    preflightContinue: false,
+    optionsSuccessStatus: 204
+}));
+app.use(express.json({limit: '10mb'}));
+app.use(express.urlencoded({extended: true, limit: '10mb'}));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -36,24 +43,24 @@ cloudinary.config({
 // Multer Configuration
 const upload = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB limit
+    limits: {fileSize: 10 * 1024 * 1024} // 10MB limit
 });
 
 // Schemas
 const productSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    category: { type: String, required: true },
+    name: {type: String, required: true},
+    category: {type: String, required: true},
     description: String,
-    image: { type: String, required: true }
+    image: {type: String, required: true}
 }, {
     timestamps: true,
     versionKey: false
 });
 
 const contactSchema = new mongoose.Schema({
-    fullname: { type: String, required: true },
-    phone: { type: String, required: true },
-    email: { type: String, required: true },
+    fullname: {type: String, required: true},
+    phone: {type: String, required: true},
+    email: {type: String, required: true},
     subject: String,
     message: String,
     expiryDate: {
@@ -80,19 +87,19 @@ app.get('/api/products', async (req, res) => {
         res.json(products);
     } catch (error) {
         console.error('Error fetching products:', error);
-        res.status(500).json({ error: 'Failed to fetch products' });
+        res.status(500).json({error: 'Failed to fetch products'});
     }
 });
 
 app.post('/api/products', upload.single('image'), async (req, res) => {
     try {
         if (!req.file) {
-            return res.status(400).json({ error: 'Image is required' });
+            return res.status(400).json({error: 'Image is required'});
         }
 
         const result = await new Promise((resolve, reject) => {
             const uploadStream = cloudinary.uploader.upload_stream(
-                { folder: 'products' },
+                {folder: 'products'},
                 (error, result) => error ? reject(error) : resolve(result)
             );
             uploadStream.end(req.file.buffer);
@@ -106,7 +113,7 @@ app.post('/api/products', upload.single('image'), async (req, res) => {
         res.status(201).json(product);
     } catch (error) {
         console.error('Error creating product:', error);
-        res.status(500).json({ error: 'Failed to create product' });
+        res.status(500).json({error: 'Failed to create product'});
     }
 });
 
@@ -114,24 +121,26 @@ app.delete('/api/products/:id', async (req, res) => {
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         if (!product) {
-            return res.status(404).json({ error: 'Product not found' });
+            return res.status(404).json({error: 'Product not found'});
         }
 
         const publicId = product.image.split('/').pop().split('.')[0];
         await cloudinary.uploader.destroy(`products/${publicId}`);
 
-        res.json({ message: 'Product deleted successfully' });
+        res.json({message: 'Product deleted successfully'});
     } catch (error) {
         console.error('Error deleting product:', error);
-        res.status(500).json({ error: 'Failed to delete product' });
+        res.status(500).json({error: 'Failed to delete product'});
     }
 });
 
 // Contacts Routes
 app.get('/api/contacts', async (req, res) => {
     try {
-        await Contact.deleteMany({ expiryDate: { $lt: new Date() } });
+        // حذف الرسائل المنتهية
+        await Contact.deleteMany({expiryDate: {$lt: new Date()}});
 
+        // جلب الرسائل غير المنتهية
         const contacts = await Contact.find()
             .sort('-createdAt')
             .lean()
@@ -140,15 +149,37 @@ app.get('/api/contacts', async (req, res) => {
         res.json(contacts);
     } catch (error) {
         console.error('Error fetching contacts:', error);
-        res.status(500).json({ error: 'Failed to fetch contacts' });
+        res.status(500).json({error: 'Failed to fetch contacts'});
+    }
+});
+
+app.delete('/api/contacts/:id', async (req, res) => {
+    try {
+        console.log('Delete request for ID:', req.params.id); // للتتبع
+
+        const contact = await Contact.findByIdAndDelete(req.params.id);
+
+        if (!contact) {
+            console.log('Contact not found');
+            return res.status(404).json({error: 'Contact not found'});
+        }
+
+        console.log('Contact deleted successfully');
+        res.json({message: 'Contact deleted successfully'});
+    } catch (error) {
+        console.error('Error deleting contact:', error);
+        res.status(500).json({error: 'Failed to delete contact'});
     }
 });
 
 app.post('/api/contact', async (req, res) => {
     try {
-        const { fullname, phone, email } = req.body;
+        // التحقق من البيانات المطلوبة
+        const {fullname, phone, email} = req.body;
         if (!fullname || !phone || !email) {
-            return res.status(400).json({ error: 'Missing required fields' });
+            return res.status(400).json({
+                error: 'Missing required fields'
+            });
         }
 
         const contact = await Contact.create({
@@ -169,29 +200,37 @@ app.post('/api/contact', async (req, res) => {
         });
     }
 });
-
-app.delete('/api/contacts/:id', async (req, res) => {
+// Test Route
+app.get('/api/contacts', async (req, res) => {
     try {
-        console.log('Delete request for ID:', req.params.id);
+        // حذف الرسائل المنتهية
+        const deleteResult = await Contact.deleteMany({
+            expiryDate: {$lt: new Date()}
+        });
+        console.log('Expired contacts deleted:', deleteResult);
 
-        const contact = await Contact.findByIdAndDelete(req.params.id);
+        // جلب الرسائل غير المنتهية
+        const contacts = await Contact.find()
+            .select('-__v')
+            .sort('-createdAt')
+            .lean()
+            .exec();
 
-        if (!contact) {
-            console.log('Contact not found');
-            return res.status(404).json({ error: 'Contact not found' });
-        }
-
-        console.log('Contact deleted successfully');
-        res.json({ message: 'Contact deleted successfully' });
+        console.log(`Found ${contacts.length} active contacts`);
+        res.json(contacts);
     } catch (error) {
-        console.error('Error deleting contact:', error);
-        res.status(500).json({ error: 'Failed to delete contact' });
+        console.error('Error in contacts route:', error);
+        res.status(500).json({
+            error: 'Failed to fetch contacts',
+            details: error.message
+        });
     }
 });
 
+
 // Handle 404
 app.use((req, res) => {
-    res.status(404).json({ error: 'Route not found' });
+    res.status(404).json({error: 'Route not found'});
 });
 
 // Start Server
