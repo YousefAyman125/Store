@@ -141,7 +141,7 @@
             <div class="input-group">
                 <label for="productCategory">فئة المنتج</label>
                 <select id="productCategory" required>
-                    <option value="">جميع الفئات</option>
+                    <option value="">اختر فئة</option>
                     <option value="افران البيتزا">افران البيتزا</option>
                     <option value="الأفران الحراريه">الأفران الحراريه</option>
                     <option value="البوتاجازات">البوتاجازات</option>
@@ -154,8 +154,6 @@
                     <option value="معدات البار">معدات البار</option>
                     <option value="معدات التجهيز">معدات التجهيز</option>
                     <option value="معدات المخابز">معدات المخابز</option>
-                </select>
-
                 </select>
             </div>
 
@@ -175,19 +173,42 @@
 
     <!-- Filters Section -->
     <div class="filters-section">
-        <option value="all">جميع الفئات</option>
-        <option value="افران البيتزا">افران البيتزا</option>
-        <option value="الأفران الحراريه">الأفران الحراريه</option>
-        <option value="البوتاجازات">البوتاجازات</option>
-        <option value="الثلاجات">الثلاجات</option>
-        <option value="القلايات">القلايات</option>
-        <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
-        <option value="ثلاجات عرض">ثلاجات عرض</option>
-        <option value="غسالات الأطباق">غسالات الاطباق</option>
-        <option value="ماكينات الثلج">ماكينات الثلج</option>
-        <option value="معدات البار">معدات البار</option>
-        <option value="معدات التجهيز">معدات التجهيز</option>
-        <option value="معدات المخابز">معدات المخابز</option>
+        <div class="filters-container">
+            <div class="category-filter">
+                <label for="categoryFilter"></label><select id="categoryFilter"
+                                                            onchange="handleCategoryFilter(this.value)">
+                <option value="all">جميع الفئات</option>
+                <option value="افران البيتزا">افران البيتزا</option>
+                <option value="الأفران الحراريه">الأفران الحراريه</option>
+                <option value="البوتاجازات">البوتاجازات</option>
+                <option value="الثلاجات">الثلاجات</option>
+                <option value="القلايات">القلايات</option>
+                <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
+                <option value="ثلاجات عرض">ثلاجات عرض</option>
+                <option value="غسالات الأطباق">غسالات الاطباق</option>
+                <option value="ماكينات الثلج">ماكينات الثلج</option>
+                <option value="معدات البار">معدات البار</option>
+                <option value="معدات التجهيز">معدات التجهيز</option>
+                <option value="معدات المخابز">معدات المخابز</option>
+            </select>
+            </div>
+            <div class="sort-filter">
+                <label for="sortSelect"></label><select id="sortSelect" onchange="handleSort(this.value)">
+                <option value="nameAsc">الاسم: أ-ي</option>
+                <option value="nameDesc">الاسم: ي-أ</option>
+                <option value="newest">الأحدث</option>
+                <option value="oldest">الأقدم</option>
+            </select>
+            </div>
+            <div class="view-options">
+                <button onclick="toggleView('grid')" class="view-btn active" id="gridBtn">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <button onclick="toggleView('list')" class="view-btn" id="listBtn">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Products List -->
