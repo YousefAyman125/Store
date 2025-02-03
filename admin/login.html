@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            direction: rtl;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 350px;
+            transition: transform 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 15px;
+            top: 38px;
+            color: #7f8c8d;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgba(231, 76, 60, 0.1);
+            display: none;
+            font-size: 14px;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-container i {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .loading {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+        }
+
+        .loading i {
+            font-size: 30px;
+            color: #4CAF50;
+        }
+
+        /* إضافة تأثير النبض للأيقونة */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .logo-container i {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <div class="logo-container">
+        <i class="fas fa-user-shield"></i>
+    </div>
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm">
+        <div class="input-group">
+            <label for="username">اسم المستخدم</label>
+            <input type="text" id="username" required autocomplete="username">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="input-group">
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" required autocomplete="current-password">
+            <i class="fas fa-lock"></i>
+        </div>
+        <button type="submit">
+            <i class="fas fa-sign-in-alt"></i>
+            دخول
+        </button>
+    </form>
+    <div id="errorMessage" class="error-message">
+        <i class="fas fa-exclamation-circle"></i>
+        اسم المستخدم أو كلمة المرور غير صحيحة
+    </div>
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin"></i>
+    </div>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const loading = document.getElementById('loading');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loading.style.display = 'flex';
+        errorMessage.style.display = 'none';
+
+        setTimeout(() => {
+            if (username === 'admin' && password === '123456') {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('username', username);
+                sessionStorage.setItem('loginTime', new Date().toISOString());
+
+                // التحقق من URL العودة
+                const returnUrl = sessionStorage.getItem('returnUrl');
+                if (returnUrl) {
+                    // إذا كان هناك URL محفوظ، قم بالتوجيه إليه
+                    sessionStorage.removeItem('returnUrl'); // مسح URL العودة
+                    window.location.href = returnUrl;
+                } else {
+                    // إذا لم يكن هناك URL محفوظ، اعرض قائمة الخيارات
+                    showPageSelection();
+                }
+            } else {
+                loading.style.display = 'none';
+                errorMessage.style.display = 'block';
+                document.querySelector('.login-container').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.querySelector('.login-container').style.animation = '';
+                }, 500);
+            }
+        }, 1000);
+    });
+
+    // دالة لعرض خيارات الصفحات
+    function showPageSelection() {
+        document.querySelector('.login-container').innerHTML = `
+                <div class="logo-container">
+                    <i class="fas fa-check-circle" style="color: #4CAF50;"></i>
+                </div>
+                <h2>تم تسجيل الدخول بنجاح</h2>
+                <div style="margin: 20px 0;">
+                    <p style="text-align: center; margin-bottom: 15px;">اختر الصفحة التي تريد الانتقال إليها:</p>
+                    <button onclick="window.location.href='CRUD.html'" style="margin-bottom: 10px;">
+                        <i class="fas fa-box"></i>
+                        إدارة المنتجات
+                    </button>
+                    <button onclick="window.location.href='form_data.html'" style="background-color: #2196F3;">
+                        <i class="fas fa-address-card"></i>
+                        عرض بيانات الاتصال
+                    </button>
+                </div>
+            `;
+    }
+</script>
+</body>
+</html>
