@@ -57,7 +57,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
@@ -79,7 +79,7 @@
             background: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
@@ -141,9 +141,21 @@
             <div class="input-group">
                 <label for="productCategory">فئة المنتج</label>
                 <select id="productCategory" required>
-                    <option value="">اختر الفئة</option>
+                    <option value="">جميع الفئات</option>
                     <option value="افران البيتزا">افران البيتزا</option>
-                    <!-- باقي الخيارات -->
+                    <option value="الأفران الحراريه">الأفران الحراريه</option>
+                    <option value="البوتاجازات">البوتاجازات</option>
+                    <option value="الثلاجات">الثلاجات</option>
+                    <option value="القلايات">القلايات</option>
+                    <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
+                    <option value="ثلاجات عرض">ثلاجات عرض</option>
+                    <option value="غسالات الأطباق">غسالات الاطباق</option>
+                    <option value="ماكينات الثلج">ماكينات الثلج</option>
+                    <option value="معدات البار">معدات البار</option>
+                    <option value="معدات التجهيز">معدات التجهيز</option>
+                    <option value="معدات المخابز">معدات المخابز</option>
+                </select>
+
                 </select>
             </div>
 
@@ -163,7 +175,19 @@
 
     <!-- Filters Section -->
     <div class="filters-section">
-        <!-- نفس المحتوى السابق -->
+        <option value="all">جميع الفئات</option>
+        <option value="افران البيتزا">افران البيتزا</option>
+        <option value="الأفران الحراريه">الأفران الحراريه</option>
+        <option value="البوتاجازات">البوتاجازات</option>
+        <option value="الثلاجات">الثلاجات</option>
+        <option value="القلايات">القلايات</option>
+        <option value="ثلاجات تحت الطاولة">ثلاجات تحت الطاوله</option>
+        <option value="ثلاجات عرض">ثلاجات عرض</option>
+        <option value="غسالات الأطباق">غسالات الاطباق</option>
+        <option value="ماكينات الثلج">ماكينات الثلج</option>
+        <option value="معدات البار">معدات البار</option>
+        <option value="معدات التجهيز">معدات التجهيز</option>
+        <option value="معدات المخابز">معدات المخابز</option>
     </div>
 
     <!-- Products List -->
@@ -175,7 +199,7 @@
 <!-- Scripts -->
 <script>
     // التحقق من تسجيل الدخول عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         checkAuth();
     });
 
@@ -214,7 +238,7 @@
     }
 
     // منع الوصول للصفحة عبر زر Back
-    window.addEventListener('pageshow', function(event) {
+    window.addEventListener('pageshow', function (event) {
         if (event.persisted) {
             checkAuth();
         }
