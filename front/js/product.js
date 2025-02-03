@@ -1,5 +1,5 @@
 // Constants
-const API_URL = 'http://147.93.95.63:5000/api/products';
+const API_URL = 'https://api.target-store-eg.com/api/products';
 const PRODUCTS_PER_SLIDE = 4;
 
 // Main Initialization

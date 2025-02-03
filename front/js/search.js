@@ -141,7 +141,7 @@ const SearchManager = {
 
         try {
 
-            const response = await fetch('http://147.93.95.63:5000/api/products');
+            const response = await fetch('https://api.target-store-eg.com/api/products');
             const allProducts = await response.json();
 
             const filtered = allProducts.filter(product =>
