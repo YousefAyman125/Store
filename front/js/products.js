@@ -1,6 +1,6 @@
 // Configuration
 const CONFIG = {
-    API_URL: 'http://localhost:5000/api/products',
+    API_URL: 'http://147.93.95.63:5000/api/products',
     PLACEHOLDER_IMAGE: '../assets/placeholder.jpg',
     CATEGORIES: {
         'p-ovens': 'افران البيتزا',

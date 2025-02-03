@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // دالة حذف الاتصال
     async function deleteContact(id) {
         try {
-            const response = await fetch(`http://localhost:5000/api/contacts/${id}`, {
+            const response = await fetch(`http://147.93.95.63:5000/api/contacts/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         try {
-            const response = await fetch('http://localhost:5000/api/contacts');
+            const response = await fetch('http://147.93.95.63:5000/api/contacts');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
             const contacts = await response.json();

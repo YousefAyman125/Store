@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
             submitButton.disabled = true;
 
-            const response = await fetch('http://localhost:5000/api/contact', {
+            const response = await fetch('http://147.93.95.63:5000/api/contact', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
