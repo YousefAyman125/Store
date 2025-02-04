@@ -3,7 +3,7 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    margin-top: -5rem; /* تحويل 80px إلى rem */
+
 }
 
 .slider {
@@ -169,7 +169,13 @@
     .slide-content h2 {
         font-size: 1.5rem;
     }
+    .slider-container {
+        width: 100%;
+        height: 65vh;
+        position: relative;
+        overflow: hidden;
 
+    }
     .slider-btn {
         width: 2.188rem; /* تحويل 35px إلى rem */
         height: 2.188rem; /* تحويل 35px إلى rem */
