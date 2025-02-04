@@ -31,7 +31,36 @@ body {
     margin: 2rem auto;
     padding: 0 20px;
 }
+/* Header Styles */
+.header {
+    background: var(--white);
+    padding: clamp(1rem, 3vw, 2rem);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
+.header h1 {
+    color: var(--primary-color);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+}
+
+.home-link {
+    color: var(--text-dark);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: var(--primary-color);
+}
 /* Form Styles */
 .form-container {
     background: var(--white);
