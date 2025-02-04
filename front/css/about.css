@@ -6,20 +6,29 @@
     --white: #fff;
 
     /* Spacing */
-    --spacing-xs: 10px;
-    --spacing-sm: 20px;
-    --spacing-md: 30px;
-    --spacing-lg: 40px;
-    --spacing-xl: 60px;
+    --spacing-xs: 0.625rem;    /* 10px */
+    --spacing-sm: 1.25rem;     /* 20px */
+    --spacing-md: 1.875rem;    /* 30px */
+    --spacing-lg: 2.5rem;      /* 40px */
+    --spacing-xl: 3.75rem;     /* 60px */
 
     /* Shadows */
-    --shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 0.313rem 0.938rem rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 0.313rem 1.25rem rgba(0, 0, 0, 0.1);
 
     /* Border Radius */
-    --radius-sm: 5px;
-    --radius-md: 10px;
+    --radius-sm: 0.313rem;
+    --radius-md: 0.625rem;
     --radius-circle: 50%;
+
+    /* Font Sizes */
+    --text-xs: clamp(0.875rem, 1.2vw, 1rem);
+    --text-sm: clamp(1rem, 1.5vw, 1.1rem);
+    --text-md: clamp(1.2rem, 2vw, 1.5rem);
+    --text-lg: clamp(1.5rem, 3vw, 2rem);
+
+    /* Container Widths */
+    --container-max: 75rem;
 }
 
 /* Breadcrumb */
@@ -27,7 +36,7 @@
     display: flex;
     gap: var(--spacing-xs);
     justify-content: center;
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: var(--text-sm);
     padding: var(--spacing-sm) var(--spacing-xs);
     flex-wrap: wrap;
 }
@@ -48,16 +57,17 @@
 
 /* About Content */
 .about-content {
-    padding: clamp(40px, 8vw, var(--spacing-xl)) 0;
-    max-width: 1200px;
+    padding: clamp(2.5rem, 8vw, var(--spacing-xl)) 0;
+    max-width: var(--container-max);
     margin: 0 auto;
     padding-inline: var(--spacing-sm);
 }
 
 /* Company Info */
 .company-info {
+    padding-top: var(--spacing-sm);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
     gap: clamp(var(--spacing-sm), 4vw, var(--spacing-lg));
     margin-bottom: var(--spacing-xl);
     align-items: center;
@@ -68,20 +78,21 @@
 }
 
 .info-text h2 {
+    padding-top: 3.125rem;
     color: var(--text-dark);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--text-lg);
     margin-bottom: var(--spacing-sm);
 }
 
 .info-text p {
     line-height: 1.8;
     color: var(--text-light);
-    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-size: var(--text-sm);
 }
 
 .info-image {
     flex: 1;
-    padding-top: clamp(30px, 5vw, 50px);
+    padding-top: clamp(1.875rem, 5vw, 3.125rem);
 }
 
 .info-image img {
@@ -90,18 +101,22 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
 }
+.info-image:hover img {
+    transform: scale(1.05);
+}
+
 
 /* Values Grid */
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: clamp(20px, 3vw, var(--spacing-md));
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+    gap: clamp(1.25rem, 3vw, var(--spacing-md));
     margin-bottom: var(--spacing-xl);
 }
 
 .value-card {
     background: var(--white);
-    padding: clamp(20px, 3vw, var(--spacing-md));
+    padding: clamp(1.25rem, 3vw, var(--spacing-md));
     border-radius: var(--radius-md);
     text-align: center;
     box-shadow: var(--shadow-sm);
@@ -109,12 +124,12 @@
 }
 
 .value-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-0.625rem);
 }
 
 .value-card .icon {
-    width: clamp(50px, 8vw, 70px);
-    height: clamp(50px, 8vw, 70px);
+    width: clamp(3.125rem, 8vw, 4.375rem);
+    height: clamp(3.125rem, 8vw, 4.375rem);
     background: var(--primary-color);
     border-radius: var(--radius-circle);
     display: flex;
@@ -125,26 +140,26 @@
 
 .value-card .icon i {
     color: var(--white);
-    font-size: clamp(24px, 4vw, 30px);
+    font-size: clamp(1.5rem, 4vw, 1.875rem);
 }
 
 .value-card h3 {
     color: var(--text-dark);
     margin-bottom: var(--spacing-xs);
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    font-size: var(--text-md);
 }
 
 /* Features Grid */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: clamp(20px, 3vw, var(--spacing-md));
-    padding: clamp(30px, 5vw, var(--spacing-lg)) 0;
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+    gap: clamp(1.25rem, 3vw, var(--spacing-md));
+    padding: clamp(1.875rem, 5vw, var(--spacing-lg)) 0;
 }
 
 .feature-card {
     background: var(--white);
-    padding: clamp(30px, 4vw, 40px) clamp(20px, 3vw, 30px);
+    padding: clamp(1.875rem, 4vw, 2.5rem) clamp(1.25rem, 3vw, 1.875rem);
     border-radius: var(--radius-md);
     text-align: center;
     box-shadow: var(--shadow-lg);
@@ -159,7 +174,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 0.188rem;
     background: var(--primary-color);
     transform: scaleX(0);
     transition: transform 0.3s ease;
@@ -170,14 +185,14 @@
 }
 
 .feature-card .icon {
-    width: clamp(60px, 8vw, 80px);
-    height: clamp(60px, 8vw, 80px);
+    width: clamp(3.75rem, 8vw, 5rem);
+    height: clamp(3.75rem, 8vw, 5rem);
     background: var(--primary-color);
     border-radius: var(--radius-circle);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto clamp(20px, 3vw, 25px);
+    margin: 0 auto clamp(1.25rem, 3vw, 1.563rem);
     transition: all 0.3s ease;
 }
 
@@ -187,12 +202,12 @@
 
 .feature-card .icon i {
     color: var(--white);
-    font-size: clamp(25px, 4vw, 35px);
+    font-size: clamp(1.563rem, 4vw, 2.188rem);
 }
 
 .feature-card h3 {
     color: var(--text-dark);
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-size: var(--text-md);
     margin-bottom: var(--spacing-xs);
     transition: color 0.3s ease;
 }
@@ -205,19 +220,20 @@
     color: var(--text-light);
     line-height: 1.6;
     margin: 0;
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: var(--text-xs);
 }
 
 /* Why Us Section */
 .why-us {
+
     text-align: center;
-    padding: clamp(30px, 5vw, var(--spacing-xl)) 0;
+    padding: clamp(1.875rem, 5vw, var(--spacing-xl)) 0;
 }
 
 .why-us h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: var(--text-lg);
     color: var(--text-dark);
-    margin-bottom: clamp(30px, 5vw, var(--spacing-lg));
+    margin-bottom: clamp(1.875rem, 5vw, var(--spacing-lg));
 }
 
 /* Touch Device Optimization */
@@ -239,7 +255,7 @@
     .feature-card {
         break-inside: avoid;
         box-shadow: none;
-        border: 1px solid #ddd;
+        border: 0.063rem solid #ddd;
     }
 }
 

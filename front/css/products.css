@@ -1,14 +1,14 @@
 /* Main Container */
 .products-main {
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem; /* 20px */
 }
 
 /* Breadcrumb Styles */
 .breadcrumb {
-    padding-top: 50px;
-    margin-bottom: 30px;
+    padding-top: 3.125rem; /* 50px */
+    margin-bottom: 1.875rem; /* 30px */
     color: #666;
 }
 
@@ -94,16 +94,16 @@
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 15px;
-    margin-bottom: 25px;
+    gap: 1.25rem; /* 20px */
+    padding: 0.938rem; /* 15px */
+    margin-bottom: 1.563rem; /* 25px */
 }
 
 /* Product Card Styles */
 .product-item {
     aspect-ratio: 2/3;
     width: 100%;
-    max-width: 250px;
+    max-width: 15.625rem; /* 250px */
     margin: 0 auto;
 }
 
@@ -112,8 +112,8 @@
     height: 100%;
     width: 100%;
     background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -320,35 +320,89 @@
     background: #c41820;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
+/* Responsive Design - Updated */
+@media (max-width: 75rem) { /* 1200px */
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
     }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 62rem) { /* 992px */
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .product-item {
-        aspect-ratio: 2.5/3; /* تعديل النسبة للشاشات المتوسطة */
+        max-width: 100%;
+        aspect-ratio: 2/2.8;
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 48rem) { /* 768px */
     .products-grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 20px;
+        padding: 0.625rem;
+    }
+}
+
+/* تحديث للشاشات الصغيرة لعرض منتجين في الصف */
+@media (max-width: 36rem) { /* 576px */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem; /* 12px */
+        padding: 0.5rem;
     }
 
     .product-item {
-        aspect-ratio: 2/2.5; /* تعديل النسبة للشاشات الصغيرة */
+        aspect-ratio: 2/3;
+        max-width: none;
+    }
+
+    .product-image {
+        height: 55%;
+    }
+
+    .product-info {
+        padding: 0.75rem;
+        height: 45%;
     }
 
     .product-name {
-        font-size: 1rem;
-        height: 2.8em;
+        font-size: 0.875rem; /* 14px */
+        height: 2.4em;
+        margin-bottom: 0.5rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .details-btn {
+        font-size: 0.813rem; /* 13px */
+        padding: 0.375rem 0;
+    }
+}
+
+/* تحسينات إضافية للشاشات الصغيرة جداً */
+@media (max-width: 20rem) { /* 320px */
+    .products-grid {
+        gap: 0.5rem;
+        padding: 0.375rem;
+    }
+
+    .product-item {
+        aspect-ratio: 2/2.8;
+    }
+
+    .product-name {
+        font-size: 0.75rem; /* 12px */
+        -webkit-line-clamp: 2;
+    }
+
+    .details-btn {
+        font-size: 0.75rem;
+        padding: 0.25rem 0;
+    }
+
+    .product-info {
+        padding: 0.5rem;
     }
 }

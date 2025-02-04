@@ -1,6 +1,5 @@
-/* Root Variables with Enhanced Responsive Values */
 :root {
-    /* Colors */
+    /* Colors - لا تحتاج إلى تغيير */
     --primary-color: #e31e24;
     --text-color: #333;
     --border-color: #eee;
@@ -9,46 +8,50 @@
     --gray-600: #666;
     --gray-400: #999;
 
-    /* Social Media Colors */
+    /* Social Media Colors - لا تحتاج إلى تغيير */
     --whatsapp-color: #25D366;
     --facebook-color: #3b5998;
     --instagram-color: #e4405f;
     --tiktok-color: #000000;
 
-    /* Shadows */
-    --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.2);
+    /* Shadows - تحويل px إلى rem */
+    --shadow-sm: 0 0.125rem 0.313rem rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 0.313rem 0.938rem rgba(0, 0, 0, 0.2);
 
-    /* Spacing */
-    --spacing-xxs: clamp(4px, 0.5vw, 6px);
-    --spacing-xs: clamp(5px, 1vw, 8px);
-    --spacing-sm: clamp(10px, 2vw, 15px);
-    --spacing-md: clamp(15px, 3vw, 25px);
-    --spacing-lg: clamp(20px, 4vw, 40px);
-    --spacing-xl: clamp(30px, 5vw, 60px);
+    /* Spacing - تحويل px إلى rem */
+    --spacing-xxs: clamp(0.25rem, 0.5vw, 0.375rem);
+    --spacing-xs: clamp(0.313rem, 1vw, 0.5rem);
+    --spacing-sm: clamp(0.625rem, 2vw, 0.938rem);
+    --spacing-md: clamp(0.938rem, 3vw, 1.563rem);
+    --spacing-lg: clamp(1.25rem, 4vw, 2.5rem);
+    --spacing-xl: clamp(1.875rem, 5vw, 3.75rem);
 
-    /* Typography */
-    --font-size-xxs: clamp(10px, 0.8vw, 12px);
-    --font-size-xs: clamp(12px, 1vw, 14px);
-    --font-size-sm: clamp(14px, 1.5vw, 16px);
-    --font-size-md: clamp(16px, 2vw, 18px);
-    --font-size-lg: clamp(20px, 2.5vw, 24px);
-    --font-size-xl: clamp(24px, 3vw, 32px);
+    /* Typography - تحويل px إلى rem */
+    --font-size-xxs: clamp(0.625rem, 0.8vw, 0.75rem);
+    --font-size-xs: clamp(0.75rem, 1vw, 0.875rem);
+    --font-size-sm: clamp(0.875rem, 1.5vw, 1rem);
+    --font-size-md: clamp(1rem, 2vw, 1.125rem);
+    --font-size-lg: clamp(1.25rem, 2.5vw, 1.5rem);
+    --font-size-xl: clamp(1.5rem, 3vw, 2rem);
 
     /* Layout */
-    --container-max-width: 1200px;
+    --container-max-width: 75rem; /* 1200px */
     --container-width: 95%;
-    --border-radius: clamp(8px, 1vw, 12px);
-    --border-radius-sm: clamp(4px, 0.5vw, 8px);
+    --border-radius: clamp(0.5rem, 1vw, 0.75rem);
+    --border-radius-sm: clamp(0.25rem, 0.5vw, 0.5rem);
 
     /* Components */
-    --header-height: clamp(6px, 1vh, 8px);
-    --image-height: clamp(250px, 40vh, 500px);
-    --related-product-height: clamp(140px, 25vh, 200px);
+    --header-height: clamp(0.375rem, 1vh, 0.5rem);
+    --image-height: clamp(15.625rem, 40vh, 31.25rem);
+    --related-product-height: clamp(8.75rem, 25vh, 12.5rem);
 }
 
 /* Base Styles */
+
+html {
+    font-size: 16px; /* Base font size for rem calculations */
+}
 body {
     font-family: 'Cairo', sans-serif;
     margin: 0;
@@ -66,6 +69,7 @@ body {
     margin: 0 auto;
     padding: var(--spacing-sm);
     box-sizing: border-box;
+    padding-top: 3rem;
 }
 
 /* Breadcrumb Styles */
@@ -77,10 +81,8 @@ body {
 }
 
 .breadcrumb {
-    display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    font-size: var(--font-size-sm);
     color: var(--gray-600);
     flex-wrap: wrap;
 }
@@ -206,7 +208,7 @@ body {
 .share-buttons {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: 1rem;
     flex-wrap: wrap;
 }
 
@@ -323,13 +325,28 @@ body {
     background: var(--primary-color);
 }
 
+/* تعديل طريقة العرض من grid إلى flex */
 .related-slider {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    display: flex;
+    overflow-x: auto;
     gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* تخفي شريط التمرير مع الاحتفاظ بالوظيفة */
+.related-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.related-slider {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .related-product {
+    flex: 0 0 250px; /* عرض ثابت لكل منتج */
     background: var(--white);
     border-radius: var(--border-radius-sm);
     overflow: hidden;
@@ -347,23 +364,37 @@ body {
 
 .related-product-image {
     position: relative;
-    height: var(--related-product-height);
+    width: 100%;
+    height: 200px; /* ارتفاع ثابت للصورة */
     background: var(--white);
-    padding: var(--spacing-md);
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .related-product-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
 .related-product:hover .related-product-image img {
-    transform: scale(1.05);
+    transform: scale(1.1);
+}
+
+.related-product-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.related-product:hover .related-product-image::after {
+    opacity: 1;
 }
 
 .related-product-info {
@@ -384,18 +415,21 @@ body {
     -webkit-box-orient: vertical;
 }
 
-/* Slider Navigation */
+/* تحسين أزرار التنقل */
 .related-slider-container {
     position: relative;
     padding: 0 var(--spacing-xl);
+    margin: 0 auto;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     background: var(--white);
     border: 1px solid var(--border-color);
     border-radius: 50%;
@@ -403,7 +437,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s ease;
     z-index: 2;
 }
 
@@ -419,15 +453,36 @@ body {
 }
 
 .slider-btn i {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .prev-btn {
-    right: var(--spacing-md);
+    right: 0;
 }
 
 .next-btn {
-    left: var(--spacing-md);
+    left: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .related-product {
+        flex: 0 0 200px;
+    }
+
+    .related-product-image {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .related-product {
+        flex: 0 0 160px;
+    }
+
+    .related-product-image {
+        height: 120px;
+    }
 }
 
 /* Product Description Tab */
@@ -506,7 +561,6 @@ body {
 /* Desktops */
 @media (max-width: 1200px) {
     .container {
-        padding: var(--spacing-sm);
     }
 
     .related-slider {
@@ -541,7 +595,7 @@ body {
 /* Small Tablets and Large Phones */
 @media (max-width: 768px) {
     .tabs-header {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: var(--spacing-xs);
     }
@@ -557,17 +611,12 @@ body {
 
 /* Mobile Phones and Small Devices */
 @media (max-width: 576px) {
-    .breadcrumb {
-        font-size: var(--font-size-xs);
-    }
 
-    .whatsapp-number {
-        padding: var(--spacing-xxs) var(--spacing-sm);
-        font-size: var(--font-size-sm);
-    }
+
 
     .share-buttons {
-        gap: var(--spacing-xs);
+        padding-top: 2rem;
+        gap: 1rem;
     }
 
     .share-btn {
@@ -601,7 +650,7 @@ body {
     }
 
     .product-category {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: var(--spacing-xxs);
     }
@@ -613,7 +662,7 @@ body {
 
     .share-buttons {
         flex-wrap: wrap;
-        gap: var(--spacing-xxs);
+        gap: 1rem;
     }
 
     .product-title {
@@ -625,7 +674,7 @@ body {
     }
 
     .breadcrumb {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
         gap: var(--spacing-xxs);
     }

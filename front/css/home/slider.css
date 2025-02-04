@@ -3,7 +3,7 @@
     height: 100vh;
     position: relative;
     overflow: hidden;
-    margin-top: -80px; /* لتعويض ارتفاع الناف بار */
+    margin-top: -5rem; /* تحويل 80px إلى rem */
 }
 
 .slider {
@@ -45,7 +45,7 @@
     text-align: center;
     color: white;
     width: 90%;
-    max-width: 800px;
+    max-width: 50rem; /* تحويل 800px إلى rem */
     z-index: 1;
 }
 
@@ -53,7 +53,7 @@
     font-size: 3rem;
     margin-bottom: 1rem;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem); /* تحويل 20px إلى rem */
     transition: all 0.5s ease;
 }
 
@@ -68,16 +68,16 @@
 
 .cta-button {
     display: inline-block;
-    padding: 15px 40px;
-    margin-top: 30px;
+    padding: 0.938rem 2.5rem; /* تحويل 15px 40px إلى rem */
+    margin-top: 1.875rem; /* تحويل 30px إلى rem */
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 0.313rem; /* تحويل 5px إلى rem */
     font-size: 1.2rem;
     transition: all 0.3s ease;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem); /* تحويل 20px إلى rem */
 }
 
 .slide.active .cta-button {
@@ -90,13 +90,13 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 50px;
-    height: 50px;
+    width: 3.125rem; /* تحويل 50px إلى rem */
+    height: 3.125rem; /* تحويل 50px إلى rem */
     background: rgba(255, 255, 255, 0.2);
     border: none;
     border-radius: 50%;
     color: white;
-    font-size: 24px;
+    font-size: 1.5rem; /* تحويل 24px إلى rem */
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 2;
@@ -107,26 +107,26 @@
 }
 
 .prev-btn {
-    left: 20px;
+    left: 1.25rem; /* تحويل 20px إلى rem */
 }
 
 .next-btn {
-    right: 20px;
+    right: 1.25rem; /* تحويل 20px إلى rem */
 }
 
 .slider-bullets {
     position: absolute;
-    bottom: 30px;
+    bottom: 1.875rem; /* تحويل 30px إلى rem */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 10px;
+    gap: 0.625rem; /* تحويل 10px إلى rem */
     z-index: 2;
 }
 
 .bullet {
-    width: 12px;
-    height: 12px;
+    width: 0.75rem; /* تحويل 12px إلى rem */
+    height: 0.75rem; /* تحويل 12px إلى rem */
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
@@ -138,31 +138,76 @@
     transform: scale(1.2);
 }
 
-@media (max-width: 768px) {
+/* Media Queries */
+@media (max-width: 48rem) { /* 768px */
     .slide-content h2 {
         font-size: 2rem;
     }
 
     .cta-button {
-        padding: 12px 30px;
+        padding: 0.75rem 1.875rem; /* تحويل 12px 30px إلى rem */
         font-size: 1rem;
     }
 
     .slider-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+        width: 2.5rem; /* تحويل 40px إلى rem */
+        height: 2.5rem; /* تحويل 40px إلى rem */
+        font-size: 1.25rem; /* تحويل 20px إلى rem */
+    }
+    /* إخفاء أزرار التنقل */
+    .slider-btn {
+        display: none; /* إخفاء الأزرار */
+    }
+
+    /* تعديل موضع النقاط للأسفل قليلاً */
+    .slider-bullets {
+        bottom: 1.25rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) { /* 480px */
     .slide-content h2 {
         font-size: 1.5rem;
     }
 
     .slider-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
+        width: 2.188rem; /* تحويل 35px إلى rem */
+        height: 2.188rem; /* تحويل 35px إلى rem */
+        font-size: 1rem; /* تحويل 16px إلى rem */
+    }
+
+    .bullet {
+        width: 0.625rem; /* تحويل للشاشات الصغيرة */
+        height: 0.625rem;
+    }
+    /* إخفاء أزرار التنقل */
+    .slider-btn {
+        display: none; /* إخفاء الأزرار */
+    }
+
+    /* تعديل موضع النقاط للأسفل قليلاً */
+    .slider-bullets {
+        bottom: 1.25rem;
+    }
+}
+
+/* إضافة breakpoint جديد للشاشات الصغيرة جداً */
+@media (max-width: 20rem) { /* 320px */
+    .slide-content h2 {
+        font-size: 1.25rem;
+    }
+
+    .cta-button {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    /* إخفاء أزرار التنقل */
+    .slider-btn {
+        display: none; /* إخفاء الأزرار */
+    }
+
+    /* تعديل موضع النقاط للأسفل قليلاً */
+    .slider-bullets {
+        bottom: 1.25rem;
     }
 }
