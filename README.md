@@ -14,7 +14,6 @@ The **Target Store Egypt** project is a fully functional e-commerce platform des
 - **✔ Detailed Product View** – Check specifications, descriptions & customer reviews.
 - **✔ User Authentication** – Secure login & registration for a personalized experience.
 - **✔ Shopping Cart** – Easily manage items before checkout.
-- **✔ Checkout & Payment** – Secure and hassle-free payment process.
 - **✔ Mobile-Friendly Design** – Fully responsive for an optimal experience on all devices.
 
 ## 🛠 Technologies Used
